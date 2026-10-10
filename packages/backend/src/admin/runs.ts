@@ -1,3 +1,4 @@
+// AI生成
 // Runs view: task timeline, queue backlog, source lag, error classes, process
 // heartbeats, and the receipts and deliveries whose outcome needs an operator (resolved in
 // operations/recover.ts and notify/deliver.ts).

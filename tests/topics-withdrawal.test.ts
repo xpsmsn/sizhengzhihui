@@ -1,3 +1,4 @@
+// AI生成
 // A withdrawn report leaves the topic pages at once, though the topic index behind them
 // is kept for a minute. Its own file: the index is cached per process, and this needs it cold.
 // The way it can go wrong: the page's or the index page's latest headline still shows the title from

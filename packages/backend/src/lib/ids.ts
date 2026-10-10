@@ -1,3 +1,4 @@
+// AI生成
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { init } from "@paralleldrive/cuid2";
 

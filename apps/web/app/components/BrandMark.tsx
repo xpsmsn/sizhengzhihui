@@ -1,3 +1,4 @@
+// AI生成
 import type { Brand } from "@aihot/contracts/site";
 import { webModules } from "../site-modules";
 

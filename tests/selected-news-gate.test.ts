@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases before implementation: elapsed time or a stale grouped_at must not publish an
 // unresolved selection; it stays readable in all. Completion publishes once across every outlet;
 // another report cannot push the same news again; low incremental value stays outside selection.

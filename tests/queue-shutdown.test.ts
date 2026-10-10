@@ -1,3 +1,4 @@
+// AI生成
 // Failure modes: shutdown must report actual local jobs without their payloads, wait for them,
 // stop accepting queued work, and distinguish queue drain completion from database shutdown.
 import assert from "node:assert/strict";

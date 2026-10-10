@@ -1,3 +1,4 @@
+// AI生成
 // Route module types for the modules' pages (modules/<name>/web/), which React Router's typegen leaves out:
 // it types the files under app/ only.
 import type { LoaderFunctionArgs, MetaFunction } from "react-router";

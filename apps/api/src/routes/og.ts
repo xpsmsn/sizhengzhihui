@@ -1,3 +1,4 @@
+// AI生成
 // Share images (1200×630 PNG) for pages, items, reports, topics and events. Only public content
 // gets a card; anything else is a real 404.
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";

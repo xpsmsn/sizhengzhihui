@@ -1,3 +1,4 @@
+// AI生成
 // SelectBench: selection-model comparison runs on the human gold set. Runs come from
 // scripts/eval-selection.ts (imported automatically) or an uploaded report; the admin compares
 // models on the same cases and browses each case.

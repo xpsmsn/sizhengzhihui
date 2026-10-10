@@ -1,3 +1,4 @@
+// AI生成
 // The backend's sockets for modules (modules/<name>/server.ts). The api and worker processes install the
 // site's list when they start (site/modules/server.ts); the engine reads the sockets when it needs them and
 // never imports a module, so it runs the same with none installed: the open-source edition, and the

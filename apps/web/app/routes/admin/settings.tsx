@@ -1,3 +1,4 @@
+// AI生成
 import { ADMIN, SITE } from "@aihot/site";
 import { useRef, useState } from "react";
 import type { Route } from "./+types/settings";

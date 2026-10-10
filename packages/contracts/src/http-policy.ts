@@ -1,3 +1,4 @@
+// AI生成
 // Outward HTTP behaviour, defined once: CORS, the public interface version, redirects and which process
 // owns a path, the engine's and then those of the site's modules. The API server and the web server both
 // read this module.

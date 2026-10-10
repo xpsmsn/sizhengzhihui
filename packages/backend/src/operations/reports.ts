@@ -1,3 +1,4 @@
+// AI生成
 // The Monday source-health report for the ops chat. It goes through the same gated channel as the
 // alerts (off unless FEISHU_INTERNAL_ENABLED).
 import { sql } from "../db.ts";

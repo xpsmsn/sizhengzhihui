@@ -1,3 +1,4 @@
+// AI生成
 // Reports: a scheduled run that starts late still writes the issue it was due for, never one whose
 // window is still open; a daily whose window nothing was judged in is refused rather than published as a
 // quiet day; and an older weekly that froze no summaries shows the cited articles' public summaries.

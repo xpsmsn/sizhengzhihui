@@ -1,3 +1,4 @@
+// AI生成
 // MCP answers only requests addressed to this site (SITE_URL, MCP_ALLOWED_HOSTS and localhost): the Host,
 // or the forwarded host, is parsed whole (one host and an optional port). Failure cases: an IPv6 host
 // with a port ([::1]:3001) cut at its first colon and refused; a port that is not a port (localhost:abc,

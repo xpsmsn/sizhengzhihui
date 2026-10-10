@@ -1,3 +1,4 @@
+// AI生成
 // Signed image proxy URLs. The address format and signing key stay stable, so proxy URLs
 // already cached in full RSS and readers keep working: /api/img-proxy?u=&mode=&exp=&sig=
 // sig = hex(HMAC-SHA256(IMG_PROXY_SIGN_SECRET, `${u}|${mode}|${exp}`)), sent as its first 16 hex

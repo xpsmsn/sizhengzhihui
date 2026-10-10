@@ -1,3 +1,4 @@
+// AI生成
 // Failure modes: a reader can reuse withdrawn text for more than six minutes; stale-while-revalidate
 // extends that window; report images use the static brand lifetime; conditional reads restore it.
 import { tag } from './setup.ts';

@@ -1,3 +1,4 @@
+// AI生成
 // The latest hot ranking through the public read layer. A stored entry is shown only while its
 // representative is still listed evidence of the story (regrouping or a withdrawal can undo it before
 // the next ranking); the web shows heat values, machine exits only ranks (stories.ts).
@@ -109,19 +110,32 @@ export async function rankingExtras(ranking: HotRanking) {
   };
 }
 
-/** Home "current hot" strip: 3–5 entries from the same ranking, hidden when there are fewer than 3. */
+/** Home "近期关注" strip: 3–5 recent selected articles, hidden when there are fewer than 3. */
 export async function loadHotStrip(): Promise<HotStripEntry[] | null> {
-  const ranking = await latestHotRanking();
-  if (!ranking || ranking.entries.length < 3) return null;
-  const extras = await rankingExtras(ranking);
-  return ranking.entries.slice(0, 5).map((e) => ({
-    rank: e.rank,
-    title: e.title,
-    heat: e.heat,
-    trend: e.trend,
-    storyPublicId: e.storyPublicId,
-    itemId: e.representativeItemId,
-    participants: extras.participants(e),
-    participantCount: e.participantCount,
+  const now = new Date();
+  const since = new Date(now.getTime() - 14 * 86400_000);
+  const rows = await sql<{
+    article_id: string; title: string; score: number | null; source_name: string;
+    story_public_id: string | null;
+  }[]>`
+    SELECT p.article_id, p.title, p.score, s.name AS source_name,
+           st.public_id::text AS story_public_id
+    FROM publications p
+    JOIN sources s ON s.id = p.source_id
+    LEFT JOIN stories st ON st.id = p.story_id AND st.merged_into IS NULL
+    WHERE p.visibility = 'public' AND p.selected AND p.visible_after <= ${now}
+      AND p.timeline_at >= ${since}
+    ORDER BY coalesce(p.score, 0) DESC, p.timeline_at DESC
+    LIMIT 5`;
+  if (rows.length < 3) return null;
+  return rows.map((r, i) => ({
+    rank: i + 1,
+    title: r.title,
+    heat: r.score ?? 0,
+    trend: "unknown" as const,
+    storyPublicId: r.story_public_id,
+    itemId: r.article_id,
+    participants: [],
+    participantCount: 1,
   }));
 }

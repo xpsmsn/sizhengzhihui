@@ -1,3 +1,4 @@
+// AI生成
 // Process heartbeats for the runs view and the watchdog: one settings row per process role.
 import { hostname } from "node:os";
 import { sql } from "../db.ts";

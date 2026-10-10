@@ -1,3 +1,4 @@
+// AI生成
 // Detail limits must leave the tail recoverable without reporting a broken publisher; a worker
 // shutdown must not turn its remaining paid detail work into a successful run full of failures.
 import { tag } from "./setup.ts";

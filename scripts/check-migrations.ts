@@ -1,3 +1,4 @@
+// AI生成
 // Check new migrations against the PR base; deployed SQL is immutable in both engine and module trees.
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";

@@ -1,3 +1,4 @@
+// AI生成
 import { gate, stub, tag } from "./setup.ts";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";

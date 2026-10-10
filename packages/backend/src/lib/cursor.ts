@@ -1,3 +1,4 @@
+// AI生成
 // Opaque cursors: prefix + base64url(JSON). Bound to the query that produced them via a hash.
 import { shortHash, stableJson } from "./ids.ts";
 

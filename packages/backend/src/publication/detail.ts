@@ -1,3 +1,4 @@
+// AI生成
 // Item detail and Markdown export, both behind the same visibility and licence rules.
 import type { OutlineEntry, SiteItemDetail, StoryRef } from "@aihot/contracts/site";
 import { ITEM_COPY, SITE } from "@aihot/site";

@@ -1,3 +1,4 @@
+// AI生成
 // The relation between a report and candidate facts: prompts, schemas, candidate
 // descriptions and the pure decision rules. group.ts does the reading and writing around them.
 //

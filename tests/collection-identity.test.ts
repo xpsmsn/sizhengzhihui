@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: tracking aliases miss the stored article, duplicate cards buy duplicate detail
 // requests, fragment-aware HTML lists collapse separate updates, a podcast episode linked to its media
 // file changes identity or sends the file to page extraction.

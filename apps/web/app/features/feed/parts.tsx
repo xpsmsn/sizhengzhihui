@@ -1,3 +1,4 @@
+// AI生成
 // Small building blocks shared by feed items, detail pages and lists.
 import { useState } from "react";
 import type { FeedItemSummary, MediaView } from "@aihot/contracts/site";

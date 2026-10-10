@@ -1,3 +1,4 @@
+// AI生成
 // A regular run keeps every entry published since its source was added, past the first 60: the cursor (an
 // RSS validator) moves past the whole listing. The dated archive from before comes in only through the
 // bounded first import; the success cursor keeps its bound.

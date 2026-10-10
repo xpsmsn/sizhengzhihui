@@ -1,3 +1,4 @@
+// AI生成
 // JSON sources: plain JSON APIs, JSON embedded in HTML (script tags, window variables).
 import { credential } from "../config.ts";
 import { fetchListing } from "./listing-fetch.ts";

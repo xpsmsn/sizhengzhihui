@@ -1,3 +1,4 @@
+// AI生成
 // One body representation for the web page, Markdown export and full RSS: whitelisted HTML.
 // External HTML is never executed; images keep their original src and are signed at read time.
 import * as cheerio from "cheerio";

@@ -1,3 +1,4 @@
+// AI生成
 // Issue numbers ("第 N 期") count every existing issue of a kind; the navigation keeps only the newest
 // 400. Failure cases: the 401st issue numbered from the truncated index (the newest shows 400, older
 // ones none); the index, detail, navigation, latest page and month answers disagreeing; a new issue or

@@ -1,3 +1,4 @@
+// AI生成
 // /llms.txt — generated from the site's own configuration; only real, available resources are listed.
 import { PUBLIC_INTERFACE_VERSION } from "@aihot/contracts/http-policy";
 import { MCP_TOOL_NAMES as T, MCP_TOOLS, mcpToolName } from "@aihot/contracts/mcp";

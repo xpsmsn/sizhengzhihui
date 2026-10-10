@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: automatic runs rewrite published issues; report/receipt commits split; empty gaps
 // starve later daily/weekly/monthly issues or make a failed run look successful. All use a local model stub.
 import { editionAt, stub, tag } from "./setup.ts";

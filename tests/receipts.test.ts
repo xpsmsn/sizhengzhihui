@@ -1,3 +1,4 @@
+// AI生成
 // Paid requests: an answer already received is reused, every request actually sent counts against the
 // budget (retries of one logical request included), a lost answer is bought again at most once, an
 // answer cut off at the output limit says so, and the valve stops calls before they are sent.

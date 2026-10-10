@@ -1,3 +1,4 @@
+// AI生成
 // Story consolidation (group.ts calls it after a decision). Stories a report is firmly tied to may be
 // one story that grew two roots: their roots are compared directly and merge only when both models
 // see one story. Stories that stay apart though reports keep tying them list each other as related

@@ -1,3 +1,4 @@
+// AI生成
 import { useLoaderData } from "react-router";
 import { IntentLink } from "../components/ui/IntentLink";
 import type { HotEntryView, HotResponse } from "@aihot/contracts/site";
@@ -15,7 +16,7 @@ import { Delta } from "../features/hot/Delta";
 import { PhoneBar } from "../components/shell/PhoneBar";
 import type { Screen } from "../components/shell/screens";
 
-export const handle: Screen = { tab: "hot", name: "热点" };
+export const handle: Screen = { tab: "hot", name: "近期关注" };
 export { pageHeaders as headers } from "../lib/api.server";
 export const { clientLoader, shouldRevalidate } = pageReuse<typeof loader>();
 
@@ -25,8 +26,8 @@ export async function loader({ request }: { request: Request }) {
 
 export function meta() {
   return pageMeta({
-    title: withSubject("热点榜"),
-    description: `${subjectAfter("过去 48 小时", "圈")}讨论最多的 10 个事件：热度指数、趋势与组成热度的公开来源。`,
+    title: withSubject("近期关注"),
+    description: `${subjectAfter("过去 14 天", "圈")}精选文章：按编辑评分排序，关注值得阅读的思政动态。`,
     path: "/hot",
     image: "/og/pages/hot.png",
   });
@@ -70,8 +71,9 @@ function Badges({ e }: { e: HotEntryView }) {
 
 /** The whole card opens the event; the title carries the link and stretches over the card. */
 function StoryLink({ e, className }: { e: HotEntryView; className: string }) {
+  const to = e.itemId ? `/items/${e.itemId}` : `/story/${e.story.publicId}`;
   return (
-    <IntentLink viewTransition to={`/story/${e.story.publicId}`} className={`transition-colors after:absolute after:inset-0 after:content-[''] ${className}`}>
+    <IntentLink viewTransition to={to} className={`transition-colors after:absolute after:inset-0 after:content-[''] ${className}`}>
       {e.story.title}
     </IntentLink>
   );
@@ -148,7 +150,7 @@ function Lead({ e }: { e: HotEntryView }) {
           {!panel && <Sparkline values={e.spark} className="h-10 w-[140px]" />}
           <div className="text-right">
             <div className="mono text-[34px] font-semibold leading-none tracking-[-0.03em] text-ink">{Math.round(e.heat)}</div>
-            <div className="mt-1 text-[11.5px] text-ink-4">热度指数</div>
+            <div className="mt-1 text-[11.5px] text-ink-4">编辑评分</div>
           </div>
         </div>
       </div>
@@ -242,11 +244,11 @@ export default function HotPage() {
   return (
     <div className="pb-10">
       <PhoneBar
-        title="热点"
+        title="近期关注"
         large
         sub={
           <>
-            过去 {hot.windowHours}{`${subjectAfter(" 小时", "圈")}讨论最多的 `}{hot.entries.length || 10} 件事
+            过去 {Math.round(hot.windowHours / 24)}{`${subjectAfter(" 天", "圈")}精选 `}{hot.entries.length || 10} 篇文章
             {hot.computedAt && (
               <>
                 {" · "}
@@ -257,32 +259,31 @@ export default function HotPage() {
         }
         actions={
           <button type="button" onClick={showMethod} className="flex h-11 items-center gap-1 px-3 text-[14px] text-accent active:opacity-50">
-            <IconInfo size={17} /> 怎么算
+            <IconInfo size={17} /> 说明
           </button>
         }
       />
       <header className="hidden flex-wrap items-end justify-between gap-x-6 gap-y-2 pb-5 pt-1 lg:flex">
         <div>
-          <div className="flex items-center gap-2 text-[12px] font-semibold tracking-[0.08em] text-hot">
+          <div className="flex items-center gap-2 text-[12px] font-semibold tracking-[0.08em] text-accent">
             <span className="relative flex size-2" aria-hidden="true">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-hot opacity-30" />
-              <span className="relative inline-flex size-2 rounded-full bg-hot" />
+              <span className="relative inline-flex size-2 rounded-full bg-accent" />
             </span>
-            实时热度
+            编辑精选
           </div>
-          <h1 className="mt-1.5 text-[24px] font-bold leading-[1.3] tracking-[-0.01em] text-ink lg:text-[26px]">{withSubject("热点榜")}</h1>
-          <p className="mt-1.5 text-[13.5px] text-ink-3">过去 {hot.windowHours}{` 小时，${withSubject("圈")}讨论最多的 `}{hot.entries.length || 10} 件事</p>
+          <h1 className="mt-1.5 text-[24px] font-bold leading-[1.3] tracking-[-0.01em] text-ink lg:text-[26px]">{withSubject("近期关注")}</h1>
+          <p className="mt-1.5 text-[13.5px] text-ink-3">过去 {Math.round(hot.windowHours / 24)}{` 天，${withSubject("圈")}精选 `}{hot.entries.length || 10} 篇文章</p>
         </div>
         {hot.computedAt && (
           <p className="text-[12px] text-ink-4">
-            <span className="num">{monthDayTime(hot.computedAt)}</span> 更新 · 按讨论热度排序
+            <span className="num">{monthDayTime(hot.computedAt)}</span> 更新 · 按编辑评分排序
           </p>
         )}
       </header>
 
       {!lead ? (
         <div className="card rounded-sheet">
-          <EmptyState title="暂时没有热点">还没有足够多来源共同讨论的事件。</EmptyState>
+          <EmptyState title="暂时没有精选内容">近 14 天还没有精选文章，请稍后再来查看。</EmptyState>
         </div>
       ) : (
         <>
@@ -303,7 +304,7 @@ export default function HotPage() {
                 <h2 className="text-[15px] font-semibold text-ink">
                   继续看 <span className="num font-normal text-ink-4">No.{pad(others[0]!.rank)}–{pad(others[others.length - 1]!.rank)}</span>
                 </h2>
-                <span className="hidden text-[12px] text-ink-4 lg:block">参与者 · 24 小时走势 · 热度指数</span>
+                <span className="hidden text-[12px] text-ink-4 lg:block">来源 · 编辑评分</span>
               </div>
               <ol className="card divide-y divide-line-soft overflow-hidden">
                 {others.map((e) => (
@@ -318,29 +319,19 @@ export default function HotPage() {
       <details id="hot-method" className="disclosure group/method mt-8 scroll-mt-[calc(var(--bar-h)+16px)] text-[12px] text-ink-4">
         <summary className="flex items-center gap-1.5 py-1 transition-colors hover:text-ink-2">
           <IconInfo size={15} />
-          热度是怎么算的？
+          近期关注是什么？
           <span className="ml-auto inline-flex items-center gap-0.5">
-            <span className="group-open/method:hidden">了解榜单</span>
+            <span className="group-open/method:hidden">了解说明</span>
             <span className="hidden group-open/method:inline">收起</span>
             <IconChevronDown size={13} className="transition-transform duration-200 group-open/method:rotate-180" />
           </span>
         </summary>
         <div className="max-w-[760px] space-y-2 pb-2 pl-[21px] pt-2 leading-[1.75] text-ink-3">
-          <p>热度来自参与同一事件的独立账号与机构，重复采集只算一次，并按 24 小时半衰期衰减。它衡量讨论活跃程度，不是报道质量评分。</p>
-          <p>榜单统计过去 48 小时。趋势只比较持续覆盖的同一组信源；它反映我们的监测范围，不代表全网人数。缺少可比历史时，不展示趋势线。</p>
+          <p>近期关注展示过去 14 天内经编辑精选的文章，按评分降序排列。评分反映文章的阅读价值与信息质量，不代表全网讨论热度。</p>
+          <p>思政内容多来自单一权威信源，不依赖多源交叉聚类，因此以编辑评分替代热度指数，更贴合实际使用场景。</p>
           <p>
-            信源名单只展示可公开阅读的报道来源；讨论参与者还包括只计入热度的账号与机构。同一机构的多个渠道可能合并计数，因此参与者不一定多于信源数。点击事件可查看各方报道与观点。
+            点击标题可进入文章详情页查看完整内容。每篇文章标注了来源与分类，便于按需追踪。
           </p>
-          <dl className="flex flex-wrap gap-x-5 gap-y-1.5 pt-1">
-            {Object.values(BADGES).map((b) => (
-              <div key={b.label} className="flex items-center gap-1.5">
-                <dt>
-                  <Badge tone={b.tone}>{b.label}</Badge>
-                </dt>
-                <dd>{b.hint}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </details>
     </div>

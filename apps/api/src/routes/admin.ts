@@ -1,3 +1,4 @@
+// AI生成
 // /api/admin/*: queries are GET, creation POST, edits PATCH, business commands POST.
 // Every route goes through adminHandler (session + CSRF); manual changes are audited in the modules.
 import { readFile } from "node:fs/promises";

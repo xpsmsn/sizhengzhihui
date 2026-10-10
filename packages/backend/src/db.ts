@@ -1,3 +1,4 @@
+// AI生成
 import postgres from "postgres";
 import { config } from "./config.ts";
 

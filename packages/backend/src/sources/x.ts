@@ -1,3 +1,4 @@
+// AI生成
 // X accounts via SocialData search, newest first. Verified publishers include their own thread
 // continuations; other replies stay excluded. Plain accounts share length-bounded search shards.
 import { searchTweets, tweetMedia, tweetText, type SdArticle, type SdTweet } from "../providers/socialdata.ts";

@@ -1,3 +1,4 @@
+// AI生成
 // Prepare one verbatim document; each route imports only its own published copy.
 import { parseCopyFile, renderMarkdown } from "./markdown";
 import { siteUrl } from "./seo";

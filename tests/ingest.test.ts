@@ -1,3 +1,4 @@
+// AI生成
 // A paused external source must not accept new reports or look healthy after a rejected push.
 import "./setup.ts";
 import assert from "node:assert/strict";

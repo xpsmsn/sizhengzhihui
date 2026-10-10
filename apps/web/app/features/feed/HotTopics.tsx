@@ -1,3 +1,4 @@
+// AI生成
 import { Link } from "react-router";
 import type { HotStripEntry } from "@aihot/contracts/site";
 import { IconArrowRight, IconMinus, IconTrendDown, IconTrendUp } from "../../components/icons";
@@ -30,18 +31,17 @@ export function HotTopics({ entries }: { entries: HotStripEntry[] }) {
   return (
     <section
       aria-labelledby="hot-topics"
-      className="card relative mb-4 overflow-hidden bg-[radial-gradient(120%_90%_at_100%_0%,var(--hot-soft),transparent_55%)] px-3.5 pb-1 pt-2.5 lg:mb-6 lg:px-5 lg:pb-2 lg:pt-3.5"
+      className="card relative mb-4 overflow-hidden px-3.5 pb-1 pt-2.5 lg:mb-6 lg:px-5 lg:pb-2 lg:pt-3.5"
     >
       <div className="flex items-center justify-between lg:mb-1">
         <h2 id="hot-topics" className="flex items-center gap-2 text-[14px] font-semibold text-ink">
           <span className="relative flex size-2" aria-hidden="true">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-hot opacity-40" />
-            <span className="relative inline-flex size-2 rounded-full bg-hot" />
+            <span className="relative inline-flex size-2 rounded-full bg-accent" />
           </span>
-          当前热点
+          近期关注
         </h2>
         <Link to="/hot" className="group -my-2 -mr-1.5 inline-flex h-10 items-center gap-1 px-1.5 text-[12.5px] text-ink-3 transition-colors hover:text-accent lg:my-0 lg:mr-0 lg:h-auto lg:px-0">
-          完整榜单 <IconArrowRight size={13} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+          查看全部 <IconArrowRight size={13} className="transition-transform duration-200 group-hover:translate-x-0.5" />
         </Link>
       </div>
       <ol>
@@ -57,8 +57,8 @@ export function HotTopics({ entries }: { entries: HotStripEntry[] }) {
                 <Faces participants={e.participants} total={e.participantCount} size={20} interactive={false} />
               </span>
               <span className="flex items-center justify-end gap-2.5 sm:contents">
-                <span className="whitespace-nowrap text-right text-[12.5px] text-ink-4" title="热度指数">
-                  <span className="num text-[13.5px] font-semibold text-ink-2">{Math.round(e.heat)}</span> 热度
+                <span className="whitespace-nowrap text-right text-[12.5px] text-ink-4" title="编辑评分">
+                  <span className="num text-[13.5px] font-semibold text-ink-2">{Math.round(e.heat)}</span> 分
                 </span>
                 <span className="flex w-5 justify-center">
                   <TrendMark trend={e.trend} />

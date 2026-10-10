@@ -1,3 +1,4 @@
+// AI生成
 // Run after `npm run build -w @aihot/web`. Real production server/router, synthetic HTTP API only.
 // Failure cases: the masthead numbering the newest of 405 issues 400 (the navigation index's length); an
 // issue older than the index losing its number; the calendar marking that issue as not published; the

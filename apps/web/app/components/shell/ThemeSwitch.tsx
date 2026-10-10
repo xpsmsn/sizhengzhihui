@@ -1,3 +1,4 @@
+// AI生成
 import { useEffect, useState, type ReactNode } from "react";
 import { IconMonitor, IconMoon, IconSun } from "../icons";
 import { applyTheme, resolvedTheme, setThemePreference, useThemePreference, type ThemePreference } from "../../lib/local-state";

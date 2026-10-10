@@ -1,3 +1,4 @@
+// AI生成
 // A public render error can outlive its deployment: replace an outdated document once per tab.
 import { isRouteErrorResponse } from "react-router";
 import type { HydrationOptions } from "react-dom/client";

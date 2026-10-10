@@ -1,3 +1,4 @@
+// AI生成
 // Image fetch, resize and cache, shared by the signed image proxy and the vision analysis: a (mode, url)
 // is fetched once through the egress route and both get the same file.
 import { createHash, randomUUID } from "node:crypto";

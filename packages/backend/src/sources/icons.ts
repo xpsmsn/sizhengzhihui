@@ -1,3 +1,4 @@
+// AI生成
 // Source icons ("来源图标缓存"): the face a source shows next to its reports and on the hot list.
 // X accounts take the avatar on their latest post; 公众号 the account avatar on their latest article
 // page; sites the best icon their home page declares. A source with none keeps its tinted initial.

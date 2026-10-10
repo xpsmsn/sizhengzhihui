@@ -1,3 +1,4 @@
+// AI生成
 // Publication jobs: re-deriving a whole source after an admin change.
 import type { PgBoss } from "pg-boss";
 import { sql } from "../db.ts";

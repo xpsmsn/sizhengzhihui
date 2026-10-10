@@ -1,3 +1,4 @@
+// AI生成
 // The judging and writing steps (editorial/analyze.ts): the prefilter decides relevance, two scores
 // against the tier threshold decide 精选, selected and near-selected items are written by the content
 // understanding and the rest by the title/summary translation, a structure step gives the category,

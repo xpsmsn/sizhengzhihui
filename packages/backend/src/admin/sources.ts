@@ -1,3 +1,4 @@
+// AI生成
 // Source administration: list, detail, preview (fetch without storing), edit, create with
 // duplicate checks, pause/resume and manual collection. Every change is audited.
 import { z } from "zod";

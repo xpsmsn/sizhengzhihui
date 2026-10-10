@@ -1,3 +1,4 @@
+// AI生成
 // Signed image proxy. Validate before reading prepared bytes or returning 304; calculate a fresh
 // remaining lifetime on every request so the CDN never inherits an aged HTTP response's max-age.
 import type { FastifyInstance } from "fastify";

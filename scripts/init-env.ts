@@ -1,3 +1,4 @@
+// AI生成
 // Creates .env from .env.example with fresh random secrets and an admin password, and prints the password
 // once. Refuses to overwrite an existing .env.   node scripts/init-env.ts [--llm-key <key>]
 import { randomBytes } from "node:crypto";

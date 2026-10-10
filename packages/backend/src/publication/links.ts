@@ -1,3 +1,4 @@
+// AI生成
 import { config } from "../config.ts";
 import { serverModules } from "../modules.ts";
 

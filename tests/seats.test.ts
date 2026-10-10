@@ -1,3 +1,4 @@
+// AI生成
 // Machines receive one selected seat per fact: several selected reports of one fact give v1, RSS and the
 // sync ledger only the representative, a better report taking over removes the old one; a broken
 // snapshot page asks for a new snapshot, and a database outage during sync is a retryable answer, never

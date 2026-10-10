@@ -1,3 +1,4 @@
+// AI生成
 // Error diagnostics without database row values, SQL parameters or arbitrary error properties.
 // PostgreSQL may put values in its message as well as detail/where, including through a cause.
 export interface LoggedError {

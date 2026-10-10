@@ -1,3 +1,4 @@
+// AI生成
 import Fastify, { LogController, type FastifyInstance, type FastifyReply, type FastifyRequest } from "fastify";
 import { randomUUID } from "node:crypto";
 import type { IncomingMessage } from "node:http";

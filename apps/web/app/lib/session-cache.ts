@@ -1,3 +1,4 @@
+// AI生成
 // History-entry caches keep same-document returns synchronous. Writes are coalesced after interaction;
 // hiding/leaving the document flushes them so a browser back/forward reload can restore the same data.
 import { readJson, storedKeys, writeRaw } from "./local-state.ts";

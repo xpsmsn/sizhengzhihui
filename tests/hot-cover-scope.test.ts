@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases at the publication → hot-cover boundary: a warmed ranking must drop a withdrawn
 // secondary report's image and a revoked full-text image; another public report may replace it.
 // These checks use the real database/read path, with the same ranking kept throughout each change.

@@ -1,3 +1,4 @@
+// AI生成
 // Candidate recall for grouping (group.ts): the reports of the last RECALL_DAYS days that belong to a
 // live fact, compared with the report being decided by the same title-and-summary embedding on both
 // sides (without an embedding key, by their shared character bigrams), plus the same URL and the X

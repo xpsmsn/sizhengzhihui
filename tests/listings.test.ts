@@ -1,3 +1,4 @@
+// AI生成
 // A listing that names one article more than once stores it once, a feed whose entries are sections
 // of one page (release notes #september-24-2026 …) keeps one article per section when the source says
 // so, and a feed that garbles different characters on every load keeps one version. Before the

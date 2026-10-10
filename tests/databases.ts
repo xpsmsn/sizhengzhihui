@@ -1,3 +1,4 @@
+// AI生成
 // Every database test file runs on its own copy of the database, so the files run in parallel
 // without sharing rows, paid-service budgets or an order (package.json). DATABASE_URL names the
 // template, a throwaway database ending in _test or _ci (setup.ts refuses anything else); it is

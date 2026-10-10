@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: an inline style hides a block in a way Readability's literal check misses (property or
 // keyword in another case, "!important", an important declaration followed by a plain one), so text a
 // reader never sees enters the body; or the reverse, a block a later declaration shows again is dropped;

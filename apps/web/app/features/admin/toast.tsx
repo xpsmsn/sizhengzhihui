@@ -1,3 +1,4 @@
+// AI生成
 // A tiny toast stack for admin command results (no dependency, one instance in the admin layout).
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";

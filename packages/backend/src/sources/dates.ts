@@ -1,3 +1,4 @@
+// AI生成
 // Published dates as list pages, articles and JSON lists print them, read the same on every host.
 import type { SourceRow } from "./types.ts";
 
@@ -26,14 +27,15 @@ function atOffset(y: string | number, mo: string | number, d: string | number, h
 
 /**
  * A published date as a source prints it. Date.parse is kept only where it reads the same
- * on every host: a time with its zone, and an ISO date alone (UTC midnight). Anything else it would read
- * in the server's local zone (UTC in Docker), so "2026-09-26 10:00" is read in the source's offset instead.
+ * on every host: a time that carries its own zone. Everything else — a bare date, or a date with a
+ * wall-clock time (a space or dash between them) — is read in the source's offset, so a Chinese
+ * listing's "2026-10-09" is midnight in China, not UTC midnight (which would show as 08:00).
  */
 export function parseLooseDate(value: string | null | undefined, utcOffset = "+08:00"): Date | null {
   if (!value) return null;
   const v = value.trim();
   if (!v) return null;
-  const numeric = /(\d{4})[-/.年](\d{1,2})[-/.月](\d{1,2})日?(?:(?:T|\s*)(\d{1,2}):(\d{2})(?::(\d{2}))?)?/.exec(v);
+  const numeric = /(\d{4})[-/.年](\d{1,2})[-/.月](\d{1,2})日?(?:(?:T|\s*|-)(\d{1,2}):(\d{2})(?::(\d{2}))?)?/.exec(v);
   if (numeric && !calendarDay(numeric[1]!, numeric[2]!, numeric[3]!)) return null;
   const english = /\b([a-z]{3,9})\s+(\d{1,2})(?:st|nd|rd|th)?[,]?\s+(\d{4})\b/i.exec(v)
     ?? /\b(\d{1,2})\s+([a-z]{3,9})\s+(\d{4})\b/i.exec(v)?.map((part, i, match) => i === 1 ? match[2]! : i === 2 ? match[1]! : part);
@@ -43,7 +45,7 @@ export function parseLooseDate(value: string | null | undefined, utcOffset = "+0
   }
   if (!numeric && !english) return null;
   const text = v.replace(/(\d)(st|nd|rd|th)\b/gi, "$1");
-  if (EXPLICIT_ZONE.test(v) || /^\d{4}-\d{2}-\d{2}$/.test(v)) {
+  if (EXPLICIT_ZONE.test(v)) {
     const direct = Date.parse(text);
     if (Number.isFinite(direct)) return new Date(direct);
     if (!numeric) return null;

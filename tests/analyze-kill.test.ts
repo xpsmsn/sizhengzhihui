@@ -1,3 +1,4 @@
+// AI生成
 // A hard-killed analysis must distinguish a lost paid answer from one already saved.
 // These are real processes and PostgreSQL transactions with a local model protocol substitute;
 // they do not test provider quality, machine power loss, or a browser journey.

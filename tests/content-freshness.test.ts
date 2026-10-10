@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: a catalogue tail becomes today's news; no date is presented as a publication date;
 // a high model score bypasses unknown freshness; an already queued card bypasses the new rule;
 // later metadata either never releases real news or revives old material; a modified date or a

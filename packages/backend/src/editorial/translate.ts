@@ -1,3 +1,4 @@
+// AI生成
 // Full-text Chinese translations: made by the worker after an item
 // is selected, for sources whose full text may be shown on the site; a page read never translates.
 // Bodies are translated block by block (paragraphs, headings, list items, captions, table cells) so the

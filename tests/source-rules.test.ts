@@ -1,3 +1,4 @@
+// AI生成
 // Every rule a source's config names is applied, and a name the collector does not implement fails the
 // fetch. Configs used to name adapters and detail rules the collectors never had, and they fell back
 // silently (junk titles, RSS entries outside the source's URL rules, dates from the wrong place).

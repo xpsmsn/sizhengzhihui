@@ -1,3 +1,4 @@
+// AI生成
 // Share poster: the server-rendered poster (with a QR code to the article), to save or hand to the
 // system share sheet. Loaded on demand from the article page; a bottom sheet on phones, centred above.
 import { useEffect, useState } from "react";

@@ -1,3 +1,4 @@
+// AI生成
 // The upstream budget of image fetches. The image proxy is the one path where the origin fetches
 // third-party bytes on a reader's behalf (vision analysis shares it), so a site may cap them per minute
 // and per Beijing day (site.ts DEPLOYMENT.imageUpstreamBudget; IMGPROXY_UPSTREAM_MB_PER_MINUTE and

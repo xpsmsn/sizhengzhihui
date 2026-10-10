@@ -1,3 +1,4 @@
+// AI生成
 // Evaluates the production pairwise event-relation judge on a user-supplied gold set.
 // Usage: node --env-file=.env scripts/eval-relations.ts --gold .data/relation-gold.jsonl
 //        [--models default,deepseek-flash] [--split development] [--n 200] [--thresholds <review,tie>]

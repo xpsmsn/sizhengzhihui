@@ -1,3 +1,4 @@
+// AI生成
 // Daily housekeeping: expired leases, old run history, feedback screenshots left behind and derived caches,
 // and the site's modules' own periods (their server.ts retention).
 import { readdir, stat, unlink } from "node:fs/promises";

@@ -1,3 +1,4 @@
+// AI生成
 // Video watch/share/embed addresses name players, whose controls and recommendations are not articles.
 export function isVideoPageUrl(input: string): boolean {
   let url: URL;

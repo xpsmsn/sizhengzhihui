@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases for online migrations: table scans under strong locks, unsafe retries, and hidden SQL.
 import assert from "node:assert/strict";
 import { test } from "node:test";

@@ -1,3 +1,4 @@
+// AI生成
 // One journal line per server error, retaining stacks and request paths without query strings.
 import { isRouteErrorResponse } from "react-router";
 

@@ -1,3 +1,4 @@
+// AI生成
 /// <reference lib="dom" />
 // A render failure in an old tab may recover once after a release, without hiding current failures.
 import assert from "node:assert/strict";

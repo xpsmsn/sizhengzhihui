@@ -1,3 +1,4 @@
+// AI生成
 // Daily, weekly and monthly reports. Windows are Beijing calendar based and written into the report;
 // missed schedule points are caught up; regeneration creates a revision. What every issue carries is
 // decided by rule: a daily from edition.ts without a model; a weekly or monthly is compiled from its
@@ -16,7 +17,7 @@ import { chatJson } from "../providers/llm.ts";
 import { completeReceipt } from "../providers/receipts.ts";
 import { shutdownSignal } from "../jobs/queue.ts";
 import { emit } from "../modules.ts";
-import { arrangeDaily, candidates, dailyEdition, periodEntries, sectionOf, SECTION_ORDER, type Candidate, type EditionEntry } from "./edition.ts";
+import { arrangeDaily, candidates, dailyEdition, sectionOf, SECTION_ORDER, type Candidate, type EditionEntry } from "./edition.ts";
 
 export const REPORT_VERSION = promptVersion("report-period", "report-period-sections", "report-period-no-sections");
 
@@ -196,10 +197,12 @@ async function composePeriod(kind: "weekly" | "monthly", key: string, startDate:
   // The dailies' windows run from the edition time the day before the first to that time on the last.
   const start = beijingAt(addDays(startDate, -1), EDITION_TIMES.daily);
   const end = beijingAt(endDateInclusive, EDITION_TIMES.daily);
-  const { entries, issues } = await periodEntries(startDate, endDateInclusive);
-  const top = entries.slice(0, PERIOD_EVENTS[kind]);
-  if (!top.length) throw new Error(`${kind} ${key}: no daily entries in the period`);
+  // 日报已取消出刊：周期报告直接从精选集取数（不再汇编日报）。
   const selected = await candidates(start, end);
+  const top = selected.slice(0, PERIOD_EVENTS[kind]);
+  // 这个周期没有够格的内容：不出这一期，也不算失败（下次运行再看，仍是空就继续跳过）。
+  if (!top.length) return null;
+  const issues = Math.round((end.getTime() - start.getTime()) / 86_400_000);
   const groups = SECTION_ORDER
     .map((label) => ({ label, items: top.filter((e) => sectionOf(e.category) === label) }))
     .filter((g) => g.items.length > 0);
@@ -295,8 +298,8 @@ const nextMonth = (label: string) => {
 export async function composeDueReports(now = new Date(), limit = 8): Promise<{ generated: string[]; failed: string[] }> {
   const generated: string[] = [];
   const failed: string[] = [];
+  // 日报已取消出刊：只补周报、月报；/daily 的历史归档仍可访问（见 daily-archive 路由）。
   const kinds: Array<{ kind: ReportKind; due: string; next: (k: string) => string; compose: (k: string) => Promise<unknown> }> = [
-    { kind: "daily", due: dueDaily(now), next: (k) => addDays(k, 1), compose: composeDaily },
     { kind: "weekly", due: dueWeekly(now), next: nextWeek, compose: composeWeekly },
     { kind: "monthly", due: dueMonthly(now), next: nextMonth, compose: composeMonthly },
   ];
@@ -307,8 +310,8 @@ export async function composeDueReports(now = new Date(), limit = 8): Promise<{ 
       if (have.has(key)) continue;
       if (shutdownSignal.signal.aborted || generated.length >= limit) break kinds;
       try {
-        await k.compose(key);
-        generated.push(`${k.kind}:${key}`);
+        const res = await k.compose(key);
+        if (res) generated.push(`${k.kind}:${key}`);
       } catch (error) {
         failed.push(`${k.kind}:${key}`);
         console.error(JSON.stringify({ level: "error", msg: "report failed", report: `${k.kind}:${key}`, error: logError(error) }));

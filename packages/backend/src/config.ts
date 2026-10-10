@@ -1,3 +1,4 @@
+// AI生成
 // Runtime configuration. Secrets are loaded per group (models, collectors, integrations, auth)
 // from dotenv files, and only by the backend processes that need them.
 import { existsSync, readFileSync } from "node:fs";

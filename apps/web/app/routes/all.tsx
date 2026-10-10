@@ -1,3 +1,4 @@
+// AI生成
 import { useEffect } from "react";
 import { Link, redirect, useLoaderData, useNavigation, useSearchParams } from "react-router";
 import type { Route } from "./+types/all";
@@ -104,7 +105,7 @@ export default function AllPage() {
           }
         />
       ) : (
-        <FeedBar base="/all" category={f.category} channel={f.channel} />
+        <FeedBar base="/all" category={f.category} channel={f.channel} counts={data.categoryCounts} />
       )}
       <ActiveFilters base="/all" category={f.category} channel={f.channel} tag={f.tag} />
 
@@ -112,7 +113,7 @@ export default function AllPage() {
       <div className="hidden lg:block">
         <h1 className="text-[24px] font-semibold leading-[1.3] text-ink">{title ?? ALL_TITLE}</h1>
         <div className="mb-5 mt-4 flex items-center justify-between gap-4">
-          <CategoryTabs base="/all" category={f.category} channel={f.channel} layoutId="all-cat-desk" className="min-w-0" />
+          <CategoryTabs base="/all" category={f.category} channel={f.channel} layoutId="all-cat-desk" className="min-w-0" counts={data.categoryCounts} />
           <SearchField defaultValue={f.q ?? ""} keep={keep} />
         </div>
       </div>

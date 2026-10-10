@@ -1,3 +1,4 @@
+// AI生成
 // Atom text stays literal; XHTML keeps mixed text/element order before HTML cleaning.
 import './setup.ts';
 import assert from 'node:assert/strict';

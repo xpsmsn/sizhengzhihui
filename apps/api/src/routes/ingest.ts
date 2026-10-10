@@ -1,3 +1,4 @@
+// AI生成
 // External collection scripts push items here. They use the ingest token (never an admin session); with
 // INGEST_RATE_LIMIT set, each client's pushes are also limited in the process, for a site with no proxy in
 // front that limits them. The site's modules' reporting clients use the same token (authorized below).

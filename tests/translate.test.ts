@@ -1,3 +1,4 @@
+// AI生成
 // Full-text translations follow the text: an article corrected while the model was translating the old
 // wording is translated again, and a translation of an older revision is never shown as the current one.
 // Links and images inside a paragraph survive the model, and the post an X item quotes is translated.

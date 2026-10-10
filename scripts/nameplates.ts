@@ -1,3 +1,4 @@
+// AI生成
 // Generates the report nameplates (site/brand/nameplates/*.svg and index.json): the subject word
 // from site/site.ts (in the accent) and the Chinese title, set solid in Noto Sans SC Black
 // (SIL OFL 1.1) as SVG paths, so the nameplate is one static logotype on every system. The Latin

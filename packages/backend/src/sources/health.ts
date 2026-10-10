@@ -1,3 +1,4 @@
+// AI生成
 // Source-health evidence for the daily follow-ups and weekly report. A successful HTTP request is
 // not proof of output; discovery channels and editorial publishers are counted separately.
 import { sql } from "../db.ts";

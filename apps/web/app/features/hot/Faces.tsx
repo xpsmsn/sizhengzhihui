@@ -1,3 +1,4 @@
+// AI生成
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { HOT_FACE_LIMIT, type HotParticipant } from "@aihot/contracts/site";

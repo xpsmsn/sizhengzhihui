@@ -1,3 +1,4 @@
+// AI生成
 import { RELATIONS, STORY_REVIEW_MIN_CONFIDENCE, TIE_MIN_CONFIDENCE, type Relation, type ReportView } from "@aihot/backend/events/relate";
 
 export interface RelationGoldReport {

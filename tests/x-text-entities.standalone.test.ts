@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: the provider's escaped ampersands/comparisons remain visible in plain-text posts;
 // stripping HTML destroys literal code; repeated decoding changes a deliberately written entity;
 // quote text follows another rule, or decoding corrupts an already expanded destination URL.

@@ -1,3 +1,4 @@
+// AI生成
 // Cron-style schedules (Asia/Shanghai), the engine's and then the site's modules'. Each run is recorded in
 // job_runs; missed slots run once.
 import type { PgBoss } from "pg-boss";
@@ -12,6 +13,7 @@ import { refreshSourceIcons } from "@aihot/backend/sources/icons";
 import { computeHotRanking, snapshotHeat } from "@aihot/backend/events/hot";
 import { linkRelatedStories } from "@aihot/backend/events/consolidate";
 import { composeDueReports } from "@aihot/backend/reports/compose";
+import { generatePendingInsights } from "@aihot/backend/reports/insights";
 import { dailyRetention } from "@aihot/backend/operations/retention";
 import { submitIndexNow } from "@aihot/backend/operations/indexnow";
 import { checkAlerts, sendDigest } from "@aihot/backend/operations/alerts";
@@ -32,6 +34,8 @@ const ENGINE_SCHEDULES: Scheduled[] = [
   // Every issue that is due and not written yet, each from its edition time (site/site.ts EDITION_TIMES)
   // at the next half hour; a missed or failed one at the next run.
   { name: "reports.compose", cron: "0,30 * * * *", missed: "once", run: () => composeDueReports() },
+  // 政策解读：为达到评分线（82）的精选条目生成原创解读，每个事件一篇（日报已取消，见 compose.ts）。
+  { name: "reports.insights", cron: "*/10 * * * *", run: () => generatePendingInsights() },
   // The deletions the privacy notice promises, once their retention periods are over.
   { name: "ops.retention", cron: "30 3 * * *", missed: "once", run: () => dailyRetention() },
   // IndexNow for new indexable pages (off unless INDEXNOW_SUBMIT_ENABLED).

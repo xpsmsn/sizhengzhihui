@@ -1,3 +1,4 @@
+// AI生成
 // Admin display helpers: Beijing wall-clock times, relative ages, compact numbers.
 import { beijingDate, beijingTime } from "@aihot/contracts/time";
 

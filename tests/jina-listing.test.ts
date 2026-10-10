@@ -1,3 +1,4 @@
+// AI生成
 // A listing read through Jina is a paid request of its own on every fetch, with its own receipt: a read
 // whose outcome is unknown is never sent again and is left to ops.recover, the next fetch reads the
 // listing afresh, and a page received before a storage failure stays on its receipt.

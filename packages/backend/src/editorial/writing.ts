@@ -1,3 +1,4 @@
+// AI生成
 // The writing side of the analysis: the prefilter's and the content understanding's inputs, the
 // title/summary prompts for everything else, the output parsing and the deterministic guards. The
 // wording lives in the industry pack (industry/prompts/); a failed guard falls back without a repair call.

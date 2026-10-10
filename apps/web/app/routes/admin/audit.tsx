@@ -1,3 +1,4 @@
+// AI生成
 import { SITE } from "@aihot/site";
 import { Form, Link, useSearchParams } from "react-router";
 import type { Route } from "./+types/audit";

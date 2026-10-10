@@ -1,3 +1,4 @@
+// AI生成
 // Selected-item pushes to the content groups. One card per new fact: a short same-title lease holds
 // back concurrent duplicates until grouping settles the fact, and the fact (or the article when it
 // has none) is the dedupe identity per target. Old, backfilled or silenced items are never pushed.

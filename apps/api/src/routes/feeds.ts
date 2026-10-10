@@ -1,3 +1,4 @@
+// AI生成
 // RSS routes. Unknown query parameters are accepted and never change content.
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { feedCacheControl, isFeedCategory, itemFeed, reportFeed, type ItemFeedKind } from "@aihot/backend/publication/feeds";

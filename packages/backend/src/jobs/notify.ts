@@ -1,3 +1,4 @@
+// AI生成
 // Content pushes: newly selected items, and the images they need prepared first.
 import type { PgBoss } from "pg-boss";
 import { pushSelected } from "../notify/selected.ts";

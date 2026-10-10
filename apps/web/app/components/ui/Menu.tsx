@@ -1,3 +1,4 @@
+// AI生成
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Presence } from "./Presence";
 

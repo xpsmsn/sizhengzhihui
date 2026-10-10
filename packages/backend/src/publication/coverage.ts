@@ -1,3 +1,4 @@
+// AI生成
 // How widely a fact was reported: the editorial sources whose listed reports are evidence of it, by a
 // cutoff, as the daily's "另有 N 家信源报道" counts it.
 import { sql } from "../db.ts";

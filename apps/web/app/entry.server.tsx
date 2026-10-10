@@ -1,3 +1,4 @@
+// AI生成
 // Streaming SSR with the framework's shell/bot timing and request-aware error logging.
 import { PassThrough } from "node:stream";
 import { createReadableStreamFromReadable } from "@react-router/node";

@@ -1,3 +1,4 @@
+// AI生成
 // Public API v1 (long-term). Field shapes follow the OpenAPI document at /openapi-v1.json (the paths stay
 // /api/v1); each operation's query parameters and Cache-Control are listed in V1_OPERATIONS.
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";

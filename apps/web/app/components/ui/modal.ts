@@ -1,3 +1,4 @@
+// AI生成
 // Shared lifecycle for the sheet, search and image viewer: only the top layer handles the keyboard,
 // and scrolling stays locked until the last layer closes, including when one dialog replaces another.
 import { useEffect, useRef, type RefObject } from "react";

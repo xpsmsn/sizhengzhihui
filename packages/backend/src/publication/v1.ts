@@ -1,3 +1,4 @@
+// AI生成
 // v1 items and the selected sync (snapshot + changes), read from the same public read layer.
 import type { PublicApiCategoryKey } from "@aihot/contracts/taxonomy";
 import { sql, type Db } from "../db.ts";

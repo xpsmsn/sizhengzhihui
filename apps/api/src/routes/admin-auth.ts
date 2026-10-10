@@ -1,3 +1,4 @@
+// AI生成
 // Admin sign-in and the /api/admin guard. Public routes never read the session.
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { ZodError } from "zod";

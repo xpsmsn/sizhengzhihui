@@ -1,3 +1,4 @@
+// AI生成
 // Passes an api-owned request to the api process and streams the answer back; the web server and the
 // development server both use it. Only end-to-end headers cross: the hop-by-hop ones (RFC 9110 §7.6.1)
 // describe one connection, and the hop to the api is a different, pooled one.

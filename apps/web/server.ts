@@ -1,3 +1,4 @@
+// AI生成
 // Production web server: built client assets, the shared redirect table and SSR. Api-owned paths are
 // proxied to the api process, so one port serves the whole site; a reverse proxy in front may also send
 // them to the api directly.
@@ -22,6 +23,12 @@ const HOST = process.env.WEB_HOST || "127.0.0.1";
  */
 const TRUST_PROXY = process.env.TRUST_PROXY === "true";
 const CLIENT_DIR = path.resolve(import.meta.dirname, "build/client");
+// 静态文件查找目录：构建产物优先，其次 site/brand（图标）和 site/public（manifest等）
+const STATIC_DIRS = [
+  CLIENT_DIR,
+  path.resolve(import.meta.dirname, "../../site/brand"),
+  path.resolve(import.meta.dirname, "../../site/public"),
+];
 
 const TYPES: Record<string, string> = {
   ".js": "text/javascript; charset=utf-8",
@@ -60,19 +67,23 @@ async function serveStatic(pathname: string, res: import("node:http").ServerResp
   } catch {
     throw new BadRequest("malformed percent-encoding");
   }
-  const file = path.join(CLIENT_DIR, decoded);
-  if (!file.startsWith(CLIENT_DIR)) return false;
-  const info = await stat(file).catch(() => null);
-  if (!info?.isFile()) return false;
-  const immutable = pathname.startsWith("/assets/");
-  res.writeHead(200, {
-    "Content-Type": TYPES[path.extname(file)] ?? "application/octet-stream",
-    "Content-Length": info.size,
-    "Cache-Control": immutable ? "public, max-age=31536000, immutable" : "public, max-age=3600",
-    "X-Content-Type-Options": "nosniff",
-  });
-  createReadStream(file).pipe(res);
-  return true;
+  // 依次从 build/client、site/brand、site/public 查找静态文件
+  for (const dir of STATIC_DIRS) {
+    const file = path.join(dir, decoded);
+    if (!file.startsWith(dir)) continue;
+    const info = await stat(file).catch(() => null);
+    if (!info?.isFile()) continue;
+    const immutable = pathname.startsWith("/assets/");
+    res.writeHead(200, {
+      "Content-Type": TYPES[path.extname(file)] ?? "application/octet-stream",
+      "Content-Length": info.size,
+      "Cache-Control": immutable ? "public, max-age=31536000, immutable" : "public, max-age=3600",
+      "X-Content-Type-Options": "nosniff",
+    });
+    createReadStream(file).pipe(res);
+    return true;
+  }
+  return false;
 }
 
 // One bad request must never take the process down: answer it and keep serving.

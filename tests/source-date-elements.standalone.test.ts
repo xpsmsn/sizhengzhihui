@@ -1,3 +1,4 @@
+// AI生成
 // Real listing date labels can carry a Unix debugging tooltip, while detail rules can select a
 // metadata element. Neither should hide the date the configured element actually supplies.
 import assert from "node:assert/strict";

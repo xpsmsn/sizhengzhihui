@@ -1,3 +1,4 @@
+// AI生成
 // Manual grouping corrections, made from the admin or by an operations script: take a
 // report out of its fact, put it into the fact an editor names, merge two stories, or ask for a regroup. Each change is
 // written under the article's row lock, which automatic grouping takes too before it writes, and is

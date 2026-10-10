@@ -1,3 +1,4 @@
+// AI生成
 // Web list pages: HTML with selectors, Markdown through Jina Reader, and dated changelog sections.
 import * as cheerio from "cheerio";
 import { guardedFetch } from "../lib/http-fetch.ts";

@@ -1,3 +1,4 @@
+// AI生成
 // Public pages already rendered in this document can be revisited until their server deadline.
 // Nothing persists across a document reload; list snapshots separately own the reader's position.
 import type { ClientLoaderFunctionArgs, ShouldRevalidateFunction } from 'react-router';

@@ -1,3 +1,4 @@
+// AI生成
 // Story-digest evaluation cases, one event per JSONL line, written by hand or exported from the database
 // (scripts/eval-story-digests.ts --stories); the site's digest input made from a case; and the comparison
 // a run writes, as Markdown for reading.

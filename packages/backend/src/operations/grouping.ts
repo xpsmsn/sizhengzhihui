@@ -1,3 +1,4 @@
+// AI生成
 // Selected candidates waiting for a news identity: one reader-impact view for alerts and the admin.
 import type { AdminRuns, BeforeJson } from "@aihot/contracts/admin";
 import { sql } from "../db.ts";

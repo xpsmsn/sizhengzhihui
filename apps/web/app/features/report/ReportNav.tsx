@@ -1,3 +1,4 @@
+// AI生成
 // Moving between reports: the archive column on desktop; on phones the kind switch in the bar
 // (ReportLayout) and recent-issue chips under it.
 import { IntentLink } from "../../components/ui/IntentLink";

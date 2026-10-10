@@ -1,3 +1,4 @@
+// AI生成
 // The post an X item quotes, as X shows it under the post: who wrote it, what they said and a way to
 // it. The item's own text and translation often only make sense next to it.
 import type { XPostView } from "@aihot/contracts/site";

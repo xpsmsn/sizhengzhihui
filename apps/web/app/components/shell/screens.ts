@@ -1,3 +1,4 @@
+// AI生成
 // What a page tells the phone shell about itself, as its route `handle` (a Screen): the tab it sits under, the short
 // name a back button shows when it leads there, and whether it brings its own bottom toolbar. Also the
 // names of the pages in this tab's history, so a back button can say where it goes ("‹ 精选").

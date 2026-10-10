@@ -1,3 +1,4 @@
+// AI生成
 // Free listing reads: one retry after a dropped connection or an upstream 500, YouTube's intermittent
 // missing feed included, and nothing else is read twice. Without live services or a database.
 import assert from "node:assert/strict";

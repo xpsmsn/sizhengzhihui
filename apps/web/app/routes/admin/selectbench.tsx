@@ -1,3 +1,4 @@
+// AI生成
 import { SITE } from "@aihot/site";
 import { useRef } from "react";
 import { Link } from "react-router";

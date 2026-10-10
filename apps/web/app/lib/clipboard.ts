@@ -1,3 +1,4 @@
+// AI生成
 /** Copies text; in-app browsers without the async clipboard (WeChat and the like) fall back to a selection copy. */
 export async function copyText(text: string): Promise<void> {
   try {

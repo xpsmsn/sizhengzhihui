@@ -1,3 +1,4 @@
+// AI生成
 // Geometry shared by the heat charts: hourly values split into runs at unobserved hours, each run drawn
 // as a monotone curve, which bends smoothly but never overshoots a reading (no peak above the real
 // peak, no dip below zero), so the smoothing changes the look and not the numbers. Unobserved hours

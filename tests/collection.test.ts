@@ -1,3 +1,4 @@
+// AI生成
 // Collection picks up where it stopped: an X search longer than one run continues in later runs until
 // it meets the old watermark (no post in between is skipped, no page is bought twice). The watermark
 // alone bounds it: posts made weeks before the account was added are kept too.

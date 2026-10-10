@@ -1,3 +1,4 @@
+// AI生成
 // Backups restore: a real database dump and file archive (uploads and feedback screenshots) are
 // unpacked and read back; the object store is a stand-in inside this process. A missing uploads directory
 // is a valid empty backup, an unreadable one is not; a file archive that fails still ships the database and

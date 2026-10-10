@@ -1,3 +1,4 @@
+// AI生成
 import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import { SITE } from "@aihot/site";

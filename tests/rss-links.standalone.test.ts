@@ -1,3 +1,4 @@
+// AI生成
 // Atom link bases are inherited from feed to entry to link, starting at the fetched document URL.
 import assert from "node:assert/strict";
 import http from "node:http";

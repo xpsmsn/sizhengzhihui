@@ -1,3 +1,4 @@
+// AI生成
 // Opens the site's main pages and machine exits and checks each answers: the whole-site check after a
 // deploy, and CI's check of the built site on an empty database.
 //   node scripts/smoke.ts [--base http://localhost:3000]

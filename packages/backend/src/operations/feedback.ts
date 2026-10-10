@@ -1,3 +1,4 @@
+// AI生成
 // Feedback: content, optional email, page URL, one optional screenshot. The screenshot goes to the
 // internal Feishu chat and only its image key is stored (without that chat the file stays here). Abuse
 // control uses an unreadable source identifier (HMAC of client IP + UA family), per-source bans and a

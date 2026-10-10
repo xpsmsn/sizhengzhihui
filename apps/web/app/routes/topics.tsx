@@ -1,3 +1,4 @@
+// AI生成
 import { useLoaderData } from "react-router";
 import { SITE, subjectAfter, withSubject } from "@aihot/site";
 import type { Route } from "./+types/topics";

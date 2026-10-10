@@ -1,3 +1,4 @@
+// AI生成
 // Recall must keep the same evidence through a query-plan change: discovery defines the window,
 // live stories and membership roles define eligibility, and the latest analysis (revision, then id)
 // excludes composites even before publication catches up. Shared reports retain every fact.

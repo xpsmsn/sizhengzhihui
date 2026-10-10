@@ -1,3 +1,4 @@
+// AI生成
 // Server-rendered content must be visible without JavaScript, and the first client render must match it.
 // Entrance animations therefore only play, and lists only restore a saved state at once, for components
 // mounted after hydration (client-side navigation, loaded-more content).

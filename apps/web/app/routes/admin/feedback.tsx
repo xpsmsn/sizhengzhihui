@@ -1,3 +1,4 @@
+// AI生成
 import { ADMIN, SITE } from "@aihot/site";
 import { useState } from "react";
 import { Form, useSearchParams } from "react-router";

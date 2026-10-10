@@ -1,3 +1,4 @@
+// AI生成
 // Shared HTTP helpers: Problem JSON, public API headers, ETag / 304, strict query parsing.
 import { createHash } from "node:crypto";
 import type { FastifyReply, FastifyRequest } from "fastify";

@@ -1,3 +1,4 @@
+// AI生成
 // Resolve abroad for outbound proxy traffic, then CONNECT to the checked address. Local getaddrinfo
 // can spend 20 s on a blocked name and occupy the lookup pool for unrelated images. Letting the proxy
 // resolve an unchecked name instead would allow DNS rebinding into this host or its private network.

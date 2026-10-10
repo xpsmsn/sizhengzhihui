@@ -1,3 +1,4 @@
+// AI生成
 // A daily's front-page picture comes from the item its lead is about: the editors' lead matched to an
 // item by title, never simply the first highlight.
 import "./setup.ts";

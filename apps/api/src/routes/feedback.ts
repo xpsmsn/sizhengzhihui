@@ -1,3 +1,4 @@
+// AI生成
 import type { FastifyInstance } from "fastify";
 import { FeedbackRejected, submitFeedback, type FeedbackInput } from "@aihot/backend/operations/feedback";
 import { sendProblem } from "../http/respond.ts";

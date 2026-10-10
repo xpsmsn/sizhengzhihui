@@ -1,3 +1,4 @@
+// AI生成
 // Database and file backups: a verified custom-format dump plus the uploaded files, sent
 // to the existing object store (Tencent COS through its S3-compatible API, AWS Signature V4) under
 // daily/ (Sundays also weekly/, the 1st also monthly/). A few local copies are kept.

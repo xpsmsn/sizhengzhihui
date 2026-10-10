@@ -1,3 +1,4 @@
+// AI生成
 // A source's T1 label and its authority to speak for an event are separate inputs.
 import { sql } from "../db.ts";
 import { entityIdentity } from "../editorial/vocabulary.ts";

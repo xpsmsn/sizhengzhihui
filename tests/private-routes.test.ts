@@ -1,3 +1,4 @@
+// AI生成
 import { createHmac } from "node:crypto";
 import { config } from "@aihot/backend/config";
 // Malformed optional client data must not break admin authentication or drop valid ingest entries.

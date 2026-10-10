@@ -1,3 +1,4 @@
+// AI生成
 // Figures for the about page: how much the site covers, counted from the public read layer and kept for
 // ten minutes per process (the page itself is cached for five); an older copy is served while the
 // counts are read again, so no reader waits for the full-table counts.

@@ -1,3 +1,4 @@
+// AI生成
 import { data, useLoaderData } from "react-router";
 import type { Route } from "./+types/report-detail";
 import type { ReportDetail, ReportNavigationResponse, ReportKind } from "@aihot/contracts/site";

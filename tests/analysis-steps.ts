@@ -1,3 +1,4 @@
+// AI生成
 // Which step of the article analysis a model request is for, and a score that selects. Each step sends
 // its own system prompt, rendered from the industry pack, and the thresholds come from the pack too: a
 // test that recognises a request by its whole prompt and scores against the pack's threshold keeps

@@ -1,3 +1,4 @@
+// AI生成
 // Session binding keeps its established migration filename and can run again over an install that
 // already has its columns without touching their data. Shared migrations use full filenames as ids.
 import "./setup.ts";

@@ -1,3 +1,4 @@
+// AI生成
 // Verified original publishers are independent of discovery channels and collection schedules.
 // Attribution preserves material and existing judgements, and routes new work through one pipeline.
 import { tag } from "./setup.ts";

@@ -1,3 +1,4 @@
+// AI生成
 // Failure modes: a hard-coded site name or categories, missing latest timestamps and daily flashes,
 // invalid public parameters silently widened, an answer without the public cache and CORS headers,
 // a missing issue answered with a guess.

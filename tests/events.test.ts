@@ -1,3 +1,4 @@
+// AI生成
 // Event grouping invariants: an editor's decision made while the model is deciding stands; a
 // revision keeps its membership without asking the model; an explicit regroup drops the automatic
 // membership at once and decides again; a story's root is its earliest fact that still holds reports;

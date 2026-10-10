@@ -1,3 +1,4 @@
+// AI生成
 // Enter and leave animations with CSS keyframes instead of an animation library (about 35 KB of
 // compressed JavaScript on every page). An element mounts with its entrance class; when it goes away
 // it stays mounted with its exit class for `duration`, then unmounts. Reduced motion is handled by the

@@ -1,3 +1,4 @@
+// AI生成
 import type { ReactNode } from "react";
 
 /** A small spaced label in the accent, led by a short bar: 头条, 今日看点, 关于本站. */

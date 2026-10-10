@@ -1,3 +1,4 @@
+// AI生成
 import { useState, type ReactNode } from "react";
 import type { ReportNavigationEntry, ReportKind } from "@aihot/contracts/site";
 import { BarButton, PhoneBar, type BackTarget } from "../../components/shell/PhoneBar";

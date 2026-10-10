@@ -1,3 +1,4 @@
+// AI生成
 import { useState } from "react";
 import type { MediaView } from "@aihot/contracts/site";
 import { Lightbox } from "../../components/ui/Lightbox";

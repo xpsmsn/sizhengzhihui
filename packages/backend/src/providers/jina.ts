@@ -1,3 +1,4 @@
+// AI生成
 // Jina Reader (r.jina.ai): browser-rendered page text. Paid per request, reached through the egress
 // proxy, always behind receipts and the per-minute/hour/day budget (any zero stops it).
 import { credential } from "../config.ts";

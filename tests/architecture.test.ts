@@ -1,3 +1,4 @@
+// AI生成
 // Architecture boundaries that otherwise hold only by convention, and nothing kept that nothing uses.
 // Each rule reads the source and names what breaks it. A rule changes here and in the architecture
 // document together.

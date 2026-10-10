@@ -1,3 +1,4 @@
+// AI生成
 // The current selected card and its eligibility, shared by initial delivery, mirrors and recovery.
 import { sql } from "../db.ts";
 import { itemUrl } from "../publication/links.ts";

@@ -1,3 +1,4 @@
+// AI生成
 // An X post's own text, its translation, the post it quotes and its media are its body, on a site that
 // counts them as one (POLICY.xPostIsFullText): it shows them only when the source allows full text
 // (site_fulltext), full RSS only when it may also syndicate. Every other exit keeps the item with its

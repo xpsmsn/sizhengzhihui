@@ -1,3 +1,4 @@
+// AI生成
 // The site's modules on the web (site/modules/web.ts). Shared engine files read them where they draw them,
 // not when they are imported, so a module's code may import any engine file.
 import { WEB_MODULES } from "@aihot/site/modules/web";

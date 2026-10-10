@@ -1,3 +1,4 @@
+// AI生成
 // The engine's own model: one OpenAI-compatible model (LLM_BASE_URL, LLM_API_KEY, LLM_MODEL) runs every
 // step of the analysis when nothing picks another one for a step.
 import { stub, tag } from "./setup.ts";

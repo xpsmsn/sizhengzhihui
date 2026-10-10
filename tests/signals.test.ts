@@ -1,3 +1,4 @@
+// AI生成
 // Live news before history, and discussion posts that come before the first report: a discussion post
 // skips the analysis queue; history (a backfill that was already old when found) waits behind live
 // work and founds no event; a post that found no story is grouped again when a report founds a fact

@@ -1,3 +1,4 @@
+// AI生成
 // Storage transport must preserve every float32 bit used by recall, including signed zero and
 // subnormals. Empty, nested, null-containing and non-finite vectors must still be replaced; a
 // matching id with another model or text hash must never suppress a paid request for the right text.

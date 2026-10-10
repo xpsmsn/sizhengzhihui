@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: an HTTP/2 idle socket error must not kill the process after a completed fetch;
 // direct requests, proxy destinations, HTTPS proxies and DNS-over-HTTPS must all negotiate HTTP/1.1.
 // Routing to a checked IP must keep the original Host, SNI and certificate validation intact.

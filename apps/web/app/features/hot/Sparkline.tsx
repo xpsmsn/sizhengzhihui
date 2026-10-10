@@ -1,3 +1,4 @@
+// AI生成
 import { useId } from "react";
 import { areaPath, curvePath, observedRuns, type Pt } from "./curve";
 

@@ -1,3 +1,4 @@
+// AI生成
 // Applies engine and module SQL by file name. New online DDL is bounded; concurrent indexes and
 // constraint validation run separately so earlier DDL cannot hold a strong lock during a table scan.
 import { existsSync, readdirSync, readFileSync } from "node:fs";

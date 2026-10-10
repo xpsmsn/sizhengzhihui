@@ -1,3 +1,4 @@
+// AI生成
 // A topic directory kept for the website must not become a second stale layer beneath discovery's
 // own cache. Its last qualifying report can be withdrawn while the directory is still warm.
 import { tag } from "./setup.ts";

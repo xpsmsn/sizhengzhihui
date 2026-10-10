@@ -1,3 +1,4 @@
+// AI生成
 // About-page contact codes: replaceable from the admin without code changes (file names carry a content
 // hash), or shipped with the site (site/brand/contact/qr-wechat…, qr-feishu…). The page shows a
 // code only when set. The maker block can show the avatar of an X account the site follows as a source

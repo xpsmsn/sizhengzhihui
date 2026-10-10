@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: PostgreSQL includes entire values in duplicate-key detail and invalid-input
 // messages; nested causes repeat those values; an OAuth provider's error text contains credentials.
 import "./setup.ts";

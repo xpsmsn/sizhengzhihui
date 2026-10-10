@@ -1,3 +1,4 @@
+// AI生成
 import './setup.ts';
 import assert from 'node:assert/strict';
 import { after, test } from 'node:test';

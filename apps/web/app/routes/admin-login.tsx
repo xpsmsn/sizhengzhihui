@@ -1,3 +1,4 @@
+// AI生成
 // Admin sign-in: the admin password (ADMIN_PASSWORD), and Feishu when it is configured. The form posts
 // straight to the API, which sets the session cookie and sends the browser on.
 import { useLoaderData } from "react-router";

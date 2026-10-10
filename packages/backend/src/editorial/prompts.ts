@@ -1,3 +1,4 @@
+// AI生成
 // Every editorial prompt lives in the industry pack as a Markdown file (industry/prompts/*.md), so a new
 // industry changes its taste by editing text, not code. Two template forms, nothing else:
 //   {{name}}     a value the calling step passes (plus siteName, from site/site.ts)

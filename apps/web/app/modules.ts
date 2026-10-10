@@ -1,3 +1,4 @@
+// AI生成
 // What a module's web.tsx (modules/<name>/web.tsx) may add to the engine's pages: navigation entries, admin
 // entries and the parts of a few pages that leave room for them. Its own pages come from its module.ts
 // (routes.ts). The site's list is read through site-modules.ts.

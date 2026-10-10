@@ -1,3 +1,4 @@
+// AI生成
 // Failure modes: a duplicate loses the official representative slot; an already-covered follow-up
 // still takes a fresh selected slot; unseen/pending reports are treated as previously selected;
 // a roundup invents a fact to suppress overlap; missing value output silently approves publication;

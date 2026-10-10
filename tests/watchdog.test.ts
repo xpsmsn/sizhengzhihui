@@ -1,3 +1,4 @@
+// AI生成
 // The worker watchdog in the api process: one alert when the heartbeat goes stale, none while it stays
 // stale, one recovery when it comes back; a failed send is tried again at the next check.
 import { stub, tag } from "./setup.ts";

@@ -1,3 +1,4 @@
+// AI生成
 import { editionAt, gate, tag } from "./setup.ts";
 // A selected item released across the daily edition time must appear in the next issue exactly once.
 import { after, before, test } from "node:test";

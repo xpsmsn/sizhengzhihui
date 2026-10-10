@@ -1,3 +1,4 @@
+// AI生成
 // Feishu delivery. Two separate apps: the login app (admin OAuth) and the message app (internal
 // feedback chat, operations alert chat, image upload). Content groups use custom bot webhooks.
 // Alerts and feedback never go to content groups, and content never goes to internal chats.

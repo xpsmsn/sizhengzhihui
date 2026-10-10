@@ -1,3 +1,4 @@
+// AI生成
 // Fixed renditions use the existing signed mode parameter. Responsive candidates reuse the same
 // mode as previews and full-size viewers, so identical pixels have one browser/CDN address.
 export const IMAGE_WIDTHS = {

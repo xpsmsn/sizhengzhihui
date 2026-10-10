@@ -1,3 +1,4 @@
+// AI生成
 // Failure modes: unavailable identity requests must remain undecided, an incomplete model response
 // must not become "unrelated", and releasing an unknown receipt must resume the exact grouping job
 // that a native TimeoutError failed. Lost pending jobs must recover without reviving terminal

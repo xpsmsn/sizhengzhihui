@@ -1,3 +1,4 @@
+// AI生成
 // Links in the site's own copy (terms, privacy): the site's own address stays on the site, whatever
 // domain it is deployed at; any other address opens in a new tab.
 import assert from "node:assert/strict";

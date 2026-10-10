@@ -1,3 +1,4 @@
+// AI生成
 // Story digest: rewritten incrementally as reports arrive; contradictions with earlier reporting are
 // stated explicitly. Latest progress is bound to a current public report, not generated independently.
 import { z } from "zod";

@@ -1,3 +1,4 @@
+// AI生成
 // The config keys each kind of source implements. Anything else is refused: a key a collector does not
 // know would otherwise fall back silently to the generic parse (menus and sentence fragments as
 // articles, dates never found).

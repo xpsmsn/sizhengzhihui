@@ -1,3 +1,4 @@
+// AI生成
 // Topics: stable slugs in three groups (companies, directions, content forms), defined by the industry
 // pack (industry/topics.json) and read from there when the process starts. Which reports a topic takes
 // is one SQL predicate, `membership`: a direction or a form takes its tags; a company takes the reports

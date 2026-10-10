@@ -1,3 +1,4 @@
+// AI生成
 // Images of a newly selected item, prepared as it is selected: every rendition its card and its
 // page ask the image proxy for is fetched and resized once (a first reader otherwise waits seconds
 // for the source site), animations are re-encoded, and the share image is rendered before the

@@ -1,3 +1,4 @@
+// AI生成
 // Tag normalization and company identity over the industry pack's vocabulary (industry/taxonomy.ts),
 // which the topics (industry/topics.json) are built on.
 import { CATEGORIES, CATEGORY_TAGS, ENTITIES, ENTITY_TAGS, RELEASE, TAG_SYNONYMS, TOPIC_TAGS } from "@aihot/industry/taxonomy";

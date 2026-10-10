@@ -1,3 +1,4 @@
+// AI生成
 import { POLICY, SITE } from "@aihot/site";
 import copy from "@aihot/site/pages/terms.md?raw";
 import { edgeTtl } from "../lib/api.server";

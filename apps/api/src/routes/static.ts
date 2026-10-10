@@ -1,3 +1,4 @@
+// AI生成
 // Discovery and static files: sitemap, llms.txt, the site's public files (robots.txt, security.txt, the web
 // manifest, the OpenAPI document), icons, the IndexNow key and the about page's contact codes.
 import { readFile, stat } from "node:fs/promises";

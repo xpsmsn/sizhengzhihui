@@ -1,3 +1,4 @@
+// AI生成
 // Verifies the public MCP contract with the official SDK client: server identity, the exact tool set,
 // representative read calls, domain errors and schema validation. It is safe against an empty database;
 // --full also has every tool answer once in full, which needs a populated site (reports and a hot story).

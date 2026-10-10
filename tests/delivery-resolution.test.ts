@@ -1,3 +1,4 @@
+// AI生成
 // A delivery's manual recovery takes an explicit outcome and a note: anything else is a client error that
 // changes, sends and records nothing (a mistyped outcome must never resend a content push).
 import { tag } from "./setup.ts";

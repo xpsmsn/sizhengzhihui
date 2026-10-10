@@ -1,3 +1,4 @@
+// AI生成
 // Published dates as list pages, article pages and JSON lists print them: a date without a zone is read
 // in the source's offset, whatever zone the server runs in (Docker runs in UTC; run this file with TZ=UTC
 // and TZ=Asia/Shanghai to see both).

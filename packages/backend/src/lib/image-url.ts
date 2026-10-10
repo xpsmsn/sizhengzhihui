@@ -1,3 +1,4 @@
+// AI生成
 // Reject non-content images at ingestion and public reads: extracted bodies can mislabel tracking
 // endpoints and video pages as illustrations. Existing saved bodies follow the same rule.
 import { isVideoPageUrl } from "./video-url.ts";

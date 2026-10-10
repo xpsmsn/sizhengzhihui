@@ -1,3 +1,4 @@
+// AI生成
 // The site's modules' parts of the agent page (AgentPart), loaded with the page.
 import type { AgentPart } from "../../modules";
 import { loadParts } from "../../site-modules";

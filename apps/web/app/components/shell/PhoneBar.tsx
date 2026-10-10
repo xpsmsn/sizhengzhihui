@@ -1,3 +1,4 @@
+// AI生成
 // The phone shell's top bar (below lg). Left: where back leads, or the brand; middle: the page's title
 // once its own heading has scrolled up under the bar, or a switch that always shows; right: actions. Tab
 // pages also get a large title under the bar. Desktop pages keep their own headers.

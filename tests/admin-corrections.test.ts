@@ -1,3 +1,4 @@
+// AI生成
 import { createHmac } from "node:crypto";
 import { config } from "@aihot/backend/config";
 import { tag } from "./setup.ts";

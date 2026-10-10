@@ -1,3 +1,4 @@
+// AI生成
 // Merging stories: facts and heat evidence move into the surviving story, and the old
 // public id keeps answering as an alias. Editors merge from the admin; grouping merges when two
 // stories turn out to be one (consolidate in group.ts).

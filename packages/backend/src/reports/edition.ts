@@ -1,3 +1,4 @@
+// AI生成
 // What an issue carries. A period carries its selected reports: public, not backfill, attributed by
 // the later of arrival and release, and not released long after they happened. The daily is computed
 // by rule, without a model judging anything: one entry per event, its most authoritative report with

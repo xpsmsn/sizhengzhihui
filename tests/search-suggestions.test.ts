@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases, written before replacing the search overlay's two full-page reads:
 // - suggestions change the topic order/names or hot ranks/links;
 // - hidden/regrouped evidence remains a suggestion after warming a ranking;

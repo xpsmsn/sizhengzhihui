@@ -1,3 +1,4 @@
+// AI生成
 // Failure modes at the paid response boundary: a fully received invalid response is not an unknown
 // outcome; missing/duplicate indices, incomplete dimensions or invalid coordinates cannot enter
 // recall; out-of-order valid vectors must stay attached to their original inputs on receipt replay,

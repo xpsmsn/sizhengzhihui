@@ -1,3 +1,4 @@
+// AI生成
 import type { ReactNode } from "react";
 import { Link } from "react-router";
 import type { CopyDocument, RenderedCopy } from "../../lib/markdown";

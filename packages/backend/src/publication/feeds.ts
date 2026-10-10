@@ -1,3 +1,4 @@
+// AI生成
 // RSS feeds. GUID = article id (isPermaLink=false), <link> = the site's page, pubDate = source
 // publication time (none when it is unknown). Summary feeds never carry content:encoded; full feeds
 // inline bodies only for sources that explicitly allow redistribution. Titles come from the site's

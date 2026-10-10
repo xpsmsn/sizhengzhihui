@@ -1,3 +1,4 @@
+// AI生成
 // An X post that only links an X Article is judged on the article: collection
 // marks it for extraction, extraction fetches the article by the post's own id and stores it as a new
 // revision, and the judging steps read the article. A post whose article cannot be fetched is flagged

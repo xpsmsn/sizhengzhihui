@@ -1,3 +1,4 @@
+// AI生成
 // /api/v1/agent: Markdown answers for AI agents. They render with the same functions as the MCP tools;
 // errors are the usual v1 Problem JSON. New abilities become new addresses listed in the guide, which
 // agents read without updating.

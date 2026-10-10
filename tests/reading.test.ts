@@ -1,3 +1,4 @@
+// AI生成
 // What readers see of a group and a search: a folded card stands for the fact its representative
 // reports (not an earlier fact with no selected report), and a query naming a company finds the
 // articles about it that never write that name.

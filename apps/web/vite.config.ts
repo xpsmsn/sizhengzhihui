@@ -1,3 +1,4 @@
+// AI生成
 import path from "node:path";
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";

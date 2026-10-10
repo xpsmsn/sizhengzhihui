@@ -1,3 +1,4 @@
+// AI生成
 // Daily IndexNow submission of newly indexable URLs and topic pages with new reports.
 // INDEXNOW_SUBMIT_ENABLED is the safety valve: off (the default) the list is computed and recorded but
 // nothing is sent. Needs INDEXNOW_KEY.

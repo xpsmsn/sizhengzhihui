@@ -1,3 +1,4 @@
+// AI生成
 // Operator settings: about-page QR codes (replaced without a release), notification targets
 // (switching a group on records enabled_at so older content is never back-filled) and per-service
 // request budgets (the circuit breaker paid calls check before sending).

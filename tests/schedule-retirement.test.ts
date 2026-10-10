@@ -1,3 +1,4 @@
+// AI生成
 // Retirement failures: old schedules keep producing work, already-unscheduled queues keep old jobs,
 // or cleanup removes a live/business queue or its durable run history. Use pg-boss and PostgreSQL.
 import "./setup.ts";

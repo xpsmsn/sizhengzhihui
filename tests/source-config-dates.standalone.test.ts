@@ -1,3 +1,4 @@
+// AI生成
 // An onboarding boundary must remain an exact instant on every host; malformed or rounded-over
 // dates must be refused before a source could accidentally collect and analyse its whole archive.
 import assert from "node:assert/strict";

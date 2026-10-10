@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: a blocked local DNS holds every image in the lookup thread pool; a proxy resolves
 // a checked name to an internal address; CONNECT loses the original HTTP host.
 // Exercise real HTTP CONNECT requests against a local proxy before fixing.

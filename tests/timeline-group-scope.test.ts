@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: a composite or mention folding into a fact; stale fact membership still folding;
 // a future/withdrawn/unselected report affecting the anchor; filters choosing an anchor outside their
 // own set; a later report moving a fact; equal-time standalone cards changing cursor order.

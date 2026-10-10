@@ -1,3 +1,4 @@
+// AI生成
 // Rejected public methods have one protocol response, even when their body cannot be parsed.
 // Failure modes: body parsing masks 405, CORS is missing on the error, and TRACE falls into 404.
 import assert from "node:assert/strict";

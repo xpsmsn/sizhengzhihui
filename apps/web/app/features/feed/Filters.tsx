@@ -1,3 +1,4 @@
+// AI生成
 // Feed filters: the channel and category choice (a row of tabs on desktop, a sheet behind the bar's filter
 // button on phones), the phone bar of 精选 and 全部, and search.
 import { useEffect, useRef, useState } from "react";
@@ -25,15 +26,15 @@ function hrefWith(base: string, params: URLSearchParams, patch: Record<string, s
 }
 
 /**
- * The feed's one filter (精选 and 全部动态 alike): none, 一手, or a category. One choice at a time: picking
- * 一手 clears the category and picking a category clears 一手. Older 资讯 / X links still filter; the
- * choice then shows as none.
+ * The feed's one filter (精选 and 全部动态 alike): none, or a category. One choice at a time. Older
+ * 资讯 / X / 一手 links still filter; the choice then shows as none. A category with no content is left
+ * out of the row (its count comes from the response), except the one currently in use.
  */
-function filterOptions(base: string, params: URLSearchParams, noneLabel: string) {
+function filterOptions(base: string, params: URLSearchParams, noneLabel: string, counts?: Record<string, number>, active?: string) {
+  const keys = counts ? CATEGORY_KEYS.filter((k) => (counts[k] ?? 0) > 0 || k === active) : CATEGORY_KEYS;
   return [
     { key: "all", label: noneLabel, to: hrefWith(base, params, { category: null, channel: null }) },
-    { key: "firstParty", label: CHANNEL_LABELS.firstParty, to: hrefWith(base, params, { category: null, channel: "firstParty" }) },
-    ...CATEGORY_KEYS.map((k) => ({ key: k, label: CATEGORY_LABELS[k], to: hrefWith(base, params, { category: k, channel: null }) })),
+    ...keys.map((k) => ({ key: k, label: CATEGORY_LABELS[k], to: hrefWith(base, params, { category: k, channel: null }) })),
   ];
 }
 
@@ -42,16 +43,17 @@ function filterKey(category: CategoryKey | null, channel: ChannelKey): string {
 }
 
 /** Desktop: the filter as a row of tabs beside the search field. */
-export function CategoryTabs({ base, category, channel = "all", layoutId, className = "" }: { base: string; category: CategoryKey | null; channel?: ChannelKey; layoutId: string; className?: string }) {
+export function CategoryTabs({ base, category, channel = "all", layoutId, className = "", counts }: { base: string; category: CategoryKey | null; channel?: ChannelKey; layoutId: string; className?: string; counts?: Record<string, number> }) {
   const [params] = useSearchParams();
-  return <PillTabs items={filterOptions(base, params, "全部").map(o => ({ ...o, prefetch: 'intent' as const }))} active={filterKey(category, channel)} layoutId={layoutId} label="筛选" className={className} />;
+  const active = filterKey(category, channel);
+  return <PillTabs items={filterOptions(base, params, "全部", counts, active).map(o => ({ ...o, prefetch: 'intent' as const }))} active={active} layoutId={layoutId} label="筛选" className={className} />;
 }
 
 /**
  * The phone bar of 精选 and 全部: the brand, the 精选 | 全部 switch (a filter in use carries over), and
  * buttons for the filter sheet and search.
  */
-export function FeedBar({ base, category, channel }: { base: "/" | "/all"; category: CategoryKey | null; channel: ChannelKey }) {
+export function FeedBar({ base, category, channel, counts }: { base: "/" | "/all"; category: CategoryKey | null; channel: ChannelKey; counts?: Record<string, number> }) {
   const [params] = useSearchParams();
   const [sheet, setSheet] = useState(false);
   const scope = (to: string) => hrefWith(to, params, { q: null, tab: null, search: null });
@@ -86,18 +88,18 @@ export function FeedBar({ base, category, channel }: { base: "/" | "/all"; categ
           </>
         }
       />
-      <FilterSheet open={sheet} onClose={() => setSheet(false)} base={base} active={filterKey(category, channel)} />
+      <FilterSheet open={sheet} onClose={() => setSheet(false)} base={base} active={filterKey(category, channel)} counts={counts} />
     </>
   );
 }
 
 /** Phones: the filter as a sheet of options, the one in use ticked; choosing one applies it. */
-function FilterSheet({ open, onClose, base, active }: { open: boolean; onClose: () => void; base: string; active: string }) {
+function FilterSheet({ open, onClose, base, active, counts }: { open: boolean; onClose: () => void; base: string; active: string; counts?: Record<string, number> }) {
   const [params] = useSearchParams();
   return (
     <Sheet open={open} onClose={onClose} title="筛选">
       <ul className="mx-4 divide-y divide-line-soft">
-        {filterOptions(base, params, "不限").map((o) => {
+        {filterOptions(base, params, "不限", counts, active).map((o) => {
           const on = o.key === active;
           return (
             <li key={o.key}>

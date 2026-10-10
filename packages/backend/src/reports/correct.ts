@@ -1,3 +1,4 @@
+// AI生成
 // A classification correction moves the same frozen entry; it never composes another issue or pays
 // a writer. The override, publication, report revisions and audit commit in the caller's transaction.
 import { RELEASE } from "@aihot/industry/taxonomy";

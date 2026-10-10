@@ -1,3 +1,4 @@
+// AI生成
 // Event grouping. A report attaches to a fact, the same real-world occurrence, and
 // facts hang on a story, an occurrence with its direct developments. Recall (recall.ts): the same
 // title-and-summary embedding on both sides over the reports of the last 14 days (shared bigrams

@@ -1,3 +1,4 @@
+// AI生成
 // Page metadata from one place: title template, canonical address, OG images, robots; and list addresses,
 // with the feed filters they carry. The site's name and wording come from site/site.ts;
 //; its address from SITE_URL.

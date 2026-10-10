@@ -1,4 +1,5 @@
-// 这个行业的分类体系：类别、标签词表、公司（主体）名录，以及防止张冠李戴的身份词典。
+// AI生成
+// 思政智汇 的分类体系：类别、标签词表、机构（主体）名录，以及防止张冠李戴的身份词典。
 // 模型按这里的词表打标签，主题页（topics.json）按标签归类，筛选栏按类别分组。
 // 换行业时：类别的 key 会出现在网址里（/all?category=…），上线后就不要再改；标签和名录可以随时增减。
 
@@ -6,148 +7,106 @@
  * 网页上的类别（筛选栏、卡片角标、RSS 分类订阅）。key 是网址和接口里的身份，上线后不要改。
  * section 是日报里的分节标题（几个类别可以共用一节，按这里的顺序排）；guide 告诉结构抽取模型这一类收什么、
  * 和相邻类别的边界在哪（总的归类原则写在 prompts/structure.md 里）。
- * commentary 标出评论类（教程、观点）：日报写过的事又有评论类的后续报道，只占一行快讯（报道它的信源够多时除外）。
- * 没归上类的资料在日报里放进第一个 key 为 industry 的类别所在的节（没有就放最后一节）。
+ * commentary 标出评论类（理论、观点）：日报写过的事又有评论类的后续报道，只占一行快讯（报道它的信源够多时除外）。
  * feedLabel 是分类 RSS 标题里的名字（不写就用 label）。公开接口、RSS 和 MCP 里要把一类并进另一类发布，写在站点设置里（site/site.ts 的 PUBLIC_CATEGORIES）。
  */
 export const CATEGORIES = [
-  { key: "ai-models", label: "模型", feedLabel: "AI 模型", section: "模型发布/更新", guide: "模型本身的发布、版本、权重开放、能力或价格变化，以及既有榜单上的模型成绩。公布一次跑分不是发布新基准，也不是教程。" },
-  { key: "ai-products", label: "产品", feedLabel: "AI 产品", section: "产品发布/更新", guide: "可使用的 AI 产品、功能、应用、工具、API、平台和工程组件的发布更新。模型厂商发布的推理框架、算子库、硬件适配组件仍是产品，不能因为厂商名归成模型。" },
-  { key: "industry", label: "行业", feedLabel: "行业动态", section: "行业动态", guide: "已发生的公司经营、融资并购、人事、合作、诉讼、政策、真实安全事故及调查进展。新闻由当事人发帖、带有态度，也不因此变成观点。" },
-  { key: "paper", label: "论文", feedLabel: "论文", section: "论文研究", guide: "以新研究方法、实验设计与发现为核心的论文、技术报告、新基准或研究数据集。系统性红队实验属于研究；既有榜单成绩归模型，真实事故的新闻调查归行业。" },
-  { key: "tip", label: "教程", section: "技巧与观点", guide: "读者可以照着使用的方法、提示词、工具用法、工程实践复盘与技术讲解。重点是可复用的做法；单纯发布工具归产品，只有态度和预测而无做法归观点。", commentary: true },
-  { key: "opinion", label: "观点", section: "技巧与观点", guide: "重点是作者的解释、判断、主张、预测、评论或访谈观点。讨论市场不自动归行业，作者是名人不自动归观点。", commentary: true },
+  { key: "speech", label: "讲话精神", feedLabel: "重要讲话精神", section: "重要讲话精神", guide: "习近平总书记重要讲话、重要指示、重要文章、回信贺信，以及中央领导同志关于教育的重要讲话。以讲话原文、权威发布和学习贯彻安排为核心；没有讲话内容的一般会议、活动通知不算。" },
+  { key: "policy", label: "政策文件", feedLabel: "政策文件", section: "政策文件", guide: "中办国办、教育部等部门正式印发的思政相关政策、文件、意见、方案、规划、规定，以及权威机构对它们的解读。以文件本身和官方解读为核心；申报公告、会议通知除外。" },
+  { key: "reform", label: "改革部署", feedLabel: "改革部署", section: "改革部署", guide: "教育改革总体部署与推进：高校综合改革、产教融合、卓越工程师自主培养、分类评价、一流大学与一流学科建设等改革举措与进展。以改革方案、部署安排和推进成效为核心。" },
+  { key: "practice", label: "育人实践", feedLabel: "育人实践", section: "育人实践", guide: "高校在思政育人、五育并举、一站式学生社区、课程思政、实践育人等方面的具体做法与案例经验，以 985/211 等重点高校的案例为佳。只有活动安排、表彰通报、领导视察而没有可复用做法的，不算。" },
+  { key: "theory", label: "理论视野", feedLabel: "理论视野", section: "理论视野", guide: "思政领域的理论文章、研究与观点，包括学术论文、专家解读、工作研究与经验思考。重点是解释、主张与论证；已发生事件的一次性新闻报道不再归入这一类。", commentary: true },
+  { key: "education", label: "教育要闻", feedLabel: "教育要闻", section: "教育要闻", guide: "国家教育方针、教育规划与各级各类教育改革发展的政策、部署和要闻，含基础教育、职业教育、高等教育、教育保障等全局议题。以政策信号、改革举措和整体安排为核心；具体高校的单一活动归高校动态。" },
+  { key: "leadership", label: "领导活动", feedLabel: "领导活动", section: "领导活动", guide: "党和国家领导人、教育部及省级教育主管部门主要负责人就教育、高校所作的调研、出席、会见、讲话、发文等活动与指示。以领导表态传递的方向与要求为核心；纯礼仪性、无实质内容的活动除外。" },
+  { key: "campus", label: "高校动态", feedLabel: "高校动态", section: "高校动态", guide: "高校（以 985、211 等重点高校为佳）在教学、科研、人才培养、社会服务、校园文化等方面的做法、进展与动态，含可借鉴的育人经验。以有实质内容、可迁移的做法为核心；仅有活动通稿、表彰通报、领导视察行程的除外。" },
 ] as const satisfies ReadonlyArray<{ key: string; label: string; feedLabel?: string; section: string; guide: string; commentary?: true }>;
 
 /**
- * 这个行业最受关注的一类发布（AI 行业是新模型）：日报报头的“N 个新模型”、改分类后修订已出的报告都按它数。
- * category 是类别，tag 是标签，两者都对上才算；unit 接在数字后面。
- * 没有这样一类的行业设成 null，报头就不显示这个数。
+ * 这个行业最受关注的一类发布：思政领域没有对应的“新模型”式计数，设为 null，日报报头就不显示这个数。
+ * 需要时写成 { category: "policy", tag: "政策文件", unit: "份新文件" } 这样的对象即可开启。
  */
-export const RELEASE: { category: string; tag: string; unit: string } | null = { category: "ai-models", tag: "模型发布", unit: "个新模型" };
+export const RELEASE: { category: string; tag: string; unit: string } | null = null;
 
-/** 周报月报的总述可以直接写、不必在报道里找到出处的行业通用词（小写）。站名会自动算进去。 */
-export const PLAIN_TERMS: readonly string[] = ["ai", "api", "llm", "gpu", "agi", "ceo", "ipo"];
+/** 周报月报的总述可以直接写、不必在报道里找到出处的行业通用词。站名会自动算进去。 */
+export const PLAIN_TERMS: readonly string[] = ["思政", "教育部", "高校", "辅导员", "思政课", "课程思政", "立德树人", "三全育人", "大思政课", "思想政治工作", "新时代", "教育强国", "教育"];
 
 /**
  * 内容理解一步给每篇资料判的“内容类型”（写在 prompts/content-understanding.md 里，改了类型要同步改那份提示词）。
  * 评分提示词（prompts/selection-score.md）按类型给五个维度不同的权重。
  */
-export const ITEM_TYPES = ["model_release", "product_launch", "tool_or_prompt", "research_paper", "industry_event", "opinion_analysis", "tutorial_explainer"] as const;
+export const ITEM_TYPES = ["leader_speech", "policy_release", "case_practice", "theory_research", "opinion_commentary", "work_notice", "publicity_report"] as const;
 
 // ── 标签词表 ────────────────────────────────────────────────────────────────────────────
 
-/** 每篇资料的第一个标签必须是这些“分类标签”之一。 */
+/** 每篇资料的第一个标签必须是这些“分类标签”之一。“其他”固定放在最后，作为兜底。 */
 export const CATEGORY_TAGS = [
-  "产品更新", "模型发布", "论文/研究", "开源/仓库", "教程/实践", "现象/趋势", "大佬观点", "评测/基准", "安全/对齐", "行业动态", "政策/监管",
-  "非AI/通用工具", "其他",
+  "讲话精神", "政策文件", "改革部署", "育人实践", "理论研究",
+  "教育要闻", "领导活动", "高校动态",
+  "通知公告", "其他",
 ] as const;
 
-/** 可选的主题标签。 */
+/** 可选的主题标签（重点工作 + 五育并举 + 教育领域 + 队伍学生，覆盖思政与教育主要领域）。 */
 export const TOPIC_TAGS = [
-  "Agent", "编码", "推理", "多模态", "语音", "视频", "图像生成", "RAG", "端侧", "数据/训练", "搜索", "部署/工程", "开源生态", "具身智能", "MCP/工具调用",
+  "教育规划", "立德树人", "高校治理", "基础教育", "职业教育", "高等教育", "教育数字化",
+  "德育", "智育", "体育", "美育", "劳育",
+  "教师发展", "学生育人",
 ] as const;
 
-/** 可选的实体标签（公司、机构、平台）。 */
-export const ENTITY_TAGS = ["OpenAI", "Anthropic", "DeepSeek", "DeepMind", "Google", "Meta", "Microsoft", "xAI", "Hugging Face", "GitHub", "arXiv"] as const;
+/** 可选的实体标签（机构）。 */
+export const ENTITY_TAGS = ["教育部", "共青团中央", "中央宣传部", "全国高校思想政治工作网"] as const;
 
 /** 模型常写的近义词，统一成词表里的写法。 */
 export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
-  "教程/玩法": "教程/实践", "技巧/最佳实践": "教程/实践", "合作/生态": "行业动态", "融资/收购": "行业动态", "公司动态": "行业动态",
-  合作: "行业动态", 生态: "行业动态", 融资: "行业动态", 收购: "行业动态", 投资: "行业动态", 并购: "行业动态",
-  政策: "政策/监管", 监管: "政策/监管", 法规: "政策/监管", 安全: "安全/对齐", 对齐: "安全/对齐",
-  论文: "论文/研究", 研究: "论文/研究", paper: "论文/研究", papers: "论文/研究",
-  "open-source": "开源/仓库", 开源: "开源/仓库", 仓库: "开源/仓库", repo: "开源/仓库",
-  教程: "教程/实践", 玩法: "教程/实践", 指南: "教程/实践", 技巧: "教程/实践", 最佳实践: "教程/实践", 实践: "教程/实践",
-  产品: "产品更新", 更新: "产品更新", 发布: "模型发布", 模型: "模型发布", 趋势: "现象/趋势", 现象: "现象/趋势", 观点: "大佬观点",
-  视频生成: "视频", 非ai: "非AI/通用工具", "non-ai": "非AI/通用工具", 通用工具: "非AI/通用工具", 工程工具: "非AI/通用工具",
-  安全扫描: "非AI/通用工具", devops: "非AI/通用工具", 行业: "行业动态", 动态: "行业动态",
+  "讲话/精神": "讲话精神", 重要讲话精神: "讲话精神", 重要讲话: "讲话精神", 讲话: "讲话精神", 学习贯彻: "讲话精神", 精神传达: "讲话精神", 指示批示: "讲话精神",
+  "政策/解读": "政策文件", 政策解读: "政策文件", 政策: "政策文件", 文件发布: "政策文件", 文件精神: "政策文件", 法规: "政策文件", 意见: "政策文件",
+  "改革/部署": "改革部署", 改革部署: "改革部署", 教育改革: "改革部署", 综合改革: "改革部署",
+  "高校/案例": "育人实践", 实践案例: "育人实践", 案例: "育人实践", 经验做法: "育人实践", 典型经验: "育人实践", 工作实践: "育人实践", 高校案例: "育人实践",
+  "理论/研究": "理论研究", 研究: "理论研究", 论文: "理论研究", 学术: "理论研究", 理论文章: "理论研究", 观点评论: "理论研究", 评论: "理论研究",
+  通知: "通知公告", 公告: "通知公告", 会议通知: "通知公告", 培训通知: "通知公告", 活动通知: "通知公告", 申报通知: "通知公告", 公示: "通知公告", 名单: "通知公告",
+  教育要闻: "教育要闻", 教育动态: "教育要闻", 教育新闻: "教育要闻",
+  领导活动: "领导活动", 领导动态: "领导活动", 领导调研: "领导活动", 领导视察: "领导活动", 领导考察: "领导活动",
+  高校动态: "高校动态", 校园动态: "高校动态", 高校新闻: "高校动态", 高校要闻: "高校动态",
+  "十五五": "教育规划", "教育强国": "教育规划", "教育大会": "教育规划", 规划: "教育规划", 强国建设: "教育规划", 教育强国建设: "教育规划",
+  基础教育: "基础教育", 义务教育: "基础教育", 中小学: "基础教育",
+  职业教育: "职业教育", 高职: "职业教育", 产教融合: "高校治理", 卓越工程师: "高校治理", 技能大赛: "高校治理", 分类评价: "高校治理",
+  高等教育: "高等教育", 高校改革: "高校治理", 一流大学: "高校治理", 一流学科: "高校治理",
+  教育数字化: "教育数字化", 数字教育: "教育数字化",
+  "思政课": "立德树人", "课程思政": "立德树人", "教材": "立德树人", "三全育人": "立德树人", "大思政课": "立德树人",
+  "一站式": "高校治理", "一站式社区": "高校治理",
+  "师德": "德育", "师德师风": "德育", "德育": "德育",
+  "学风": "智育", "学业": "智育", "创新创业": "智育",
+  "体质": "体育", "体质强健": "体育", "体育锻炼": "体育",
+  "美育": "美育", "校园文化": "美育",
+  "劳动教育": "劳育", "实践育人": "劳育",
+  "教师队伍": "教师发展", "青年教师": "教师发展", "辅导员": "教师发展", "辅导员队伍": "教师发展", "辅导员建设": "教师发展", "思政队伍": "教师发展", "师资": "教师发展",
+  "心理健康": "学生育人", "心理": "学生育人", "心理育人": "学生育人", "资助": "学生育人", "资助育人": "学生育人", "奖助学金": "学生育人", "助学": "学生育人", "就业": "学生育人", "就业育人": "学生育人", "生涯规划": "学生育人",
 };
 
-// ── 公司与主体 ──────────────────────────────────────────────────────────────────────────
+// ── 机构与主体 ──────────────────────────────────────────────────────────────────────────
 
 /**
- * 公司主题：id → 显示名、卡片上显示的标签（null 表示只用 entity:<id> 归类）、别名。
- * aliases 给结构抽取模型看；otherNames 是公司自己的其他称呼（官方账号名、子品牌），
- * 把事实的主体对到发布方时也认它们。
+ * 机构主题：id → 显示名、卡片上显示的标签（null 表示只用 entity:<id> 归类）、别名。
+ * aliases 给结构抽取模型看；otherNames 是机构自己的其他称呼，把事实的主体对到发布方时也认它们。
+ * 本站在意的是机构（教育部、共青团中央等）的政策与动向，不做具体高校的主题页。
  */
 export const ENTITIES: Record<string, { name: string; displayTag: string | null; aliases: string[]; otherNames?: string[] }> = {
-  "world-labs": { name: "World Labs", displayTag: null, aliases: ["World Labs"] },
-  "thinking-machines": { name: "Thinking Machines Lab", displayTag: null, aliases: ["Thinking Machines"] },
-  amd: { name: "AMD", displayTag: null, aliases: ["AMD", "Advanced Micro Devices"] },
-  openai: { name: "OpenAI", displayTag: "OpenAI", aliases: ["OpenAI", "ChatGPT", "Sora", "Codex", "GPT"], otherNames: ["OpenAI Developers"] },
-  anthropic: { name: "Anthropic", displayTag: "Anthropic", aliases: ["Anthropic", "Claude"], otherNames: ["Claude Code"] },
-  google: { name: "Google", displayTag: "Google", aliases: ["Google", "DeepMind", "Gemini", "谷歌"], otherNames: ["Google DeepMind", "Google Research", "Google AI", "Google Labs", "Google Cloud"] },
-  deepseek: { name: "DeepSeek", displayTag: "DeepSeek", aliases: ["DeepSeek", "深度求索"] },
-  qwen: { name: "千问 Qwen", displayTag: null, aliases: ["Qwen", "通义", "阿里"], otherNames: ["通义千问", "千问", "千问APP", "Qwen Team", "通义实验室", "阿里巴巴", "Alibaba", "阿里云", "Alibaba Cloud"] },
-  kimi: { name: "Kimi / 月之暗面", displayTag: null, aliases: ["Kimi", "月之暗面", "Moonshot"], otherNames: ["Moonshot AI"] },
-  minimax: { name: "MiniMax", displayTag: null, aliases: ["MiniMax", "海螺"], otherNames: ["稀宇科技"] },
-  zhipu: { name: "智谱 GLM", displayTag: null, aliases: ["智谱", "GLM", "Z.ai"], otherNames: ["智谱AI", "Zhipu", "Zhipu AI"] },
-  xai: { name: "xAI", displayTag: "xAI", aliases: ["xAI", "Grok"], otherNames: ["SpaceXAI"] },
-  meta: { name: "Meta", displayTag: "Meta", aliases: ["Meta", "Llama"], otherNames: ["Meta AI", "AI at Meta"] },
-  microsoft: { name: "Microsoft", displayTag: "Microsoft", aliases: ["Microsoft", "微软", "Copilot"], otherNames: ["Microsoft Research", "Microsoft AI"] },
-  nvidia: { name: "NVIDIA", displayTag: null, aliases: ["NVIDIA", "英伟达"] },
-  "hugging-face": { name: "Hugging Face", displayTag: "Hugging Face", aliases: ["Hugging Face"], otherNames: ["HuggingFace"] },
-  cursor: { name: "Cursor", displayTag: null, aliases: ["Cursor", "Anysphere"] },
-  openrouter: { name: "OpenRouter", displayTag: null, aliases: ["OpenRouter"] },
+  moe: { name: "教育部", displayTag: "教育部", aliases: ["教育部", "中华人民共和国教育部"], otherNames: ["教育部办公厅", "教育部思想政治工作司"] },
+  gqt: { name: "共青团中央", displayTag: "共青团中央", aliases: ["共青团中央", "共青团", "团中央"], otherNames: ["共青团中央委员会"] },
+  propaganda: { name: "中央宣传部", displayTag: "中央宣传部", aliases: ["中央宣传部", "中共中央宣传部", "中宣部"] },
+  szw: { name: "全国高校思想政治工作网", displayTag: null, aliases: ["全国高校思想政治工作网", "高校思政网", "全国高校思政网"] },
 };
 
 /**
- * 身份词典：摘要和标题里出现的公司，必须在原文里也出现过，否则退回原标题、丢掉摘要（防止模型张冠李戴）。
- * 行业没有这个问题时可以留空数组。
+ * 身份词典：摘要和标题里出现的机构，必须在原文里也出现过，否则退回原标题、丢掉摘要（防止模型张冠李戴）。
+ * 机构名一般不会被模型臆造，留空即可；确有需要时再按 ENTITIES 的 id 补。
  */
-export const IDENTITY_LEXICON: ReadonlyArray<{ id: string; name: string; patterns: RegExp[] }> = [
-  { id: "openai", name: "OpenAI", patterns: [/openai|chatgpt|\bgpt-?[o\d]|\bsora\b|\bcodex\b/i] },
-  { id: "anthropic", name: "Anthropic", patterns: [/anthropic|\bclaude\b/i, /\b(?:opus|sonnet|haiku)\s*\d+(?:[.\-]\d+)*\b/i, /\bfable\s*\d+(?:[.\-]\d+)*\b|\bmythos\b/i] },
-  { id: "google", name: "Google / Gemini", patterns: [/google|deepmind|\bgemini\b|notebooklm|\bveo\s?\d|\bAlphaFold\b|\bAMIE\b/i] },
-  { id: "deepseek", name: "DeepSeek", patterns: [/deepseek|深度求索/i] },
-  { id: "xai", name: "xAI / Grok", patterns: [/\bxai\b|\bgrok\b/i] },
-  { id: "meta", name: "Meta / Llama", patterns: [/\bMeta\b/, /\bmeta\s?ai\b|\bllama\b/i] },
-  { id: "microsoft", name: "Microsoft / Copilot", patterns: [/microsoft|copilot|微软/i] },
-  { id: "nvidia", name: "NVIDIA", patterns: [/nvidia|英伟达|\bnemotron\b|\bnemo\b|\bblackwell\b|\brubin(?:\s+ultra)?\b|\bcuda\b/i] },
-  { id: "qwen", name: "千问 Qwen", patterns: [/\bqwen|通义|千问/i] },
-  { id: "hugging-face", name: "Hugging Face", patterns: [/hugging\s?face/i] },
-  { id: "cursor", name: "Cursor", patterns: [/\bCursor\b/] },
-  { id: "kimi", name: "Kimi / 月之暗面", patterns: [/\bkimi\b|月之暗面|\bmoonshot\s?ai\b/i] },
-  { id: "openrouter", name: "OpenRouter", patterns: [/openrouter/i] },
-  { id: "minimax", name: "MiniMax", patterns: [/minimax/i] },
-  { id: "zhipu", name: "智谱 GLM", patterns: [/智谱|\bglm-?[4-9]/i] },
-  { id: "hunyuan", name: "腾讯混元", patterns: [/混元|hunyuan/i] },
-  { id: "doubao", name: "字节豆包", patterns: [/豆包|doubao|字节跳动|bytedance/i] },
-  { id: "mistral", name: "Mistral", patterns: [/mistral/i] },
-  { id: "perplexity", name: "Perplexity", patterns: [/\bPerplexity\b/] },
-  { id: "runway", name: "Runway", patterns: [/\brunway\b/i] },
-  { id: "suno", name: "Suno", patterns: [/\bsuno\b/i] },
-  { id: "midjourney", name: "Midjourney", patterns: [/midjourney/i] },
-  { id: "stability-ai", name: "Stability AI", patterns: [/stability\s?ai/i] },
-  { id: "elevenlabs", name: "ElevenLabs", patterns: [/eleven\s?labs/i] },
-  { id: "vllm", name: "vLLM", patterns: [/\bvllm\b/i] },
-  { id: "ollama", name: "Ollama", patterns: [/\bollama\b/i] },
-  { id: "windsurf", name: "Windsurf", patterns: [/windsurf/i] },
-  { id: "devin", name: "Devin", patterns: [/\bdevin\b/i] },
-  { id: "manus", name: "Manus", patterns: [/\bmanus\b/i] },
-  { id: "apple", name: "Apple AI", patterns: [/\bapple\s?(intelligence|silicon|ai)\b|苹果(智能|\s?AI)/i] },
-  { id: "amazon", name: "Amazon / AWS", patterns: [/amazon|\baws\b|亚马逊/i] },
-  { id: "baidu", name: "百度文心", patterns: [/百度|baidu|文心|\bernie\s?bot\b/i] },
-];
+export const IDENTITY_LEXICON: ReadonlyArray<{ id: string; name: string; patterns: RegExp[] }> = [];
 
-/** 这些域名上的文章，发布方就是对应的公司（托管平台如 GitHub、arXiv 不算）。 */
+/** 这些域名上的文章，发布方就是对应的机构。 */
 export const PUBLISHER_DOMAINS: ReadonlyArray<{ entityId: string; domains: readonly string[] }> = [
-  { entityId: "openai", domains: ["openai.com"] },
-  { entityId: "anthropic", domains: ["anthropic.com", "claude.com"] },
-  { entityId: "google", domains: ["deepmind.google", "ai.google", "blog.google"] },
-  { entityId: "deepseek", domains: ["deepseek.com"] },
-  { entityId: "xai", domains: ["x.ai"] },
-  { entityId: "meta", domains: ["ai.meta.com"] },
-  { entityId: "microsoft", domains: ["microsoft.com"] },
-  { entityId: "nvidia", domains: ["nvidia.com"] },
-  { entityId: "qwen", domains: ["qwen.ai"] },
-  { entityId: "cursor", domains: ["cursor.com"] },
-  { entityId: "openrouter", domains: ["openrouter.ai"] },
+  { entityId: "moe", domains: ["moe.gov.cn"] },
+  { entityId: "gqt", domains: ["gqt.org.cn"] },
 ];
 
-/** 原文里的这些写法也算提到了对应公司。 */
-export const IDENTITY_CONTEXT_ALIASES: ReadonlyArray<{ entityId: string; pattern: RegExp }> = [
-  { entityId: "meta", pattern: /@AIatMeta\b/i },
-  { entityId: "zhipu", pattern: /\bZhipu(?:\s+AI\b|['’]s\b)/i },
-];
+/** 原文里的这些写法也算提到了对应机构。 */
+export const IDENTITY_CONTEXT_ALIASES: ReadonlyArray<{ entityId: string; pattern: RegExp }> = [];

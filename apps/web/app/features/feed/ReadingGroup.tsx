@@ -1,3 +1,4 @@
+// AI生成
 // Duplicate reports of one news fact. Desktop expands inline; phones use a sheet.
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router";

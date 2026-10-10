@@ -1,3 +1,4 @@
+// AI生成
 // Shared setup for the invariant tests (node --test tests/). They write rows, so they refuse to run
 // unless DATABASE_URL names a throwaway database ending in _test or _ci.
 // Secrets are test values set here, never real credentials; paid providers are pointed at local stubs

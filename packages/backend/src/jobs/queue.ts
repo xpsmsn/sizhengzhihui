@@ -1,3 +1,4 @@
+// AI生成
 // Job queue on PostgreSQL (pg-boss). Every queue is declared here with the data its jobs carry and its
 // retry policy: business code enqueues by name, the worker registers one handler per queue (jobs/*.ts),
 // and both sides are checked against JobData, so a payload cannot drift between producer and consumer.

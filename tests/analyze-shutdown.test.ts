@@ -1,3 +1,4 @@
+// AI生成
 // Exercise the real queue callback and process shutdown: already sent model answers must settle
 // before the DB closes, and the next process must recover using those receipts.
 import { gate, pointModels, Reply, stub, tag } from "./setup.ts";

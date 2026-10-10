@@ -1,3 +1,4 @@
+// AI生成
 // Phones: the article's own bottom toolbar in place of the tab bar — 收藏,
 // 目录 for long reads (components/ui/OutlineSheet), 分享 and 原文 — sliding away while reading down and
 // back on the way up or at the end; and the sheet of the article's further actions.

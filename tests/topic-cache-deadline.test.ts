@@ -1,3 +1,4 @@
+// AI生成
 // Topic counts may lag for a minute, but the first later read must wait for current counts.
 // A failed refresh must fail rather than serving the old directory for another ten minutes.
 import { tag } from "./setup.ts";

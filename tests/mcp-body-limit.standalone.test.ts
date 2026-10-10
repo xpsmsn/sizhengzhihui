@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: pre-parsed JSON bypasses the SDK's limit; insignificant whitespace disappears
 // when JSON is re-serialized; multi-byte text is counted as characters; chunked input has no length.
 import "./setup.ts";

@@ -1,3 +1,4 @@
+// AI生成
 import type { ReactNode } from "react";
 
 type Tone = "selected" | "accent" | "amber" | "hot" | "ok" | "neutral";

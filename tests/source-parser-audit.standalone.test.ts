@@ -1,3 +1,4 @@
+// AI生成
 // Failures found in source audits: product/version labels parsed as dates, rolled-over calendar
 // dates, and dated help-center sections collected as a single article or without their full body.
 import assert from "node:assert/strict";

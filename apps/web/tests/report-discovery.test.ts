@@ -1,3 +1,4 @@
+// AI生成
 // Production SSR with a local health stub. Failure case: machine entry points for weekly and monthly
 // reports exist but cannot be found from the access page.
 import assert from 'node:assert/strict';

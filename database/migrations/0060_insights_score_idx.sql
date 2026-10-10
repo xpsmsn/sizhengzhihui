@@ -1,0 +1,1 @@
+CREATE INDEX CONCURRENTLY IF NOT EXISTS insights_score_idx ON insights (score DESC);

@@ -1,3 +1,4 @@
+// AI生成
 // A failed structure, which leaves the current identity unresolved, must still block the next paid
 // step: no separate writing request starts. The stub answers each step; semantic extraction is
 // checked on real samples.

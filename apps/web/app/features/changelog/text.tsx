@@ -1,3 +1,4 @@
+// AI生成
 import { weekdayShort } from "../../lib/format";
 
 /** Release notes carry a little Markdown: **bold** runs. */

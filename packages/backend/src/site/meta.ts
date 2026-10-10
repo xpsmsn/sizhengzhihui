@@ -1,3 +1,4 @@
+// AI生成
 // Small site-wide facts for the web shell (e.g. the changelog red-dot anchor).
 import { readFileSync } from "node:fs";
 import path from "node:path";

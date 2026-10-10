@@ -1,3 +1,4 @@
+// AI生成
 import { stub, tag } from "./setup.ts";
 import assert from "node:assert/strict";
 import { randomBytes } from "node:crypto";

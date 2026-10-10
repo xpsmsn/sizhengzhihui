@@ -1,3 +1,4 @@
+// AI生成
 import { ITEM_COPY } from "@aihot/site";
 
 /**

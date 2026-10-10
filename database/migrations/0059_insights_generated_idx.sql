@@ -1,0 +1,1 @@
+CREATE INDEX CONCURRENTLY IF NOT EXISTS insights_generated_idx ON insights (generated_at DESC);

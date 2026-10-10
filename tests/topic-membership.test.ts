@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: a single-topic count disagrees with the membership list; a null company pattern
 // still depends on titles; a title match bypasses required tags; one subject differs from several;
 // an original-title or case-insensitive match is lost; a company name matches inside another word;

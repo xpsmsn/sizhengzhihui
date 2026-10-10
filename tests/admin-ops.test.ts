@@ -1,3 +1,4 @@
+// AI生成
 // Operations that must act on what they were meant for: releasing an unknown receipt of any analysis
 // step puts its article back into processing; a selected card is not sent again to a group that
 // already got another report of the same fact.

@@ -1,3 +1,4 @@
+// AI生成
 // Outbound HTTP for collectors, the image proxy and the paid APIs: SSRF guard, routing, limits.
 import net from "node:net";
 import { addAbortListener } from "node:events";

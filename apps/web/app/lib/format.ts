@@ -1,3 +1,4 @@
+// AI生成
 import { beijingDate, beijingTime, beijingWeekday } from "@aihot/contracts/time";
 
 /** "9月28日" of a calendar date (YYYY-MM-DD). */

@@ -1,3 +1,4 @@
+// AI生成
 // X accounts share searches: one request reads a shard of accounts, each post goes to
 // the source whose handle wrote it, every account keeps its own fetch run and watermark, and a failed
 // search moves no watermark.

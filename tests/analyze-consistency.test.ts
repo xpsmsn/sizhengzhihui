@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: a successful old response completes newer input; a failed business commit leaves
 // an analysis or completed receipts behind; retry buys responses already saved before that failure.
 import { gate, pointModels, stub, tag } from "./setup.ts";

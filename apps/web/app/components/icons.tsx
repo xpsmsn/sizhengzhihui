@@ -1,3 +1,4 @@
+// AI生成
 // Inline stroke icons (no icon-font or network requests).
 import type { SVGProps } from "react";
 

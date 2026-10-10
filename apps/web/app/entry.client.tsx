@@ -1,3 +1,4 @@
+// AI生成
 // One recovery boundary for obsolete public documents, including route metadata in <Meta>.
 import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";

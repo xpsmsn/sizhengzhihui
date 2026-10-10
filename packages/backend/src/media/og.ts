@@ -1,3 +1,4 @@
+// AI生成
 // 1200×630 share images. satori lays out text with Noto Sans SC (assets/og-fonts) and emits glyphs
 // as paths, so rasterising with sharp needs no system fonts. Output is cached on disk by content.
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";

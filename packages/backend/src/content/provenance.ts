@@ -1,3 +1,4 @@
+// AI生成
 // A discovery channel is not the publisher. Explicit T1 URL scopes are verified ownership, even
 // when collection is paused. Implicit web-list scopes need an actual discovery of this article.
 import { audit } from "../audit.ts";

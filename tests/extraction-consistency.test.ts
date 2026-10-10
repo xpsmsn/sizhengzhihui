@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: two workers finish the same extraction; a report revises the article while a page
 // or X Article is in flight; an obsolete empty response marks new input unconfirmed; an admin
 // repeats extraction of unchanged HTML. Neither content nor revision history may go backwards.

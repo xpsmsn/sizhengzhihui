@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+<!-- css -->
+<link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+<link rel="stylesheet" href="/v3/css/v3-framework.css">
+<link rel="stylesheet" href="/v3/css/responsiveslides.css" />
+<link rel="stylesheet" href="/v3/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="/v3/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/layout.css">
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/v3/css/v3-site.css">
+<link rel="stylesheet" href="/v3/css/v3-site2.css?v">
+<link rel="stylesheet" href="/css/swiper-3.4.2.min.css">
+
+<!-- js -->
+<script>
+	var frontAppContext = 'https://yurenhao1.sizhengwang.cn/zcms/';
+	var siteID = "145";
+	var siteURL = "https://yurenhao1.sizhengwang.cn/";
+ 	var siteAlias= "";
+	var isPreview = false;
+  	var url = window.location.href;
+  	if(url.indexOf(frontAppContext) === 0){
+	    var path=url.substring(frontAppContext.length);
+	    if(path.indexOf('/preview/')===0||path.indexOf('preview/')===0){
+	      isPreview=true;
+	      siteURL = "https://yurenhao1.sizhengwang.cn/zcms/preview/yzs/";
+		}
+	}
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112093047-1 "></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-112093047-1');
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.pseudo.js"></script>
+<script src="/js/zcms_common.min.js" contextpath="https://yurenhao1.sizhengwang.cn/zcms/"></script>
+<script src="/js/zcms_frontend.js" contextpath="https://yurenhao1.sizhengwang.cn/zcms/"></script>
+<script src="/v3/js/responsiveslides.js"></script>
+<script src="/v3/js/hammer.min.js"></script>
+<script src="/v3/js/bootstrap.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/qrcode.js"></script>
+<script src="/js/kkpager.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/v3/js/v3_site.js?v=1"></script>
+<script src="/js/swiper-3.4.2.jquery.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<!--[if lt IE 10]><script src="${prefix("js/respond.src.js")}"></script><![endif]-->
+
+  <title>通知公告 - 一站式云平台</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  
+</head>
+
+<body>
+  
+
+
+
+<link rel="stylesheet" href="/v3/css/newIndex.css?v=1" />
+<div class="member-span-logined hide"></div>
+<div class="headbox clearfix">
+  <div class="fl logobox">
+    <a href="http://www.sizhengwang.cn/">
+      <img src="/images/new/logo.png" alt="" />
+    </a>
+  </div>
+  <div class="fr userbox yrh">
+    <div class="burger">
+      <div class="x"></div>
+      <div class="y" style="display: block;"></div>
+      <div class="z"></div>
+    </div>
+  </div>
+  <div class="fr menublock">
+    <div class="closebox">
+      <div class="topmenubox clearfix">
+        <ul class="topmenu clearfix fl">
+          <!-- <li class="navitem fl">
+            <a href="https://dsxxjy.sizhengwang.cn/ds/">党史学习教育</a>
+            <span class="part">|</span>
+          </li> -->
+         <!-- <li class="navitem fl">
+            <a href="https://yurenhao.sizhengwang.cn/">育人号</a>
+            <span class="part">|</span>
+          </li> -->
+          <li class="navitem  fl">
+            <a href="https://fuwu.sizhengwang.cn/control/login" target="_blank">工作申报系统</a>
+            <span class="part">|</span>
+          </li>
+          <li class="navitem fl">
+            <a href="https://www.sizhengwang.cn/search/zyk/result.shtml?SiteID=144" target="_blank">资源服务平台</a>
+            <span class="part">|</span>
+          </li>
+          <li class="navitem fl">
+            <a class="sbrk" href="https://yurenhao1.sizhengwang.cn/zmtyzs/front/sso/login" target="_blank">建设高校申报入口</a>
+            <span class="part"></span>
+          </li>
+          <li class="navitem fl">
+            <a class="dlpt" href="https://yurenhao1.sizhengwang.cn/zmtyzs/front/sso/login">云平台登录</a>
+            <span class="part"></span>
+          </li>
+        </ul>
+        <div class="searchbox fr">
+          <input type="text" class="search-query" id="searchInput" placeholder="请输入关键词" />
+          <a href="javascript:void(0)" onclick="doSearch()" class="searchbtn"></a>
+        </div>
+      </div>
+      <div class="menubox swiper-container">
+        <ul class="clearfix swiper-wrapper">
+          <li class="navitem sy swiper-slide">
+            <a href="https://yurenhao1.sizhengwang.cn/">首页</a>
+          </li>
+          
+            <li class="navitem 2025nsqfczshd swiper-slide hide" id="002885">
+              <a href="/2025nsqfczshd/">社区风采展示活动</a>
+            </li>
+          
+          <!-- <cms:catalog alias="cgzs">
+            <li class="navitem ${Catalog.alias} swiper-slide" id="${Catalog.InnerCode}">
+              <a href="${Catalog.Link}">${Catalog.Name}</a>
+            </li>
+          </cms:catalog> -->
+          <!-- <cms:catalog alias="jlyd">
+            <li class="navitem ${Catalog.alias} swiper-slide" id="${Catalog.InnerCode}">
+              <a href="${Catalog.Link}">${Catalog.Name}</a>
+            </li>
+          </cms:catalog> -->
+          
+            <li class="navitem cgzs swiper-slide" id="002842">
+              <a href="/cgzs/">热点关注</a>
+            </li>
+          
+          
+            <li class="navitem sqkd swiper-slide" id="002881">
+              <a href="/sqkd/">社区看点</a>
+            </li>
+          
+          
+            <li class="navitem yzszb swiper-slide" id="002849">
+              <a href="/yzszb/">直播频道</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>    
+    var userinfo = localStorage.getItem('userinfo')
+    if(userinfo){
+      userinfo = JSON.parse(userinfo)
+      $(".headbox .topmenu .navitem .dlpt").html(userinfo.username);
+    }
+
+    function h5doSearch() {
+      if (!$("#searchInput").val() || !$("#searchInput").val().trim()) {
+        return;
+      }
+      var val = $.trim($('#searchInput').val());
+      doSearch(val)
+    }
+
+    $("#searchInput").keydown(function (event) {
+      if (event.keyCode == 13) {
+        h5doSearch();
+      }
+    });
+
+    function doSearch(q) {
+      var val
+      if (q) {
+        val = q
+      } else {
+        if (!$("#searchInput").val() || !$("#searchInput").val().trim()) {
+          return;
+        }
+        val = $.trim($('#searchInput').val());
+      }
+      if (val.length > 0) {
+        var url = "https://yurenhao1.sizhengwang.cn/search/result.shtml?SiteID=145&query=" + encodeURIComponent(val);
+        window.location.href = url;
+      }
+    }
+    
+  $('.burger').click(function (event) {
+    $(this).toggleClass('openmenu');
+    $(".y").toggleClass('hide');
+    $(".x").toggleClass('collapse rotate30 rotate45');
+    $(".z").toggleClass('collapse rotate150 rotate135');
+    $(".topmenubox").toggleClass('fixmenu');
+  });
+  $(function(){    
+    if ($(window).width() <= 768) {
+      var menubox = new Swiper('.menubox.swiper-container', {
+        autoplay: false,
+        slidesPerView: 'auto',
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+      })
+    }
+  })
+  </script>
+
+
+
+
+
+<div class="bannerNew">
+  <img src="/images/new/banner.png" alt="" class="bannerImg banner1" />
+  <img src="/images/new/banner7.jpg" alt="" class="bannerImg banner2" />
+</div>
+
+
+  <div class="ssbspt zb-notice">
+    <!-- 包含页头 -->
+    <!-- <div class="sqyr">
+      <cms:include file="${prefix("template/header.template.html")}" />
+    </div> -->
+    <div class="notice container">
+      <div class="position">
+        <!-- <z:set var="inCode" value="${substring(catalog.innercode,0,6)}" />
+        <cms:catalog innercode="${inCode}">
+          <z:set var="hotAlias" value="${catalog.alias}" />
+          <z:set var="hotLink" value="${catalog.link}" />
+        </cms:catalog> -->
+        当前位置：<a class="sylink" href="https://yurenhao1.sizhengwang.cn/">首页</a> > <span>通知公告</span>
+      </div>
+      <div class="topic">通知公告</div>
+      <div class="noticelist">
+        
+          
+            <a href="/a/tzgg/260918/2520232.shtml">
+              <div class="con">
+                <div class="title ellipsis">高校“一站式”学生社区综合管理模式建设提质增效指南（2026年修订版）</div>
+                <div class="info">
+                  <span class="time">2026-09-18</span>
+                  <span class="source">教育部思政司</span>
+                </div>
+              </div>
+            </a>
+            <a href="/a/tzgg/260912/2520958.shtml">
+              <div class="con">
+                <div class="title ellipsis">关于开展2026年第2期高校“一站式”学生社区建设提质增效专题研修班的通知</div>
+                <div class="info">
+                  <span class="time">2026-09-12</span>
+                  <span class="source">全国高校思政网</span>
+                </div>
+              </div>
+            </a>
+            <a href="/a/tzgg/260609/2432099.shtml">
+              <div class="con">
+                <div class="title ellipsis">关于开展2026年第1期高校“一站式”学生社区建设提质增效专题研修班的通知</div>
+                <div class="info">
+                  <span class="time">2026-06-09</span>
+                  <span class="source">全国高校思想政治工作网</span>
+                </div>
+              </div>
+            </a>
+            <a href="/a/tzgg/260522/2400099.shtml">
+              <div class="con">
+                <div class="title ellipsis">关于开展2026年高校“一站式”学生社区风采展示活动的通知</div>
+                <div class="info">
+                  <span class="time">2026-05-22</span>
+                  <span class="source">教育部思想政治工作司</span>
+                </div>
+              </div>
+            </a>
+            <a href="/a/tzgg/260317/2347748.shtml">
+              <div class="con">
+                <div class="title ellipsis">关于开展2026年高职院校“一站式”学生社区建设提质增效专题研修班的通知</div>
+                <div class="info">
+                  <span class="time">2026-03-17</span>
+                  <span class="source">全国高校思想政治工作网</span>
+                </div>
+              </div>
+            </a>
+            <a href="/a/tzgg/251104/2261134.shtml">
+              <div class="con">
+                <div class="title ellipsis">关于开展2025年第5期高校“一站式”学生社区建设提质增效专题研修班的通知</div>
+                <div class="info">
+                  <span class="time">2025-11-04</span>
+                  <span class="source">全国高校思想政治工作网</span>
+                </div>
+              </div>
+            </a>
+            <a href="/a/tzgg/250925/2247081.shtml">
+              <div class="con">
+                <div class="title ellipsis">关于开展2025年高校“一站式”学生社区建设提质增效网络培训班的通知</div>
+                <div class="info">
+                  <span class="time">2025-09-25</span>
+                  <span class="source">全国高校思想政治工作网</span>
+                </div>
+              </div>
+            </a>
+            <a href="/a/tzgg/250829/2210279.shtml">
+              <div class="con">
+                <div class="title ellipsis">2025年高校“一站式”学生社区风采展示活动优秀成果评选推荐结果公布</div>
+                <div class="info">
+                  <span class="time">2025-08-29</span>
+                  <span class="source">教育部思想政治工作司</span>
+                </div>
+              </div>
+            </a>
+            <a href="/a/tzgg/250711/2190880.shtml">
+              <div class="con">
+                <div class="title ellipsis">云平台省级管理员操作手册（2025年7月）</div>
+                <div class="info">
+                  <span class="time">2025-07-11</span>
+                  <span class="source"></span>
+                </div>
+              </div>
+            </a>
+            <a href="/a/tzgg/250711/2190852.shtml">
+              <div class="con">
+                <div class="title ellipsis">云平台高校育人号操作手册（2025年7月）</div>
+                <div class="info">
+                  <span class="time">2025-07-11</span>
+                  <span class="source"></span>
+                </div>
+              </div>
+            </a>
+        
+      </div>
+      <div class="pageBar">
+        <!-- 分页条开始 -->
+         <script>
+function _getPageIndexURL(PageIndex){
+  PageIndex=PageIndex>0?PageIndex:1;
+  PageIndex=PageIndex>4?4:PageIndex;
+  if(PageIndex==1){    return 'index.shtml';
+  }else if(PageIndex>5&&true){
+    return 'https://yurenhao1.sizhengwang.cn/zcms/ui/catalog/99270/pc/index_{PageIndex}.shtml'.replace('{PageIndex}', PageIndex);
+  }else{
+    return 'index_${PageIndex}.shtml'.replace('${PageIndex}', PageIndex);
+  }
+}
+</script>
+
+          
+          
+            <span class="prev-page disabled"><a><i class="fa fa-angle-left"></i></a></span>
+          
+          <span class="page-number">
+            
+            
+              
+              
+                
+                  <a href="javaScript:goto_page(1)" class="cur">1</a>
+                
+                  <a href="javaScript:goto_page(2)" class="">2</a>
+                
+                  <a href="javaScript:goto_page(3)" class="">3</a>
+                
+                
+                <a href="javaScript:goto_page(4)"
+                  class="">4</a>
+              
+            
+          </span>
+          
+            <span class="next-page"><a href="javaScript:goto_page(2)"><i
+                  class="fa fa-angle-right"></i></a></span>
+          
+          
+          <span class="total">共4页</span>
+          <input type="hidden" onKeyPress="goto_page(this.value,13)" />
+          <script type="text/javascript">
+            function goto_page(page) {
+              if (/^\d+$/.test(page)) {
+                window.location.href = _getPageIndexURL(page);
+              }
+            }
+          </script>
+        
+      </div>
+
+    </div>
+    <!-- 包含页尾 -->
+    
+
+<div class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="fl footer-left">
+        <a href="https://www.sizhengwang.cn/" class="logobox">
+          <img src="/images/index/logo-f.png" alt="" />
+        </a>
+        <!-- <ul class="social">
+            <li class="fl icon1">
+                <a></a>
+                <img class="code" src="${prefix("images/index/timg.jpg")}" alt="" />
+            </li>
+            <li class="fl icon2">
+                <a></a>
+                <img class="code" src="${prefix("images/index/timg.jpg")}" alt="" />
+            </li>
+            <li class="fl icon3">
+                <a></a>
+                <span class="code" style="width: 70px;margin-left: -10px;">网络平台</span>
+            </li>
+            <li class="fl icon4">
+                <a></a>
+                <span class="code" style="width: 70px;margin-left: -10px;">网络平台</span>
+            </li>
+        </ul> -->
+      </div>
+      <div class="fr clearfix linkbox">
+        <div class="fl link">
+          <div class="tit">关于我们</div>
+          <ul class="clearfix">
+            
+              
+                <li>
+                  <a href="https://yurenhao.sizhengwang.cn/a/gywm/200330/512309.shtml" target="_blank">联系我们</a>
+                </li>
+                <li>
+                  <a href="https://yurenhao.sizhengwang.cn/a/gywm/200330/512305.shtml" target="_blank">关于我们</a>
+                </li>
+            
+          </ul>
+        </div>
+        <div class="fl link">
+          <div class="tit">友情链接</div>
+          <ul class="clearfix">
+            <li>
+              <a href="http://www.moe.gov.cn/" target="_blank">教育部官网</a>
+            </li>
+            <li>
+              <a href="https://www.smartedu.cn/" target="_blank">国家智慧教育公共服务平台</a>
+            </li>
+            <li>
+              <a href="https://dxs.moe.gov.cn/zx/fdy/" target="_blank">高校辅导员网络培训中心</a>
+            </li>
+          </ul>
+          <ul class="clearfix">
+            <li>
+              <a href="http://www.moe.gov.cn/s78/A12/" target="_blank">教育部思政司官网</a>
+            </li>
+            <li>
+              <a href="http://dxs.moe.gov.cn" target="_blank">中国大学生在线</a>
+            </li>
+            <li>
+              <a href="https://www.sizhengshijian.cn/" target="_blank">“大思政课”实践教学数字地图</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <a href="javascript:;" class="go_top" id="go_top"></a>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <div class="container">
+      <!-- <ul class="clearfix fl">
+        <li class="fl">
+          <a href="https://www.sizhengwang.cn/">思政网首页</a>
+        </li>
+        <li class="fl">
+          <a href="https://yurenhao.sizhengwang.cn/">育人号</a>
+        </li>
+        <li class="fl active">
+          <a href="https://yurenhao.sizhengwang.cn/dangjian2/">第二批全国高校党建“双创”平台</a>
+        </li>
+        <li class="fl hide">
+          <a href="">博物馆育人联盟</a>
+        </li>
+      </ul> -->
+      <p class="text-center">©2025 全国高校思想政治工作网 版权所有 <a href="https://beian.miit.gov.cn" style="color:white"
+          target='_blank'>京ICP备12020869号-24</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(".social li ").hover(function () {
+    $(this).find(".code").show();
+  }, function () {
+    $(this).find(".code").hide();
+  })
+</script>
+<!-- 思政网旧版本谷歌统计代码： -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112093047-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-112093047-1');
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GRFW5J3BFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GRFW5J3BFC');
+</script>            
+  </div>
+  <script>
+    // $(".sylink").attr("href", $(".sy a").attr("href"));
+    // 栏目菜单高亮
+    var curCatalogInnerCode = "002845";
+    for (var i = 1, len = curCatalogInnerCode.length; i < len / 11 + 1; i++) {
+      var innerCode = curCatalogInnerCode.substring(0, i * 11);
+      var catalogElement = document.getElementById(innerCode);
+      if (catalogElement) {
+        catalogElement.className += " active";
+      }
+    }
+
+    getMenu(0);
+    // 育人号获取菜单
+    function getMenu(studioID) {
+      $.ajax({
+        url: frontAppContext + 'front/lable2/yzs/list?studioID=' + studioID + '&channelID=15',
+        type: 'GET',
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success: function (response) {
+          if (response.status = 1) {
+            var html = '';
+            var tagalias = '';
+            for (let key in response.data) {
+              html += '<li class="tagword"><a href="' + siteURL + 'yzssq/yrh/information.shtml?SiteID=145&alias=zhfwpt_gxsxzzgz&tag=' + key + '">' + response.data[key] + '</a></li>';
+            }
+            $(".yrhmenu").append(html);
+          }
+        }
+      })
+    }
+  </script>
+
+<script src="https://yurenhao1.sizhengwang.cn/zcms/stat/front/stat.js" type="text/javascript"></script>
+<script>
+if(window._zcms_stat)_zcms_stat("SiteID=145&CatalogInnerCode=002845&Type=null&Dest=https://yurenhao1.sizhengwang.cn/zcms/front/stat/dealer");
+</script>
+<!-- Google tag (gtag.js)  begin-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GRFW5J3BFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GRFW5J3BFC');
+</script>   
+<!-- Google tag (gtag.js)  end-->
+
+<!-- Baidu Tongji  begin-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?dd05cd4fe832c60dd8b22de855a9ce2f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- Baidu Tongji  end-->
+
+
+<!-- App=ZCMS(ZCMS内容管理系统) 3.2.13,CostTime=367,PublishDate=2026-09-18 14:26:12 -->
+</body>
+
+</html>

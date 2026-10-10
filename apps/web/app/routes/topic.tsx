@@ -1,3 +1,4 @@
+// AI生成
 import { REPORTS, SITE } from "@aihot/site";
 import { Link, redirect, useLoaderData } from "react-router";
 import type { Route } from "./+types/topic";

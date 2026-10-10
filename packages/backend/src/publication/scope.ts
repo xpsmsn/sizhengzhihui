@@ -1,3 +1,4 @@
+// AI生成
 // Public scope at read time. Every query that decides whether a report is public now,
 // listed, selected, or evidence of its fact uses these predicates over `publications p` (and, for
 // evidence, `fact_articles fa`); no other module spells visibility, the release time or the composite

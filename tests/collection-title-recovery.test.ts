@@ -1,3 +1,4 @@
+// AI生成
 // Failures: a listing's CTA masks a new title, or changing its detail rendering causes a known real
 // headline over 100 characters to buy another paid read. An explicit authoritative rule still wins.
 import { tag } from "./setup.ts";

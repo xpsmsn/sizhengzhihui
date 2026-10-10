@@ -1,3 +1,4 @@
+// AI生成
 // Sitemap from the same public metadata as pages. Process and HTTP caches share one five-minute
 // deadline; a saved copy may bridge a restart only for the remainder of that original lifetime.
 import { mkdir, readFile, stat, utimes, writeFile } from "node:fs/promises";

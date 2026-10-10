@@ -1,3 +1,4 @@
+// AI生成
 // Failure modes: stopping between paid pages/batches must not send the next request, consume a
 // budget attempt, or create an unknown receipt; an in-flight answer must still save, and received
 // or completed answers must remain reusable so business writes can finish during shutdown.

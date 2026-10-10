@@ -1,3 +1,4 @@
+// AI生成
 // The site opened from the phone's home screen has no browser bar, so no reload: there, pulling down at the
 // top of a page reloads its data, with the ring mark turning as it is pulled and spinning while it loads.
 // In a browser tab nothing is listened for, and the browser's own pull-to-refresh stays in charge.

@@ -1,3 +1,4 @@
+// AI生成
 import type { HotEntryView } from "@aihot/contracts/site";
 
 /** Change against six hours before the ranking: up in the hot tone, down quiet, new stories marked new, none while sources are behind. */

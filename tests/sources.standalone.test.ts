@@ -1,3 +1,4 @@
+// AI生成
 // Listing parsers on the page shapes Jina returns for real sites: card links that wrap an image, a title
 // attribute, http links under https prefixes, and navigation that is no post. Also what made articles
 // flip between versions: in-page anchors of an HTML listing and

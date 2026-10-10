@@ -1,3 +1,4 @@
+// AI生成
 // The same issue through the website, JSON, Agent answer and RSS. Failure cases: withdrawal
 // changes a headline but drops its paragraph in projected indexes/feeds; written historical leads
 // keep withdrawn news; citations leak a scheduled selection; missing frozen summaries or corrected

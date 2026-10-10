@@ -1,3 +1,4 @@
+// AI生成
 // Material storage: every distinct change gets its own revision and history row, also under
 // concurrency; imported history gets a baseline instead of a revision; simultaneous first reports
 // of one URL create one article; other sources' listings, returns to an earlier version and characters

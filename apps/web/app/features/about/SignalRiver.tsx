@@ -1,3 +1,4 @@
+// AI生成
 // The about page's river. Every line is one of the site's real sources (hover names it). Lines run in
 // from the left, gather into bundles (many reports of one story), meet the 精选 gate that lets a few
 // bundles through, and the ones that pass turn teal and run into a small newspaper: the day's report.

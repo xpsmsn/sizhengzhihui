@@ -1,3 +1,4 @@
+// AI生成
 // The story-digest evaluation (scripts/eval-story-digests.ts) is the check before a prompt change reaches every
 // event, so two things are held: a case exported from an event is what the site itself sends (other reports,
 // order, framing, system prompt, model or sampling would make the comparison meaningless), and nothing is

@@ -1,3 +1,4 @@
+// AI生成
 // Building blocks of the Agent page: panel heads, numbered steps, copyable asks and addresses,
 // quiet tip tiles, callouts, tables and the fold-away details under each panel.
 import type { ReactNode } from "react";

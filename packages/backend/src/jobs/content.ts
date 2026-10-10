@@ -1,3 +1,4 @@
+// AI生成
 // Content processing: body extraction when the source needs it → analysis → publish → event grouping.
 // Every article reaches the queues through queueProcessing, which records when it was queued. A failed
 // step records when to try again, and the sweep (content.sweep) is the timer that queues it then; it

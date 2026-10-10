@@ -1,3 +1,4 @@
+// AI生成
 import { SITE } from "@aihot/site";
 import { Fragment, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";

@@ -1,7 +1,8 @@
+// AI生成
 // Site navigation in one place: the desktop sidebar's sections and the phone tab bar's tabs, the engine's
 // and the site's modules'.
 import type { ReactNode } from "react";
-import { subjectAfter, withSubject } from "@aihot/site";
+import { subjectAfter } from "@aihot/site";
 import { webModules } from "../../site-modules";
 import {
   IconBolt, IconBookmark, IconDoc, IconFlame, IconGrid, IconHeart, IconHistory, IconList, IconMessage, IconPlug, IconUser,
@@ -23,8 +24,8 @@ const SECTIONS: Array<{ title: string; items: NavItem[] }> = [
     items: [
       { to: "/", label: "精选", icon: IconBolt, end: true },
       { to: "/all", label: subjectAfter("全部", "动态"), icon: IconList },
-      { to: "/hot", label: "热点榜", icon: IconFlame },
-      { to: "/daily", label: withSubject("日报"), icon: IconDoc },
+      { to: "/hot", label: "近期关注", icon: IconFlame },
+      { to: "/daily", label: "政策解读", icon: IconDoc },
       { to: "/topics", label: "主题", icon: IconGrid },
       { to: "/starred", label: "收藏", icon: IconBookmark },
     ],
@@ -87,8 +88,8 @@ export interface Tab {
 
 const ENGINE_TABS: Tab[] = [
   { key: "featured", to: "/", label: "精选", icon: IconBolt },
-  { key: "hot", to: "/hot", label: "热点", icon: IconFlame },
-  { key: "daily", to: "/daily", label: "日报", icon: IconDoc },
+  { key: "hot", to: "/hot", label: "关注", icon: IconFlame },
+  { key: "daily", to: "/daily", label: "解读", icon: IconDoc },
   { key: "me", to: "/more", label: "我的", icon: IconUser, changelog: true },
 ];
 

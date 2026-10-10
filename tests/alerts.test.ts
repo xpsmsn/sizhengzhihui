@@ -1,3 +1,4 @@
+// AI生成
 // Ops alerts reach the site's operators: a problem is announced once, repeated no more than its level
 // allows (hourly for reader impact), closed with one recovery message.
 import { tag } from "./setup.ts";

@@ -1,3 +1,4 @@
+// AI生成
 // Worker process: queues and schedules for collection, processing, events, reports and ops, and the site's
 // modules (site/modules/server.ts).
 import { assertProductionSecrets } from "@aihot/backend/config";

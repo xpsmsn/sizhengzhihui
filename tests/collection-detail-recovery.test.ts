@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: a detail budget strands the tail forever; a temporary detail failure is swallowed;
 // known complete articles consume the budget again; a successful page without a date starves later
 // articles forever; hot signals accidentally fetch article bodies.

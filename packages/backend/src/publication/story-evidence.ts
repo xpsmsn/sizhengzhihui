@@ -1,3 +1,4 @@
+// AI生成
 // The saved digest's evidence and fingerprint, shared by its writer and every public reader.
 import { sql, type Db } from "../db.ts";
 import { sha256, stableJson } from "../lib/ids.ts";

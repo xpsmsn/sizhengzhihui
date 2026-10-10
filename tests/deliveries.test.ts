@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: concurrent claims duplicate a fact; an ambiguous webhook reply looks delivered;
 // a retry bypasses target disable/withdrawal; a mirror sends after the first target awaited a withdrawal.
 // A lost reply must still suppress regrouped siblings; enabling a group must not replay older items.

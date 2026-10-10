@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: fresh hot signals hide an editorial collection outage; intermittent failures vanish
 // after one success; zero-output counts stop at the display limit; publisher attribution makes a
 // working discovery source look idle; missing dates/repeated edits in signals are called bad articles.

@@ -1,3 +1,4 @@
+// AI生成
 // Failure modes before making a clipped hot card a smaller response: a long digest still ships in
 // full, a Unicode character breaks at the cut, a short text changes, or the event page loses its text.
 import './setup.ts';

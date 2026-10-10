@@ -1,3 +1,4 @@
+// AI生成
 export function collapseWhitespace(s: string): string {
   return s.replace(/\s+/g, " ").trim();
 }

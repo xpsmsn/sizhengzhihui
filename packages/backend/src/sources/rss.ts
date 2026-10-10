@@ -1,3 +1,4 @@
+// AI生成
 // RSS 2.0 / Atom / RDF feeds.
 import { XMLParser } from "fast-xml-parser";
 import { fetchListing } from "./listing-fetch.ts";

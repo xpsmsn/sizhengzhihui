@@ -1,3 +1,4 @@
+// AI生成
 // The phone's bottom sheet: slides up over a dimmed page, follows the finger down from its handle (or
 // from its content once that is scrolled to the top) and closes when let go far or fast enough. While
 // open the page behind does not scroll, focus stays inside, and Escape or the backdrop closes it.

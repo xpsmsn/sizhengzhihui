@@ -1,3 +1,4 @@
+// AI生成
 // Source-list admission rules shared by collection and the administrator's preview.
 import { FUTURE_TOLERANCE_MS } from "../content/materials.ts";
 import type { Candidate, SourceRow } from "./types.ts";

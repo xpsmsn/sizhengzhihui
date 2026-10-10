@@ -1,3 +1,4 @@
+// AI生成
 // Shared admin building blocks: page frame, cards, stats, badges, tables, buttons, fields and a
 // reason dialog (manual changes always carry a reason for the audit log).
 import { AnimatePresence, motion } from "motion/react";

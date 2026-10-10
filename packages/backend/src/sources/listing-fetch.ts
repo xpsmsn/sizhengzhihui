@@ -1,3 +1,4 @@
+// AI生成
 // Free listing reads: one retry for transient transport/upstream failures within the original deadline.
 import { setTimeout } from "node:timers/promises";
 import { guardedFetch, type GuardedFetchOptions, type GuardedResponse } from "../lib/http-fetch.ts";

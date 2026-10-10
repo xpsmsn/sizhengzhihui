@@ -1,3 +1,4 @@
+// AI生成
 // Collection run for one source: fetch listing → filter → store material → enqueue processing.
 // A failed fetch never advances the success cursor; the source's health reflects consecutive failures.
 import { sql, type Db } from "../db.ts";

@@ -1,3 +1,4 @@
+// AI生成
 // First-party site API (/api/site/*). Not a public API: it may evolve with the website,
 // but it is served from the same public read layer as v1, RSS and MCP.
 import type { CategoryKey, ChannelKey } from "./taxonomy.ts";
@@ -106,6 +107,8 @@ export interface TimelineResponse {
   nextCursor: string | null;
   hot: HotStripEntry[] | null;
   dayCounts: Record<string, number>;
+  /** Selected reports per website category, under the same channel/tag filters (not the category filter): the tab row shows a category only while it has content. */
+  categoryCounts: Record<string, number>;
 }
 
 export interface PoolResponse {
@@ -116,6 +119,32 @@ export interface PoolResponse {
   total: number;
   todayCount: number;
   freshness: string;
+  /** Listed reports per website category, under the same channel/tag filters (not the category filter): the tab row shows a category only while it has content. */
+  categoryCounts: Record<string, number>;
+}
+
+/** 政策解读：为高分条目生成的原创解读（展示在 /daily 页）。 */
+export interface InsightView {
+  articleId: string;
+  title: string;
+  sourceName: string;
+  score: number;
+  /** 一句话背景，列表与详情都用。 */
+  background: string;
+  /** 要点条数（列表只显示数量，详情展开）。 */
+  pointCount: number;
+  generatedAt: string;
+}
+
+export interface InsightsResponse {
+  items: InsightView[];
+}
+
+export interface InsightDetail extends InsightView {
+  keyPoints: string[];
+  implications: string;
+  /** 原文链接（外部来源），可能为空。 */
+  originalUrl: string;
 }
 
 export interface OutlineEntry {
@@ -195,6 +224,8 @@ export interface HotEntryView {
   latest: string | null;
   /** A picture from the story's public reports (the representative first), for the leading cards. */
   cover: { url: string; srcSet?: string; width: number | null; height: number | null } | null;
+  /** Article ID for direct linking when the entry has no story (近期关注 mode). */
+  itemId: string | null;
 }
 
 export interface HotResponse {

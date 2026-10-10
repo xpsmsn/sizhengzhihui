@@ -1,3 +1,4 @@
+// AI生成
 // The engine's ways in, one panel each: what it is for, the steps to connect, then the details folded away.
 // Addresses are the site's configured public address (`base`); what visitors copy carries the site's tag
 // (CopyTag) when it has one.

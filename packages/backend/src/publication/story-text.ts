@@ -1,3 +1,4 @@
+// AI生成
 // What the site tells readers about an event (the hot list and the event page), by the rule the digest is
 // written by (events/digest.ts): its listed evidence. A digest stands while its saved evidence remains
 // public and unchanged; the latest development is the newest listed evidence.

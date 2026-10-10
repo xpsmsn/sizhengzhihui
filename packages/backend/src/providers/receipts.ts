@@ -1,3 +1,4 @@
+// AI生成
 // Paid requests (models, SocialData, Jina; historical Dajiala records retained) go through here.
 //
 // 1. A logical request has a stable key bound to task, input revision, provider, model, prompt and config.

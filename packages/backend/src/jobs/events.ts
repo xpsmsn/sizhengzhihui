@@ -1,3 +1,4 @@
+// AI生成
 // Event jobs: serial grouping, debounced digests.
 import type { PgBoss } from "pg-boss";
 import { groupArticle } from "../events/group.ts";

@@ -1,3 +1,4 @@
+// AI生成
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { isNonArticleImage } from "../packages/backend/src/lib/image-url.ts";

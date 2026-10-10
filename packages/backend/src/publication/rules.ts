@@ -1,3 +1,4 @@
+// AI生成
 // Publication rules. Each rule is defined once here and used by every exit.
 
 export interface SourceFacts {

@@ -1,3 +1,4 @@
+// AI生成
 // A pull request cannot change deployed history or hide an unsafe migration by naming it as history.
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";

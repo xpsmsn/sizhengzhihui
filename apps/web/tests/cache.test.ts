@@ -1,3 +1,4 @@
+// AI生成
 // Run after `npm run build -w @aihot/web`. Real production server/router, synthetic HTTP API only.
 import assert from "node:assert/strict";
 import { createServer } from "node:http";

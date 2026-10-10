@@ -1,3 +1,4 @@
+// AI生成
 import { assertProductionSecrets, config } from "@aihot/backend/config";
 import { closeDb } from "@aihot/backend/db";
 import { installModules } from "@aihot/backend/modules";

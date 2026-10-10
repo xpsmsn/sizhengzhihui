@@ -1,3 +1,4 @@
+// AI生成
 // Feedback reaches the internal Feishu chat with its screenshot even when Feishu fails at first: a
 // failed upload or send is tried again, only the Feishu image key is kept, a screenshot that cannot be
 // uploaded for a day, or that Feishu refuses outright, is dropped (the text still goes), screenshots left

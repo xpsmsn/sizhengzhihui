@@ -1,3 +1,4 @@
+// AI生成
 // Textless and link-only posts keep their own text and media instead of model-written copy.
 import { collapseWhitespace } from "../lib/text.ts";
 

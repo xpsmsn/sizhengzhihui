@@ -1,3 +1,4 @@
+// AI生成
 // Embeddings from any OpenAI-compatible endpoint (EMBEDDING_*): a stored vector of another size is
 // computed again, a process with another EMBEDDING_DIMS pays for a request of its own, and with
 // EMBEDDING_DIMS=0 the provider picks the size and vectors of different sizes never count as similar.

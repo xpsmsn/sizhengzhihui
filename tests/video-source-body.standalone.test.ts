@@ -1,3 +1,4 @@
+// AI生成
 // Observed failures: Atom video descriptions were discarded, then player controls and recommended
 // videos were saved as article bodies. Known video pages must never buy article extraction; a feed
 // description is only an excerpt, while actual textual content delivered by the feed remains usable.

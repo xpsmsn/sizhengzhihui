@@ -1,3 +1,4 @@
+// AI生成
 // In-doubt work. A stopped process leaves "pending" receipts and deliveries: they become
 // "unknown" and are never re-sent on their own. An unknown receipt is released once automatically after
 // half an hour without checking the provider's bill, so a lost answer costs at most one repeat; one that

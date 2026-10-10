@@ -1,3 +1,4 @@
+// AI生成
 // Cross-outlet failures: indexing a page that returns 404, exposing an unreleased item through the
 // sitemap, losing a manually indexed archive page, or matching source notes readers cannot see.
 import { tag } from "./setup.ts";

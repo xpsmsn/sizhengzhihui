@@ -1,3 +1,4 @@
+// AI生成
 import { useId, useMemo, useState, type ReactNode } from "react";
 import type { HeatPoint } from "@aihot/contracts/site";
 import { monthDayTime } from "../../lib/format";

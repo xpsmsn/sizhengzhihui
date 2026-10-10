@@ -1,3 +1,4 @@
+// AI生成
 // URL normalisation for material identity, and the fetcher's network guard.
 import { lookup } from "node:dns/promises";
 import net from "node:net";

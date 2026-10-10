@@ -1,3 +1,4 @@
+// AI生成
 import { type RouteConfig, type RouteConfigEntry, index, layout, route } from "@react-router/dev/routes";
 import type { ModulePage } from "@aihot/contracts/modules";
 import { MODULES } from "@aihot/site/modules";
@@ -21,9 +22,8 @@ export default [
   route("items/:id/original", "routes/item-original.tsx", { id: "item-original" }),
   route("hot", "routes/hot.tsx"),
   route("story/:publicId", "routes/story.tsx"),
-  route("daily", "routes/report-latest.tsx", { id: "daily-latest" }),
-  route("daily/archive", "routes/daily-archive.tsx"),
-  route("daily/:key", "routes/report-detail.tsx", { id: "daily-detail" }),
+  route("daily", "routes/insights.tsx", { id: "insights" }),
+  route("daily/:articleId", "routes/insight-detail.tsx", { id: "insight-detail" }),
   route("weekly", "routes/report-latest.tsx", { id: "weekly-latest" }),
   route("weekly/:key", "routes/report-detail.tsx", { id: "weekly-detail" }),
   route("monthly", "routes/report-latest.tsx", { id: "monthly-latest" }),

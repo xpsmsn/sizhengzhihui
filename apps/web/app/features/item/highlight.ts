@@ -1,3 +1,4 @@
+// AI生成
 // Syntax colours for code in article bodies, loaded only on pages that have code. Sanitised bodies keep
 // code as plain text; the language is guessed here and the colours are dropped when the guess is weak.
 import hljs from "highlight.js/lib/core";

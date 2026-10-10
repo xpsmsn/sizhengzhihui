@@ -1,3 +1,4 @@
+// AI生成
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { RingMark } from "@aihot/site/brand/Logo.tsx";

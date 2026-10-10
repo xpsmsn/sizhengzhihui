@@ -1,3 +1,4 @@
+// AI生成
 // The fetch guard: internal addresses stay unreachable in every spelling, and a name that resolves
 // to one is refused at connect time too (DNS rebinding after the URL check).
 import assert from "node:assert/strict";

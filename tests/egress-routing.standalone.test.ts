@@ -1,3 +1,4 @@
+// AI生成
 // Failures: domestic feeds inherit the proxy's overseas DNS/CDN; a host exception leaks to
 // unrelated domains or redirect targets; choosing a direct route bypasses the private-address guard.
 import assert from "node:assert/strict";

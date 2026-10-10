@@ -1,3 +1,4 @@
+// AI生成
 // Admin loaders read /api/admin/* with the visitor's own cookie; the web process holds no session.
 import { data, redirect } from "react-router";
 import { API_BASE_URL } from "./api.server.ts";

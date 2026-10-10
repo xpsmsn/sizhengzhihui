@@ -1,3 +1,4 @@
+// AI生成
 // A rendered listing can repeat an article: a hero's "Read more" link appears before its titled
 // card. The first occurrence must not permanently mask the useful headline later in the page.
 import assert from "node:assert/strict";

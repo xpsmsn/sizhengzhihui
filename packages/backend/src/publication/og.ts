@@ -1,3 +1,4 @@
+// AI生成
 // Share images only need public title/summary metadata. Keep the same page visibility rule without
 // loading bodies, translations, related stories or signed media that never appear on these cards.
 import { CATEGORY_LABELS, type CategoryKey } from '@aihot/contracts/taxonomy';

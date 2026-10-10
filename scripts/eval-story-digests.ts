@@ -1,3 +1,4 @@
+// AI生成
 // Story digests on fixed cases, leaving every event as it is: the site's own digest request (system prompt,
 // input builder, model route, sampling, receipts) and, with --system, a candidate system prompt on the same
 // input beside it.

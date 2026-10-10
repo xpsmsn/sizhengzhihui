@@ -1,3 +1,4 @@
+// AI生成
 // Search ranking, capped totals, public scope, licensed RSS bodies, report fallback headlines and
 // conditional reads, on a disposable database through the real HTTP handlers and SQL.
 import { tag } from './setup.ts';

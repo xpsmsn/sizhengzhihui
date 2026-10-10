@@ -1,3 +1,4 @@
+// AI生成
 // Article body extraction: readable text from the article page, or "unconfirmed" — never a wrong body.
 // Jina Reader is the budgeted fallback for pages that only render in a browser.
 import { Readability } from "@mozilla/readability";

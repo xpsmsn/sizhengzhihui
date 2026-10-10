@@ -1,3 +1,4 @@
+// AI生成
 // Topic pages: which articles a topic takes, and their counts.
 // Written before the code, from the ways it can go wrong:
 // - a company topic takes an article about another company that only mentions it (several subjects,

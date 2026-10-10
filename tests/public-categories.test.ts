@@ -1,3 +1,4 @@
+// AI生成
 // A category filter on the public API, RSS and MCP takes in exactly the categories the site publishes as
 // it (site/site.ts PUBLIC_CATEGORIES), whatever the industry's categories are; the website filters by each
 // of its own. Failure cases: a public filter takes in a category the site publishes on its own (or misses

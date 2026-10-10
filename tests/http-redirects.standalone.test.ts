@@ -1,3 +1,4 @@
+// AI生成
 // 重定向测试只使用虚构凭据和回环服务；HTTPS 分支使用禁止联网的传输替身。
 import { tag } from "./setup.ts";
 import assert from "node:assert/strict";

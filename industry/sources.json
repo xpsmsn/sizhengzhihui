@@ -1,368 +1,509 @@
 {
-  "$comment": "示范信源：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖。之后在后台“信源”里新建、修改和暂停。字段说明见 docs/customize.md。",
+  "$comment": "思政智汇 信源清单。首次启动时导入（scripts/seed.ts），已存在的不会被覆盖。之后在后台「信源」里新建、修改和暂停。字段说明见 docs/customize.md。",
   "sources": [
     {
-      "id": "rss-openai-news",
-      "name": "OpenAI News",
-      "kind": "rss",
+      "id": "moe-media-focus",
+      "name": "教育部·媒体聚焦",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://openai.com/news/rss.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "http://www.moe.gov.cn/jyb_xwfb/s5147/",
+        "parseMode": "html",
+        "itemSelector": "#list > li",
+        "linkSelector": "a",
+        "titleSelector": "a",
+        "publishedAtSelector": "span",
+        "allowUrlPrefixes": ["http://www.moe.gov.cn/jyb_xwfb/s5147/"],
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": "openai",
+      "owner_entity_id": "moe",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "tags": ["官方", "教育部"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-google-deepmind",
-      "name": "Google DeepMind",
-      "kind": "rss",
+      "id": "szw-zcwj-llwztx",
+      "name": "思政网·政策文件-理论武装",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://deepmind.google/blog/rss.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "https://www.sizhengwang.cn/zcwj/llwztx/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/zcwj_llwztx/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": "google",
+      "owner_entity_id": "szw",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "tags": ["官方", "政策文件"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-google-research",
-      "name": "Google Research",
-      "kind": "rss",
+      "id": "szw-zcwj-xkjxtx",
+      "name": "思政网·政策文件-学科教学",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://research.google/blog/rss/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "https://www.sizhengwang.cn/zcwj/xkjxtx/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/zcwj_xkjxtx/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": "google",
+      "owner_entity_id": "szw",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "研究"
-      ],
+      "tags": ["官方", "政策文件"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-hugging-face",
-      "name": "Hugging Face Blog",
-      "kind": "rss",
+      "id": "szw-zcwj-rcjytx",
+      "name": "思政网·政策文件-日常教育",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://huggingface.co/blog/feed.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "https://www.sizhengwang.cn/zcwj/rcjytx/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/zcwj_rcjytx/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": "hugging-face",
+      "owner_entity_id": "szw",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "开源"
-      ],
+      "tags": ["官方", "政策文件"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-microsoft-research",
-      "name": "Microsoft Research",
-      "kind": "rss",
+      "id": "szw-zcwj-glfwtx",
+      "name": "思政网·政策文件-管理服务",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://www.microsoft.com/en-us/research/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "https://www.sizhengwang.cn/zcwj/glfwtx/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/zcwj_glfwtx/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": "microsoft",
+      "owner_entity_id": "szw",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "研究"
-      ],
+      "tags": ["官方", "政策文件"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-nvidia-blog",
-      "name": "NVIDIA Blog",
-      "kind": "rss",
+      "id": "szw-zcwj-aqwdtx",
+      "name": "思政网·政策文件-安全稳定",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://blogs.nvidia.com/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "https://www.sizhengwang.cn/zcwj/aqwdtx/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/zcwj_aqwdtx/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": "nvidia",
+      "owner_entity_id": "szw",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "tags": ["官方", "政策文件"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-aws-ml",
-      "name": "AWS Machine Learning Blog",
-      "kind": "rss",
+      "id": "szw-zcwj-dwjstx",
+      "name": "思政网·政策文件-队伍建设",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "https://www.sizhengwang.cn/zcwj/dwjstx/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/zcwj_dwjstx/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": null,
+      "owner_entity_id": "szw",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "教程"
-      ],
+      "tags": ["官方", "政策文件"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-github-ai",
-      "name": "GitHub Blog · AI & ML",
-      "kind": "rss",
+      "id": "szw-zcwj-plddtx",
+      "name": "思政网·政策文件-评估督导",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://github.blog/ai-and-ml/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "https://www.sizhengwang.cn/zcwj/plddtx/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/zcwj_plddtx/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": null,
+      "owner_entity_id": "szw",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "tags": ["官方", "政策文件"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-mistral",
-      "name": "Mistral AI",
-      "kind": "rss",
+      "id": "szw-gzdt-qg",
+      "name": "思政网·高校动态-全国",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://mistral.ai/news/rss",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "https://www.sizhengwang.cn/gzdt/qg/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "publishedAtSelector": ".date",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/gzdt_qg/"],
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": null,
+      "owner_entity_id": "szw",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "tags": ["官方", "高校动态"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-bair",
-      "name": "Berkeley AI Research",
-      "kind": "rss",
+      "id": "szw-gzdt-sj",
+      "name": "思政网·高校动态-省级",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://bair.berkeley.edu/blog/feed.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "https://www.sizhengwang.cn/gzdt/sj/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "publishedAtSelector": ".date",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/gzdt_sj/"],
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": null,
+      "owner_entity_id": "szw",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["官方", "高校动态"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "szw-gzdt-yx",
+      "name": "思政网·高校动态-高校",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.sizhengwang.cn/gzdt/yx/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "publishedAtSelector": ".date",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/gzdt_yx/"],
+        "_aihot": { "initialBackfillLimit": 10 }
+      },
+      "tier": "T1",
+      "owner_entity_id": "szw",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["官方", "高校动态"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "szw-gzdt-zxlb",
+      "name": "思政网·高校动态-院系",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.sizhengwang.cn/gzdt/zxlb/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "publishedAtSelector": ".date",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/gzdt_zxlb/"],
+        "_aihot": { "initialBackfillLimit": 10 }
+      },
+      "tier": "T1",
+      "owner_entity_id": "szw",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["官方", "高校动态"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "szw-dxjy-gzal",
+      "name": "思政网·大学教育-工作案例",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.sizhengwang.cn/dxjy/gzal/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/dxjy_gzal/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
+      },
+      "tier": "T1",
+      "owner_entity_id": "szw",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["官方", "大学教育", "工作案例"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "szw-dxjy-llsk",
+      "name": "思政网·大学教育-理论思考",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.sizhengwang.cn/dxjy/llsk/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/dxjy_llsk/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
+      },
+      "tier": "T1",
+      "owner_entity_id": "szw",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["官方", "大学教育", "理论思考"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "szw-dxjy-yzsxssq",
+      "name": "思政网·大学教育-一站式学生社区",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.sizhengwang.cn/dxjy/yzsxssq/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/dxjy_yzsxssq/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
+      },
+      "tier": "T1",
+      "owner_entity_id": "szw",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["官方", "大学教育", "一站式社区"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "szw-dxjy-xyaq",
+      "name": "思政网·大学教育-平安校园",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.sizhengwang.cn/dxjy/xyaq/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/dxjy_xyaq/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
+      },
+      "tier": "T1",
+      "owner_entity_id": "szw",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["官方", "大学教育", "平安校园"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "szw-dxjy-yyyp",
+      "name": "思政网·大学教育-一院一品",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.sizhengwang.cn/dxjy/yyyp/",
+        "parseMode": "html",
+        "itemSelector": ".newsitem",
+        "linkSelector": "a",
+        "titleSelector": "h4",
+        "allowUrlPrefixes": ["https://www.sizhengwang.cn/a/dxjy_yyyp/"],
+        "detail": { "maxFetches": 5, "publishedAtSelector": ".date", "publishedAtRegex": "20\\d{2}-\\d{2}-\\d{2}" },
+        "_aihot": { "initialBackfillLimit": 10 }
+      },
+      "tier": "T1",
+      "owner_entity_id": "szw",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["官方", "大学教育", "一院一品"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "yrh-tzgg",
+      "name": "育人号·通知公告",
+      "kind": "web_list",
+      "config": {
+        "url": "https://yurenhao1.sizhengwang.cn/tzgg",
+        "parseMode": "html",
+        "itemSelector": ".noticelist > a",
+        "linkSelector": "a",
+        "titleSelector": ".title",
+        "publishedAtSelector": ".time",
+        "allowUrlPrefixes": ["https://yurenhao1.sizhengwang.cn/a/tzgg/"],
+        "_aihot": { "initialBackfillLimit": 10 }
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "szw",
       "participation_mode": "editorial",
       "interval_minutes": 180,
-      "tags": [
-        "研究"
-      ],
+      "tags": ["官方", "通知公告"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-the-verge-ai",
-      "name": "The Verge · AI",
-      "kind": "rss",
+      "id": "moe-shizheng",
+      "name": "教育部·时政",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "http://www.moe.gov.cn/jyb_sy/shizheng/",
+        "parseMode": "html",
+        "itemSelector": "#list > li",
+        "linkSelector": "a",
+        "titleSelector": "a",
+        "publishedAtSelector": "span",
+        "allowUrlPrefixes": ["http://www.moe.gov.cn/jyb_xwfb/", "http://www.moe.gov.cn/jyb_sy/"],
+        "_aihot": { "initialBackfillLimit": 10 }
       },
-      "tier": "T2",
-      "owner_entity_id": null,
+      "tier": "T1",
+      "owner_entity_id": "moe",
       "participation_mode": "editorial",
-      "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
+      "interval_minutes": 120,
+      "tags": ["官方", "教育部", "时政"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-techcrunch-ai",
-      "name": "TechCrunch · AI",
-      "kind": "rss",
+      "id": "moe-jyyw",
+      "name": "教育部·教育要闻",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://techcrunch.com/category/artificial-intelligence/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "http://www.moe.gov.cn/jyb_sy/sy_jyyw/",
+        "parseMode": "html",
+        "itemSelector": "#list > li",
+        "linkSelector": "a",
+        "titleSelector": "a",
+        "publishedAtSelector": "span",
+        "allowUrlPrefixes": ["http://www.moe.gov.cn/jyb_xwfb/", "http://www.moe.gov.cn/jyb_sy/"],
+        "_aihot": { "initialBackfillLimit": 10 }
       },
-      "tier": "T2",
-      "owner_entity_id": null,
+      "tier": "T1",
+      "owner_entity_id": "moe",
       "participation_mode": "editorial",
-      "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
+      "interval_minutes": 120,
+      "tags": ["官方", "教育部", "要闻"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-ars-technica-ai",
-      "name": "Ars Technica · AI",
-      "kind": "rss",
+      "id": "moe-s271",
+      "name": "教育部·新闻发布会答记者问",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://arstechnica.com/ai/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "http://www.moe.gov.cn/jyb_xwfb/s271/",
+        "parseMode": "html",
+        "itemSelector": "#list > li",
+        "linkSelector": "a",
+        "titleSelector": "a",
+        "publishedAtSelector": "span",
+        "allowUrlPrefixes": ["http://www.moe.gov.cn/jyb_xwfb/s271/"],
+        "_aihot": { "initialBackfillLimit": 10 }
       },
-      "tier": "T2",
-      "owner_entity_id": null,
+      "tier": "T1",
+      "owner_entity_id": "moe",
       "participation_mode": "editorial",
-      "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
+      "interval_minutes": 120,
+      "tags": ["官方", "教育部", "发布会"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-mit-tech-review-ai",
-      "name": "MIT Technology Review · AI",
-      "kind": "rss",
+      "id": "moe-fbh-2026",
+      "name": "教育部·发布会2026",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "http://www.moe.gov.cn/jyb_xwfb/xw_fbh/moe_2069/2026/",
+        "parseMode": "html",
+        "itemSelector": "#list > li",
+        "linkSelector": "a",
+        "titleSelector": "a",
+        "publishedAtSelector": "span",
+        "allowUrlPrefixes": ["http://www.moe.gov.cn/fbh/", "http://www.scio.gov.cn/live/"],
+        "_aihot": { "initialBackfillLimit": 10 }
       },
-      "tier": "T2",
+      "tier": "T1",
+      "owner_entity_id": "moe",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["官方", "教育部", "发布会"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "gov-push-v150203",
+      "name": "中国政府网·推送信息",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.gov.cn/pushinfo/v150203/",
+        "parseMode": "html",
+        "itemSelector": ".list ul li",
+        "linkSelector": "a",
+        "titleSelector": "a",
+        "publishedAtSelector": ".date",
+        "allowUrlPrefixes": ["https://www.gov.cn/zhengce/", "https://www.gov.cn/yaowen/", "https://www.gov.cn/zhengce/"],
+        "_aihot": { "initialBackfillLimit": 10 }
+      },
+      "tier": "T1",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "媒体"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-the-decoder",
-      "name": "The Decoder",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://the-decoder.com/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-simon-willison",
-      "name": "Simon Willison",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://simonwillison.net/atom/everything/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "个人"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-import-ai",
-      "name": "Import AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://importai.substack.com/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 180,
-      "tags": [
-        "个人",
-        "周刊"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-latent-space",
-      "name": "Latent Space",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.latent.space/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 180,
-      "tags": [
-        "个人"
-      ],
+      "tags": ["官方", "国务院"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     }

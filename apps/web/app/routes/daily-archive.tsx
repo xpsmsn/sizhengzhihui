@@ -1,3 +1,4 @@
+// AI生成
 import { useLoaderData } from "react-router";
 import { IntentLink } from "../components/ui/IntentLink";
 import type { ReportIndexEntry, ReportIndexResponse } from "@aihot/contracts/site";

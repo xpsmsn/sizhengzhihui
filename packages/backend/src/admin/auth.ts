@@ -1,3 +1,4 @@
+// AI生成
 // Admin identity: the admin password (ADMIN_PASSWORD), or optionally Feishu OAuth with an allowlist of
 // union_ids / emails; opaque sessions stored hashed, and an audit trail for every manual change.
 // Development may impersonate an admin with DEV_AUTH_ROLE=admin; production refuses to start with it.

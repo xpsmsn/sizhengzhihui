@@ -1,3 +1,4 @@
+// AI生成
 import assert from "node:assert/strict";
 import { after, test } from "node:test";
 import { beijingDate, beijingTime } from "@aihot/contracts/time";

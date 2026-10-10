@@ -1,3 +1,4 @@
+// AI生成
 // Public read layer, item level. Every exit (site API, v1, RSS, MCP, sitemap) reads
 // items through these columns and views; which rows are public is decided by scope.ts.
 import { CATEGORY_KEYS, toPublicApiCategory, type CategoryKey, type ChannelKey, type PublicApiCategoryKey } from "@aihot/contracts/taxonomy";

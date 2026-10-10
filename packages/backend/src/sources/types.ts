@@ -1,3 +1,4 @@
+// AI生成
 import type { MaterialInput } from "../content/materials.ts";
 
 export interface SourceRow {

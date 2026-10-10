@@ -1,3 +1,4 @@
+// AI生成
 // Which models a step may use (admin) and whether it is sent an image (runtime) read the same flag.
 import "./setup.ts";
 import assert from "node:assert/strict";

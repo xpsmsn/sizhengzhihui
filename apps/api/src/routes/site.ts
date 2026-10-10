@@ -1,8 +1,9 @@
+// AI生成
 // First-party site API (/api/site/*). Not public, not versioned, never called /api/v2.
 // Reads through the same public read layer as v1; no cookies are read or set.
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { isCategoryKey, isChannelKey, type CategoryKey, type ChannelKey } from "@aihot/contracts/taxonomy";
-import type { ReportIndexResponse, ReportLatestPage, ReportNavigationResponse, SearchSuggestions, SiteContact } from "@aihot/contracts/site";
+import type { InsightsResponse, ReportIndexResponse, ReportLatestPage, ReportNavigationResponse, SearchSuggestions, SiteContact } from "@aihot/contracts/site";
 import { InvalidCursorError } from "@aihot/backend/lib/cursor";
 import { exportMarkdown, loadItemDetail } from "@aihot/backend/publication/detail";
 import { loadPool, SearchBusyError } from "@aihot/backend/publication/pool";
@@ -18,6 +19,7 @@ import { listTopicSummaries, loadTopicPage, topicBrowseLinks } from "@aihot/back
 import { registerFeedback } from "./feedback.ts";
 import { loadHot, loadStoryDetail, resolveStory } from "@aihot/backend/publication/stories";
 import { listReports, loadReport, reportNavigation, loadReportNavigation, loadReportMonth, type ReportKind } from "@aihot/backend/publication/reports";
+import { insightDetail, listInsights } from "@aihot/backend/reports/insights";
 import { looseQuery, sendJsonWithEtag, sendProblem } from "../http/respond.ts";
 
 type Handler = (req: FastifyRequest, reply: FastifyReply) => Promise<unknown>;
@@ -206,6 +208,19 @@ export function registerSite(app: FastifyInstance) {
     const data = await loadReport(kind as ReportKind, key);
     if (!data) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "report not found", cacheControl: "public, max-age=60" });
     return sendJsonWithEtag(req, reply, data, { etagPrefix: "report", cacheControl: "public, max-age=120, s-maxage=120" });
+  }));
+
+  // 政策解读（展示在 /daily 页）：列表与详情。
+  app.get("/api/site/insights", siteHandler(async (req, reply) => {
+    const body: InsightsResponse = { items: await listInsights() };
+    return sendJsonWithEtag(req, reply, body, { etagPrefix: "insights", cacheControl: "public, max-age=60, s-maxage=60" });
+  }));
+
+  app.get("/api/site/insights/:articleId", siteHandler(async (req, reply) => {
+    const { articleId } = req.params as { articleId: string };
+    const data = await insightDetail(articleId);
+    if (!data) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "insight not found", cacheControl: "public, max-age=60" });
+    return sendJsonWithEtag(req, reply, data, { etagPrefix: "insight", cacheControl: "public, max-age=120, s-maxage=120" });
   }));
 
   // Markdown export: attachment, 404 when there is nothing to export (same predicate as the button).

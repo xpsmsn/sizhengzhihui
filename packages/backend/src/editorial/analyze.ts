@@ -1,3 +1,4 @@
+// AI生成
 // analyzeArticle: the judging and writing steps, each with its own prompt from the industry pack
 // (industry/prompts/):
 //   1. prefilter: does the material belong to this industry at all (wide recall). Only BLOCK stops an
@@ -393,6 +394,7 @@ async function runSummarize(a: AnalyzeInputArticle, opts: StepOpts): Promise<Non
     parse: parseTranslateOutput,
     temperature: 0.2,
     maxTokens: 2048,
+    timeoutMs: 180_000,
     attemptTag: tagged(opts.attemptTag, "summarize"),
   });
   const p = res.data;

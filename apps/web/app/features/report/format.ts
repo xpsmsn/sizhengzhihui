@@ -1,3 +1,4 @@
+// AI生成
 // Names, dates and grouping for daily, weekly and monthly reports.
 import type { ReportNavigationEntry, ReportKind } from "@aihot/contracts/site";
 import { beijingDate, beijingWeekday, isoWeekLabel, isoWeekRange } from "@aihot/contracts/time";

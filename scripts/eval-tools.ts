@@ -1,3 +1,4 @@
+// AI生成
 // What the evaluation scripts (scripts/eval-*.ts) share: argument checks, the models to compare, bounded
 // concurrency, what their paid attempts used, and safe report names.
 import { sql } from "@aihot/backend/db";

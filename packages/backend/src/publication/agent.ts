@@ -1,3 +1,4 @@
+// AI生成
 // What AI agents read: the Markdown served under /api/v1/agent and the text of the MCP tools, one per
 // ability. Agents only fetch these addresses and relay what comes back, so which data answers a
 // question, how it reads and what to tell the user are decided here, on the server. Programs keep

@@ -1,3 +1,4 @@
+// AI生成
 // Reader state kept only in this browser, and the site's one guarded way to browser storage. Keep the
 // keys and formats once readers have data under them: existing readers' data must stay readable as-is.
 // Storage failures degrade silently.

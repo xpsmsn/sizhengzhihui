@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: a verified historical date is rejected because imported discovery time is guessed;
 // correction changes content revisions, paid decisions or selection; an independent discovery sort is
 // overwritten; recent/future or malformed dates and stale identities are accepted; a retry applies a

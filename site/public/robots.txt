@@ -1,3 +1,4 @@
+# AI生成
 User-agent: *
 Allow: /api/v1/
 Allow: /api/mcp

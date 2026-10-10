@@ -1,3 +1,4 @@
+// AI生成
 // Content diagnostics and corrections. Find any item by id, URL or title and see its whole
 // chain: source → discoveries → revisions → model receipts → decisions → publication and sync
 // ledger → grouping → deliveries. Visibility changes and manual corrections go through editorial

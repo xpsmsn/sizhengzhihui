@@ -1,3 +1,4 @@
+// AI生成
 // Text embeddings through receipts, used only for recall. Any OpenAI-compatible /embeddings endpoint
 // (EMBEDDING_BASE_URL, EMBEDDING_API_KEY, EMBEDDING_MODEL); with a DashScope key and nothing else set,
 // Aliyun text-embedding-v4 at 1024 dimensions. Without either, recall compares the texts themselves.

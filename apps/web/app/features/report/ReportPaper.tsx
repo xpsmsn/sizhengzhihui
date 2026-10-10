@@ -1,3 +1,4 @@
+// AI生成
 // One report with a newspaper's structure in the site's own look: a nameplate with its 报眼 (the box
 // beside it for the issue and date), a band of the issue's figures, the front page (the lead, today's
 // highlights and the page index), then one page per section in two columns, the neighbouring issues

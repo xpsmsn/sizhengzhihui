@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: a first-import cap only postpones paid history processing until the next run;
 // boundary-day, undated or future-dated entries bypass a fixed source publication window;
 // draft and stored-source previews promise entries the same collector will reject: links outside the

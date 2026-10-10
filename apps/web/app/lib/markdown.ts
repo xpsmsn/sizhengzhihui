@@ -1,3 +1,4 @@
+// AI生成
 // Minimal Markdown → HTML for our own static site copy (legal pages, about, agent guide).
 // Trusted input only: never used for third-party content.
 

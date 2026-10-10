@@ -1,3 +1,4 @@
+// AI生成
 /// <reference lib="dom" />
 // A topic page tells search engines it is a collection at its own address. It must not claim a list
 // the page does not show, and a list it shows keeps its order and links to event pages only.

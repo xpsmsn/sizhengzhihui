@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: a benchmark, price change, tool or follow-up is counted as a new model; a category
 // correction leaves frozen daily/weekly/monthly columns stale, rewrites the lead or selection, triggers
 // a paid digest, leaves an obsolete section introduction, or commits without its audit/revision.

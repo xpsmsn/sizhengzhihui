@@ -1,3 +1,4 @@
+// AI生成
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 import type { ItemAvailability } from "@aihot/contracts/site";

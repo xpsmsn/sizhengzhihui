@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: empty/image-only or link-only posts buy invented translations; high scores route
 // them through another writer; rebuilding keeps old model replies or loses pool membership; stored
 // translations leak into detail/export or licensed full RSS drops media; real prose and fetched X Articles stop being written.

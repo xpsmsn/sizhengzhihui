@@ -1,3 +1,4 @@
+// AI生成
 // SocialData (X search). Paid per request: every call goes through receipts and the budget.
 import { credential } from "../config.ts";
 import { guardedFetch } from "../lib/http-fetch.ts";

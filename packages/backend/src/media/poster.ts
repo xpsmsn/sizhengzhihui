@@ -1,3 +1,4 @@
+// AI生成
 // Share posters (1080×1440 PNG) for articles, made for phones: saved from the page or long-pressed in
 // chat apps. Same font pipeline as the share cards; the QR code opens the article on the site.
 import { createHash } from "node:crypto";

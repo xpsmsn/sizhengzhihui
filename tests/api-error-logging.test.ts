@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: an API restart emits a deprecated-options warning; a failing request has only a
 // request id and cannot be located; query strings or authentication headers enter the journal;
 // changing logging also changes the established Problem JSON or its headers; suppressing ordinary

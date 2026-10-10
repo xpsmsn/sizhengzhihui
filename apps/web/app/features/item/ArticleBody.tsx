@@ -1,3 +1,4 @@
+// AI生成
 // An article body as the server sent it (sanitised HTML, in the first HTML response), enhanced after
 // hydration: code blocks get a head with the language and a copy button and are coloured on demand,
 // and pictures that are not links open in the viewer, stepping through the body's pictures.

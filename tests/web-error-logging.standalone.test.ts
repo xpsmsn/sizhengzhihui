@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: ordinary missing routes flood the journal; ignoring every route response hides 5xx;
 // loader timeouts become anonymous 503s; logs leak query strings; real crashes lose their stacks;
 // a visitor cancelling a request is mistaken for an upstream failure.

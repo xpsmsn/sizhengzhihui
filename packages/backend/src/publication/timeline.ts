@@ -1,3 +1,4 @@
+// AI生成
 // Selected news timeline: one card per fact, or per standalone article. Only duplicate reports
 // fold together. Each fact stays at its first appearance; other news in its story never moves it.
 import type { GroupInfo, TimelineCard, TimelineFilters, TimelineResponse } from "@aihot/contracts/site";
@@ -29,6 +30,21 @@ function filterSql(q: TimelineQuery) {
 
 function binding(q: TimelineQuery): string {
   return queryBinding({ c: q.channel, k: q.category, t: q.tag });
+}
+
+/**
+ * Reports per website category for the feed's tab row, under the current channel/tag filters but never
+ * the category filter itself (choosing a category must not shrink the row). `scope` picks the set the
+ * page browses: selected news on 精选, every listed report on 全部动态.
+ */
+export async function categoryCounts(f: TimelineFilters, now: Date, scope: "selected" | "listed"): Promise<Record<string, number>> {
+  const base = scope === "selected" ? selectedCondition(now) : listedCondition(now);
+  const rows = await sql<{ category: string; n: number }[]>`
+    SELECT p.category, count(*)::int AS n
+    FROM publications p
+    WHERE ${base} ${channelCondition(f.channel)} ${tagCondition(f.tag)}
+    GROUP BY p.category`;
+  return Object.fromEntries(rows.map((r) => [r.category, r.n]));
 }
 
 /**
@@ -159,5 +175,5 @@ export async function loadTimeline(q: TimelineQuery): Promise<Omit<TimelineRespo
 
   const last = page[page.length - 1];
   const nextCursor = hasMore && last ? encodeCursor("tl2", { a: last.anchor_at.getTime(), g: last.gk, b: bind }) : null;
-  return { filters: { channel: q.channel, category: q.category, tag: q.tag }, cards, nextCursor, dayCounts };
+  return { filters: { channel: q.channel, category: q.category, tag: q.tag }, cards, nextCursor, dayCounts, categoryCounts: await categoryCounts(q, now, "selected") };
 }

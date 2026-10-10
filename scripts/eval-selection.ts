@@ -1,3 +1,4 @@
+// AI生成
 // Checks the selection against your own labelled samples (a "gold set"): each case runs the site's
 // selection steps (editorial/analyze.ts) — the prefilter, then the score prompt twice with every model in
 // --models, the two scores deciding against the source tier's threshold — and is compared with your

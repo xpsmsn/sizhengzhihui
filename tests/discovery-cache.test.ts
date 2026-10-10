@@ -1,3 +1,4 @@
+// AI生成
 // A cached sitemap must keep its original deadline in 200 and 304 responses. Otherwise an edge
 // refill starts another five minutes; a failed rebuild must not renew an expired memory/disk copy.
 import { tag } from "./setup.ts";

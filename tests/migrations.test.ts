@@ -1,3 +1,4 @@
+// AI生成
 // Exercise migration failures against PostgreSQL: bounded locks, atomic bookkeeping, and invalid indexes.
 import "./setup.ts";
 import assert from "node:assert/strict";

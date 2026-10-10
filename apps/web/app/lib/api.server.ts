@@ -1,3 +1,4 @@
+// AI生成
 // Server-side HTTP client for route loaders, and the cache lifetimes routes give their pages. The web
 // process never touches the database; SSR reads the api over loopback with keep-alive, one or two
 // requests per page.

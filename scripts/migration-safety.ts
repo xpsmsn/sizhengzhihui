@@ -1,3 +1,4 @@
+// AI生成
 // A deliberately small online-migration vocabulary. Unknown SQL needs an explicit safety design, not an opt-out.
 export const FIRST_ONLINE_MIGRATION = 55;
 export type MigrationPlan = { kind: "transaction" | "validation" | "statistics" } | { kind: "index"; index: string; table: string };

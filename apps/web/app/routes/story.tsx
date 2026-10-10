@@ -1,3 +1,4 @@
+// AI生成
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { IntentLink } from "../components/ui/IntentLink";
 import { Link, useLoaderData, useLocation } from "react-router";
@@ -37,7 +38,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
     path: `/story/${s.publicId}`,
     image: `/og/stories/${s.publicId}.png`,
     type: "article",
-    jsonLd: breadcrumbLd([{ name: SITE.name, path: "/" }, { name: "热点榜", path: "/hot" }, { name: s.title, path: `/story/${s.publicId}` }]),
+    jsonLd: breadcrumbLd([{ name: SITE.name, path: "/" }, { name: "近期关注", path: "/hot" }, { name: s.title, path: `/story/${s.publicId}` }]),
   });
 }
 

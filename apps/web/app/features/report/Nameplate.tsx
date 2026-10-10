@@ -1,3 +1,4 @@
+// AI生成
 // The report nameplates (site/brand/nameplates/, made by scripts/nameplates.ts from the pack's
 // subject word). Each logotype is cached on its own; the two paths take the theme's ink and accent.
 import daily from "@aihot/site/brand/nameplates/daily.svg?url&no-inline";

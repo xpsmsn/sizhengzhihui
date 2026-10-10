@@ -1,3 +1,4 @@
+// AI生成
 // OpenAI-compatible chat calls, always through receipts. One model is enough: `default` is whatever the
 // deployment names in LLM_BASE_URL / LLM_API_KEY / LLM_MODEL, and every capability uses it unless the
 // site, an environment variable or the admin's model page picks one of the site's named presets

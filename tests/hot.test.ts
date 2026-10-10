@@ -1,3 +1,4 @@
+// AI生成
 // Heat is counted from the evidence as it stands: a withdrawn report no longer counts and a source
 // counts in its current role; participants are independent actors (one company's channels are one,
 // every Hacker News author is one); the change compares with the earlier time's full 48-hour window,

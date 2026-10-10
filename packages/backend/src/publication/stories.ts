@@ -1,3 +1,4 @@
+// AI生成
 // Stories (events) and the hot ranking through the public read layer. The website sees heat values;
 // v1 and MCP only see ranks and counts.
 import type { HeatPoint, HotResponse, StoryDetail, StoryReportView } from "@aihot/contracts/site";
@@ -233,44 +234,47 @@ async function queryHotCovers({ entries }: HotRanking) {
   return covers;
 }
 
+// 近期关注：过去14天精选文章按评分降序，替代多源聚类热点榜（思政内容单信源无法满足MIN_PARTICIPANTS=2）
+const RECENT_FOCUS_DAYS = 14;
+const RECENT_FOCUS_LIMIT = 10;
+
 export async function loadHot(): Promise<HotResponse> {
-  const ranking = await latestHotRanking();
-  if (!ranking) return { computedAt: null, windowHours: 48, entries: [] };
-  const at = new Date(ranking.computedAt);
-  const [sparks, covers, extras] = await Promise.all([
-    sparklines(
-      ranking.entries.map((e) => e.storyId),
-      at,
-    ),
-    hotCovers(ranking),
-    rankingExtras(ranking),
-  ]);
+  const now = new Date();
+  const since = new Date(now.getTime() - RECENT_FOCUS_DAYS * 86400_000);
+  const rows = await sql<{
+    article_id: string; title: string; summary: string | null; score: number | null;
+    source_name: string; timeline_at: Date; story_public_id: string | null;
+  }[]>`
+    SELECT p.article_id, p.title, p.summary, p.score, s.name AS source_name, p.timeline_at,
+           st.public_id::text AS story_public_id
+    FROM publications p
+    JOIN sources s ON s.id = p.source_id
+    LEFT JOIN stories st ON st.id = p.story_id AND st.merged_into IS NULL
+    WHERE p.visibility = 'public' AND p.selected AND p.visible_after <= ${now}
+      AND p.timeline_at >= ${since}
+    ORDER BY coalesce(p.score, 0) DESC, p.timeline_at DESC
+    LIMIT ${RECENT_FOCUS_LIMIT}`;
+  if (!rows.length) return { computedAt: null, windowHours: RECENT_FOCUS_DAYS * 24, entries: [] };
   return {
-    computedAt: ranking.computedAt,
-    windowHours: 48,
-    entries: ranking.entries.map((e) => {
-      const picture = covers.get(e.storyId);
-      const coverUrl = picture ? proxiedImage(picture.url, "full") : null;
-      const text = extras.text(e);
-      // The card clips its text to a few lines; complete public words belong to the event page.
-      const summary = text.summary ? Array.from(text.summary) : null;
-      return {
-        rank: e.rank,
-        story: { publicId: e.storyPublicId, title: e.title },
-        heat: e.heat,
-        trend: e.trend,
-        trendPct: e.trendPct,
-        badges: e.badges,
-        participantCount: e.participantCount,
-        sourceCount: e.sourceCount,
-        sourceNames: [...new Set(e.sourceNames.map(publicSourceName))],
-        participants: extras.participants(e),
-        spark: sparks.get(e.storyId) ?? [],
-        summary: summary && summary.length > 480 ? summary.slice(0, 480).join('') + '…' : text.summary,
-        latest: text.latest,
-        cover: picture && coverUrl ? { url: coverUrl, srcSet: proxiedImageSet(picture.url, "hero") ?? undefined, width: picture.width, height: picture.height } : null,
-      };
-    }),
+    computedAt: now.toISOString(),
+    windowHours: RECENT_FOCUS_DAYS * 24,
+    entries: rows.map((r, i) => ({
+      rank: i + 1,
+      story: { publicId: r.story_public_id ?? r.article_id, title: r.title },
+      heat: r.score ?? 0,
+      trend: "unknown" as const,
+      trendPct: null,
+      badges: [] as Array<"surge" | "new" | "rising">,
+      participantCount: 1,
+      sourceCount: 1,
+      sourceNames: [publicSourceName(r.source_name)],
+      participants: [],
+      spark: [],
+      summary: r.summary,
+      latest: null,
+      cover: null,
+      itemId: r.story_public_id ? null : r.article_id,
+    })),
   };
 }
 

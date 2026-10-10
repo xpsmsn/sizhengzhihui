@@ -1,3 +1,4 @@
+// AI生成
 // A value read from the database and kept in this process. Readers get it straight away within
 // `freshMs`; after that the old value is still returned while a single background read replaces it,
 // so no reader waits for a refresh. Past `maxStaleMs` (or before the first read) callers wait for the

@@ -1,3 +1,4 @@
+// AI生成
 // Client-side admin commands: same-origin fetch to /api/admin/* with the session's CSRF token, a
 // stable Idempotency-Key per submitted command, and a revalidation of the page's loaders on success.
 import { useCallback, useRef, useState } from "react";

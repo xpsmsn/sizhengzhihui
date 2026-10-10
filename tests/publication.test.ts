@@ -1,3 +1,4 @@
+// AI生成
 // Public scope and sync through the real api routes: a licence revocation or a withdrawal reaches
 // every exit, reports stop quoting withdrawn items, the hot board drops a withdrawn item at once, item
 // pages follow one rule, a withdrawal next to an unresolved selection leaves new snapshots at once, and

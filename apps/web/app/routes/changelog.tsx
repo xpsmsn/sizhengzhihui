@@ -1,3 +1,4 @@
+// AI生成
 import { useEffect, useState, type ComponentType } from "react";
 import { IntentLink } from "../components/ui/IntentLink";
 import type { ChangelogRelease, ChangelogResponse } from "@aihot/contracts/site";

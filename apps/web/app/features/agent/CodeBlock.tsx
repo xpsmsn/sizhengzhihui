@@ -1,3 +1,4 @@
+// AI生成
 import { useState } from "react";
 import { copyText } from "../../lib/clipboard";
 import { IconCheck, IconCopy } from "../../components/icons";

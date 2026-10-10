@@ -1,3 +1,4 @@
+// AI生成
 // Runs collection for given sources now (development / operations helper).
 // node --env-file=.env scripts/collect.ts rss-openai-news rss-hugging-face ...
 import { closeDb } from "@aihot/backend/db";

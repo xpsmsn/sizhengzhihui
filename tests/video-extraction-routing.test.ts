@@ -1,3 +1,4 @@
+// AI生成
 // An explicit full-text preference or the web-list kind must not bypass the video-page exclusion.
 import { tag } from "./setup.ts";
 import assert from "node:assert/strict";

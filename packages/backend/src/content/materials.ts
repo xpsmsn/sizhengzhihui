@@ -1,3 +1,4 @@
+// AI生成
 // The single entrance for new material from every channel (collectors, external reports, imports).
 // It owns identity, revisions and the timeline rule, so no entrance can bypass them.
 import { sql, type Db, type Tx } from "../db.ts";

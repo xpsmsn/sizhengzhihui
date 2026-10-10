@@ -1,3 +1,4 @@
+// AI生成
 // Content-group deliveries (Feishu custom-bot webhooks), such as the cards of selected items.
 // One row per target and dedupe key, so nothing is pushed twice; an outcome we cannot know
 // ("unknown") is never retried automatically; content older than a target's enabled_at is never

@@ -1,3 +1,4 @@
+// AI生成
 // Failure cases: warming depends on a removed HTTP listener; the worker and API create different
 // card bytes; a correction reuses an old card; withdrawal bypasses visibility through a cached image;
 // a render/cache failure interrupts the best-effort preparation step.

@@ -1,3 +1,4 @@
+// AI生成
 // Collection jobs: per-source fetch runs and body extraction before analysis.
 import type { PgBoss } from "pg-boss";
 import { dajialaConfigured } from "../providers/dajiala.ts";

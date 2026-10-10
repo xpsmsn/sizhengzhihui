@@ -1,3 +1,4 @@
+// AI生成
 import { motion } from "motion/react";
 import { SITE } from "@aihot/site";
 import { NavLink, Outlet, useLocation, useNavigation, type ShouldRevalidateFunction } from "react-router";

@@ -1,3 +1,4 @@
+// AI生成
 // An outline as a bottom sheet (phones): an article's headings, a report's pages. The section being read
 // is marked, and choosing one scrolls there.
 import { useEffect, useState } from "react";

@@ -1,3 +1,4 @@
+// AI生成
 // Return-position snapshots for list pages: loaded cards, expanded/collapsed state and the
 // on-screen anchor (card key + offset), keyed by the history entry. Session-scoped, not a contract.
 

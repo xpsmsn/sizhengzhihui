@@ -1,3 +1,4 @@
+// AI生成
 import type { Route } from "./+types/item-original";
 import type { SiteItemDetail } from "@aihot/contracts/site";
 import { cachedPage, loadOr404 } from "../lib/api.server";
