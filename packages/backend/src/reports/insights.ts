@@ -3,7 +3,7 @@
 // 每个事件一篇：同事件取评分最高的条目；解读为再表达，原文只作输入，正文不搬运（避免版权问题）。
 // 由定时任务 reports.insights 驱动，扫描“已精选、达到评分线、其事件还没有本版解读”的条目；版本升级时重建。
 import { z } from "zod";
-import type { InsightCover, InsightDetail, InsightRelated, InsightTimelineItem, InsightView } from "@aihot/contracts/site";
+import type { InsightCover, InsightDetail, InsightRelated, InsightView } from "@aihot/contracts/site";
 import { sql } from "../db.ts";
 import { promptText, promptVersion } from "../editorial/prompts.ts";
 import { modelFor } from "../editorial/models.ts";
@@ -27,6 +27,7 @@ const InsightSchema = z.object({
   quote: z.string().max(300).catch(""),
   implications: z.string().max(600).catch(""),
   questions: z.array(z.string().max(200)).max(5).catch([]),
+  tags: z.array(z.string().max(24)).max(8).catch([]),
 });
 
 interface PendingRow {
@@ -95,15 +96,15 @@ export async function generatePendingInsights(limit = 5): Promise<{ generated: n
           await tx`DELETE FROM insights WHERE fact_id = ${r.fact_id} AND article_id <> ${r.article_id}`;
         }
         await tx`
-          INSERT INTO insights (article_id, fact_id, score, title, source_name, tldr, background, key_points, significance, quote, implications, questions, model, version, generated_at)
+          INSERT INTO insights (article_id, fact_id, score, title, source_name, tldr, background, key_points, significance, quote, implications, questions, tags, model, version, generated_at)
           VALUES (${r.article_id}, ${r.fact_id}, ${r.score}, ${r.title}, ${r.source_name},
                   ${d.tldr}, ${d.background}, ${tx.json(d.keyPoints as never)}, ${d.significance}, ${d.quote},
-                  ${d.implications}, ${tx.json(d.questions as never)}, ${model}, ${INSIGHT_VERSION}, now())
+                  ${d.implications}, ${tx.json(d.questions as never)}, ${tx.json(d.tags as never)}, ${model}, ${INSIGHT_VERSION}, now())
           ON CONFLICT (article_id) DO UPDATE SET
             fact_id = EXCLUDED.fact_id, score = EXCLUDED.score, title = EXCLUDED.title, source_name = EXCLUDED.source_name,
             tldr = EXCLUDED.tldr, background = EXCLUDED.background, key_points = EXCLUDED.key_points,
             significance = EXCLUDED.significance, quote = EXCLUDED.quote, implications = EXCLUDED.implications,
-            questions = EXCLUDED.questions, model = EXCLUDED.model, version = EXCLUDED.version, generated_at = now()`;
+            questions = EXCLUDED.questions, tags = EXCLUDED.tags, model = EXCLUDED.model, version = EXCLUDED.version, generated_at = now()`;
         if (res.receiptId !== null) await completeReceipt(tx, res.receiptId);
       });
       generated += 1;
@@ -129,6 +130,7 @@ interface InsightRow {
   quote: string;
   implications: string;
   questions: string[] | null;
+  tags: string[] | null;
   generated_at: Date;
   url: string | null;
 }
@@ -142,17 +144,36 @@ function toView(r: InsightRow): InsightView {
     tldr: r.tldr,
     background: r.background,
     pointCount: (r.key_points ?? []).length,
+    tags: r.tags ?? [],
     generatedAt: r.generated_at.toISOString(),
   };
 }
 
-const ROW_COLUMNS = sql`i.article_id, i.fact_id, i.title, i.source_name, i.score, i.tldr, i.background, i.key_points, i.significance, i.quote, i.implications, i.questions, i.generated_at, a.url`;
+const ROW_COLUMNS = sql`i.article_id, i.fact_id, i.title, i.source_name, i.score, i.tldr, i.background, i.key_points, i.significance, i.quote, i.implications, i.questions, i.tags, i.generated_at, a.url`;
 
 /** 解读列表，按生成时间倒序（展示在 /daily 页）。 */
 export async function listInsights(limit = 30): Promise<InsightView[]> {
   const rows = await sql<InsightRow[]>`
     SELECT ${ROW_COLUMNS}
     FROM insights i LEFT JOIN articles a ON a.id = i.article_id
+    ORDER BY i.generated_at DESC LIMIT ${limit}`;
+  return rows.map(toView);
+}
+
+/** 标签云：所有解读的主体标签及其数量，按数量倒序（供标签页与详情页）。 */
+export async function listInsightTags(limit = 30): Promise<{ tag: string; count: number }[]> {
+  return sql<{ tag: string; count: number }[]>`
+    SELECT t.tag, count(*)::int AS count
+    FROM insights i CROSS JOIN LATERAL jsonb_array_elements_text(i.tags) AS t(tag)
+    GROUP BY t.tag ORDER BY count DESC, t.tag LIMIT ${limit}`;
+}
+
+/** 带某个标签的解读，按生成时间倒序（供标签页）。 */
+export async function listInsightsByTag(tag: string, limit = 50): Promise<InsightView[]> {
+  const rows = await sql<InsightRow[]>`
+    SELECT ${ROW_COLUMNS}
+    FROM insights i LEFT JOIN articles a ON a.id = i.article_id
+    WHERE i.tags @> ${sql.json([tag])}
     ORDER BY i.generated_at DESC LIMIT ${limit}`;
   return rows.map(toView);
 }
@@ -195,21 +216,6 @@ async function insightRelated(articleId: string, factId: number | null): Promise
   return rows.map((r) => ({ id: r.id, title: r.title, sourceName: r.source_name, originalUrl: r.url ?? "" }));
 }
 
-/**
- * 同一事件（fact）下的公开报道，按报道时间升序，排出“来龙去脉”，供详情页“事件时间轴”。
- * 时间取 coalesce(published_at, discovered_at)，与站内其余时间口径一致；无事件归并时为空。
- */
-async function insightTimeline(articleId: string, factId: number | null): Promise<InsightTimelineItem[]> {
-  if (factId === null) return [];
-  const rows = await sql<{ id: string; title: string; source_name: string; at: Date }[]>`
-    SELECT p.article_id AS id, p.title, s.name AS source_name, coalesce(p.published_at, p.discovered_at) AS at
-    FROM publications p JOIN sources s ON s.id = p.source_id
-    WHERE p.fact_id = ${factId} AND p.visibility = 'public'
-    ORDER BY coalesce(p.published_at, p.discovered_at), p.article_id
-    LIMIT 20`;
-  return rows.map((r) => ({ id: r.id, title: r.title, sourceName: r.source_name, date: r.at.toISOString(), current: r.id === articleId }));
-}
-
 /** 单篇解读；找不到返回 null。 */
 export async function insightDetail(articleId: string): Promise<InsightDetail | null> {
   const [r] = await sql<InsightRow[]>`
@@ -217,10 +223,9 @@ export async function insightDetail(articleId: string): Promise<InsightDetail | 
     FROM insights i LEFT JOIN articles a ON a.id = i.article_id
     WHERE i.article_id = ${articleId}`;
   if (!r) return null;
-  const [cover, related, timeline] = await Promise.all([
+  const [cover, related] = await Promise.all([
     insightCover(r.article_id, r.fact_id),
     insightRelated(r.article_id, r.fact_id),
-    insightTimeline(r.article_id, r.fact_id),
   ]);
   return {
     ...toView(r),
@@ -231,7 +236,6 @@ export async function insightDetail(articleId: string): Promise<InsightDetail | 
     questions: r.questions ?? [],
     cover,
     related,
-    timeline,
     originalUrl: r.url ?? "",
   };
 }

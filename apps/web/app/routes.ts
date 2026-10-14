@@ -24,6 +24,8 @@ export default [
   route("story/:publicId", "routes/story.tsx"),
   route("daily", "routes/insights.tsx", { id: "insights" }),
   route("daily/:articleId", "routes/insight-detail.tsx", { id: "insight-detail" }),
+  route("tags", "routes/tags.tsx"),
+  route("tags/:tag", "routes/tag.tsx", { id: "tag" }),
   route("weekly", "routes/report-latest.tsx", { id: "weekly-latest" }),
   route("weekly/:key", "routes/report-detail.tsx", { id: "weekly-detail" }),
   route("monthly", "routes/report-latest.tsx", { id: "monthly-latest" }),

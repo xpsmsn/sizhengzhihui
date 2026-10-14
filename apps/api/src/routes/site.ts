@@ -3,7 +3,7 @@
 // Reads through the same public read layer as v1; no cookies are read or set.
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { isCategoryKey, isChannelKey, type CategoryKey, type ChannelKey } from "@aihot/contracts/taxonomy";
-import type { InsightsResponse, ReportIndexResponse, ReportLatestPage, ReportNavigationResponse, SearchSuggestions, SiteContact } from "@aihot/contracts/site";
+import type { InsightsResponse, InsightTagsResponse, ReportIndexResponse, ReportLatestPage, ReportNavigationResponse, SearchSuggestions, SiteContact } from "@aihot/contracts/site";
 import { InvalidCursorError } from "@aihot/backend/lib/cursor";
 import { exportMarkdown, loadItemDetail } from "@aihot/backend/publication/detail";
 import { loadPool, SearchBusyError } from "@aihot/backend/publication/pool";
@@ -19,7 +19,7 @@ import { listTopicSummaries, loadTopicPage, topicBrowseLinks } from "@aihot/back
 import { registerFeedback } from "./feedback.ts";
 import { loadHot, loadStoryDetail, resolveStory } from "@aihot/backend/publication/stories";
 import { listReports, loadReport, reportNavigation, loadReportNavigation, loadReportMonth, type ReportKind } from "@aihot/backend/publication/reports";
-import { insightDetail, listInsights } from "@aihot/backend/reports/insights";
+import { insightDetail, listInsightTags, listInsights, listInsightsByTag } from "@aihot/backend/reports/insights";
 import { looseQuery, sendJsonWithEtag, sendProblem } from "../http/respond.ts";
 
 type Handler = (req: FastifyRequest, reply: FastifyReply) => Promise<unknown>;
@@ -221,6 +221,18 @@ export function registerSite(app: FastifyInstance) {
     const data = await insightDetail(articleId);
     if (!data) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "insight not found", cacheControl: "public, max-age=60" });
     return sendJsonWithEtag(req, reply, data, { etagPrefix: "insight", cacheControl: "public, max-age=120, s-maxage=120" });
+  }));
+
+  // 主体标签（P1）：标签云与“带某标签的解读”，把跨事件的解读串起来。
+  app.get("/api/site/tags", siteHandler(async (req, reply) => {
+    const body: InsightTagsResponse = { items: await listInsightTags() };
+    return sendJsonWithEtag(req, reply, body, { etagPrefix: "insight-tags", cacheControl: "public, max-age=120, s-maxage=120" });
+  }));
+
+  app.get("/api/site/tags/:tag", siteHandler(async (req, reply) => {
+    const { tag } = req.params as { tag: string };
+    const body: InsightsResponse = { items: await listInsightsByTag(tag) };
+    return sendJsonWithEtag(req, reply, body, { etagPrefix: "insight-tag", cacheControl: "public, max-age=60, s-maxage=60" });
   }));
 
   // Markdown export: attachment, 404 when there is nothing to export (same predicate as the button).

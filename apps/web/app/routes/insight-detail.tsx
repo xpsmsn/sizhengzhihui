@@ -1,5 +1,5 @@
 // AI生成
-// 单篇政策解读：速览 / 要点 / 背景 / 事件时间轴 / 意义与影响 / 原文金句 / 对辅导员的启示 / 思考题 / 相关阅读。
+// 单篇政策解读：速览 / 要点 / 背景 / 意义与影响 / 原文金句 / 对辅导员的启示 / 思考题 / 相关阅读。
 // 沿用站点统一长文布局（ArticleLayout：2xl 双侧栏，lg 右侧栏，手机单列），
 // 阅读列限宽 760px，避免宽屏两侧留白。配图取自条目原文，经图片代理签名。
 import type { ReactNode } from "react";
@@ -8,7 +8,6 @@ import type { Route } from "./+types/insight-detail";
 import type { InsightDetail } from "@aihot/contracts/site";
 import { SITE } from "@aihot/site";
 import { cachedPage, loadOr404 } from "../lib/api.server";
-import { monthDayTime } from "../lib/format";
 import { pageReuse } from "../lib/page-reuse";
 import { pageMeta } from "../lib/seo";
 import { ArticleLayout, RailSection } from "../components/ui/Page";
@@ -42,12 +41,11 @@ function Section({ id, title, children }: { id?: string; title: string; children
 export default function InsightDetailPage() {
   const { data } = useLoaderData<typeof loader>();
   const tldr = data.tldr?.trim() ?? "";
-  const timeline = data.timeline ?? [];
+  const tags = data.tags ?? [];
 
   const outline = [
     data.keyPoints.length > 0 && { id: "points", label: "要点" },
     tldr && data.background && { id: "background", label: "背景" },
-    timeline.length > 1 && { id: "timeline", label: "事件时间轴" },
     data.significance && { id: "significance", label: "意义与影响" },
     data.implications && { id: "implications", label: "对辅导员意味着什么" },
     data.questions.length > 0 && { id: "questions", label: "思考与讨论" },
@@ -61,6 +59,17 @@ export default function InsightDetailPage() {
           <span className="num rounded-full bg-accent-soft px-2 py-0.5 text-[12px] font-semibold text-accent">评分 {data.score}</span>
         </div>
       </RailSection>
+      {tags.length > 0 && (
+        <RailSection title="相关标签">
+          <div className="flex flex-wrap gap-1.5">
+            {tags.map((t) => (
+              <Link key={t} viewTransition to={`/tags/${encodeURIComponent(t)}`} className="rounded-full bg-bg-sunk px-2.5 py-1 text-[12px] text-ink-3 transition-colors hover:bg-accent-soft hover:text-accent">
+                {t}
+              </Link>
+            ))}
+          </div>
+        </RailSection>
+      )}
       {outline.length > 0 && (
         <RailSection title="本篇目录">
           <ul className="space-y-1.5">
@@ -124,6 +133,16 @@ export default function InsightDetailPage() {
           data.background && <p className="mt-5 text-[15.5px] leading-[1.9] text-ink-2">{data.background}</p>
         )}
 
+        {tags.length > 0 && (
+          <div className="mt-4 flex flex-wrap items-center gap-1.5">
+            {tags.map((t) => (
+              <Link key={t} viewTransition to={`/tags/${encodeURIComponent(t)}`} className="rounded-full bg-bg-sunk px-2.5 py-1 text-[12.5px] text-ink-3 transition-colors hover:bg-accent-soft hover:text-accent">
+                {t}
+              </Link>
+            ))}
+          </div>
+        )}
+
         {data.keyPoints.length > 0 && (
           <Section id="points" title="要点">
             <ul className="space-y-2">
@@ -140,29 +159,6 @@ export default function InsightDetailPage() {
         {tldr && data.background && (
           <Section id="background" title="背景">
             <p>{data.background}</p>
-          </Section>
-        )}
-
-        {timeline.length > 1 && (
-          <Section id="timeline" title="事件时间轴">
-            <ol className="border-l border-line">
-              {timeline.map((t) => (
-                <li key={t.id} className="relative pb-3.5 pl-4 last:pb-0">
-                  <span
-                    className={`absolute -left-[4.5px] top-[7px] h-2 w-2 rounded-full ring-2 ring-surface ${t.current ? "bg-accent" : "bg-line-strong"}`}
-                    aria-hidden="true"
-                  />
-                  <div className="flex flex-wrap items-baseline gap-x-2 text-[12px] leading-[18px] text-ink-4">
-                    <time dateTime={t.date} className="mono">{monthDayTime(t.date)}</time>
-                    <span className="min-w-0 truncate">{t.sourceName}</span>
-                    {t.current && <span className="rounded-full bg-accent-soft px-1.5 py-0.5 font-semibold text-accent">本篇</span>}
-                  </div>
-                  <Link viewTransition to={`/items/${t.id}`} className="mt-0.5 block text-[14.5px] leading-[1.6] text-ink transition-colors hover:text-accent">
-                    {t.title}
-                  </Link>
-                </li>
-              ))}
-            </ol>
           </Section>
         )}
 
