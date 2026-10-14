@@ -158,6 +158,17 @@ export interface InsightRelated {
   originalUrl: string;
 }
 
+/** 同一事件（fact）下的报道，按时间升序，供解读详情页“事件时间轴”。 */
+export interface InsightTimelineItem {
+  id: string;
+  title: string;
+  sourceName: string;
+  /** 报道时间（ISO）；北京时区由前端格式化。 */
+  date: string;
+  /** 是否为当前解读所依据的代表条目。 */
+  current: boolean;
+}
+
 export interface InsightDetail extends InsightView {
   keyPoints: string[];
   /** 意义与影响；旧解读可能为空。 */
@@ -171,6 +182,8 @@ export interface InsightDetail extends InsightView {
   cover: InsightCover | null;
   /** 同一事件的其他报道，可为空。 */
   related: InsightRelated[];
+  /** 同一事件下按时间升序排列的报道（含本篇），用于“事件时间轴”；无事件归并时为空。 */
+  timeline: InsightTimelineItem[];
   /** 原文链接（外部来源），可能为空。 */
   originalUrl: string;
 }
