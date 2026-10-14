@@ -204,16 +204,19 @@ async function insightCover(articleId: string, factId: number | null): Promise<I
   return { url, ...(srcSet ? { srcSet } : {}), width: row.width ?? null, height: row.height ?? null };
 }
 
-/** 同一事件的其他公开报道，供"相关阅读"。 */
-async function insightRelated(articleId: string, factId: number | null): Promise<InsightRelated[]> {
-  if (factId === null) return [];
-  const rows = await sql<{ id: string; title: string; source_name: string; url: string | null }[]>`
-    SELECT p.article_id AS id, p.title, s.name AS source_name, a.url
-    FROM publications p JOIN sources s ON s.id = p.source_id JOIN articles a ON a.id = p.article_id
-    WHERE p.fact_id = ${factId} AND p.visibility = 'public' AND p.article_id <> ${articleId}
-    ORDER BY coalesce(p.score, 0) DESC, p.timeline_at DESC
+/** 与当前解读共用主体标签的其他解读，供"相关解读"。 */
+async function insightRelated(articleId: string, tags: string[]): Promise<InsightRelated[]> {
+  if (tags.length === 0) return [];
+  const rows = await sql<{ id: string; title: string; source_name: string; overlap: number }[]>`
+    WITH want(tag) AS (SELECT jsonb_array_elements_text(${sql.json(tags)}))
+    SELECT i.article_id AS id, i.title, i.source_name,
+           (SELECT count(*) FROM jsonb_array_elements_text(i.tags) t WHERE t IN (SELECT tag FROM want))::int AS overlap
+    FROM insights i
+    WHERE i.article_id <> ${articleId}
+      AND EXISTS (SELECT 1 FROM jsonb_array_elements_text(i.tags) t WHERE t IN (SELECT tag FROM want))
+    ORDER BY overlap DESC, i.score DESC, i.generated_at DESC
     LIMIT 6`;
-  return rows.map((r) => ({ id: r.id, title: r.title, sourceName: r.source_name, originalUrl: r.url ?? "" }));
+  return rows.map((r) => ({ id: r.id, title: r.title, sourceName: r.source_name }));
 }
 
 /** 单篇解读；找不到返回 null。 */
@@ -225,7 +228,7 @@ export async function insightDetail(articleId: string): Promise<InsightDetail | 
   if (!r) return null;
   const [cover, related] = await Promise.all([
     insightCover(r.article_id, r.fact_id),
-    insightRelated(r.article_id, r.fact_id),
+    insightRelated(r.article_id, r.tags ?? []),
   ]);
   return {
     ...toView(r),

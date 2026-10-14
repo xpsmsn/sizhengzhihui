@@ -195,11 +195,11 @@ export default function InsightDetailPage() {
         )}
 
         {data.related.length > 0 && (
-          <Section title="相关阅读">
+          <Section title="相关解读">
             <ul className="divide-y divide-line-soft">
               {data.related.map((r) => (
                 <li key={r.id} className="flex items-baseline gap-2 py-2 text-[14px] leading-relaxed">
-                  <Link viewTransition to={`/items/${r.id}`} className="text-accent hover:underline">{r.title}</Link>
+                  <Link viewTransition to={`/daily/${r.id}`} className="text-accent hover:underline">{r.title}</Link>
                   <span className="ml-auto shrink-0 text-[12px] text-ink-4">{r.sourceName}</span>
                 </li>
               ))}

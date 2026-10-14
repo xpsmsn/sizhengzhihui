@@ -162,12 +162,12 @@ export interface InsightCover {
   height: number | null;
 }
 
-/** 同一事件的其他公开报道，供解读详情页"相关阅读"。 */
+/** 与当前解读共用主体标签的其他解读，供详情页"相关解读"。 */
 export interface InsightRelated {
+  /** 其他解读对应的 articleId（站内 /daily/:articleId）。 */
   id: string;
   title: string;
   sourceName: string;
-  originalUrl: string;
 }
 
 export interface InsightDetail extends InsightView {
