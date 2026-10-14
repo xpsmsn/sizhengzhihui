@@ -45,7 +45,7 @@ export default function Insights() {
                   <h2 className="text-[16px] font-semibold leading-[1.5] text-ink">{it.title}</h2>
                   <span className="num shrink-0 rounded-full bg-accent-soft px-2 py-0.5 text-[12px] font-semibold text-accent">{it.score}</span>
                 </div>
-                <p className="mt-2 line-clamp-2 text-[13.5px] leading-relaxed text-ink-3">{it.background}</p>
+                <p className="mt-2 line-clamp-2 text-[13.5px] leading-relaxed text-ink-3">{it.tldr || it.background}</p>
                 <div className="mt-2.5 flex items-center gap-2 text-[12px] text-ink-4">
                   <span className="truncate">{it.sourceName}</span>
                   <span aria-hidden="true">·</span>

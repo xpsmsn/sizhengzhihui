@@ -64,8 +64,9 @@ function toDate(v: unknown, unit: string | undefined, utcOffset: string | undefi
     const d = m ? new Date(`${m[1]}-${m[2]}-${m[3]}T00:00:00Z`) : null;
     return d && Number.isFinite(d.getTime()) && d.toISOString().startsWith(`${m![1]}-${m![2]}-${m![3]}`) ? d : null;
   }
-  // A time without a zone is in the source's offset, as list pages read it; any other text as Date.parse reads it.
-  if (ZONELESS_TIME.test(text)) return parseLooseDate(text, utcOffset);
+  // A date, or a time without a zone, is read in the source's offset (a Chinese listing's "2026-10-09" is
+  // midnight in China, not UTC); a value carrying its own zone is left to Date.parse.
+  if (ZONELESS_TIME.test(text) || /^\d{4}[-/]\d{1,2}[-/]\d{1,2}$/.test(text)) return parseLooseDate(text, utcOffset);
   const t = Date.parse(text);
   return Number.isFinite(t) ? new Date(t) : null;
 }

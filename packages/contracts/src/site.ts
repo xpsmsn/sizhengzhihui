@@ -129,7 +129,9 @@ export interface InsightView {
   title: string;
   sourceName: string;
   score: number;
-  /** 一句话背景，列表与详情都用。 */
+  /** 一句话速览；旧解读可能为空，列表退回到 background。 */
+  tldr: string;
+  /** 背景，列表与详情都用。 */
   background: string;
   /** 要点条数（列表只显示数量，详情展开）。 */
   pointCount: number;
@@ -140,9 +142,35 @@ export interface InsightsResponse {
   items: InsightView[];
 }
 
+/** 解读详情的一张配图：取自条目原文的正文图片，经图片代理签名。 */
+export interface InsightCover {
+  url: string;
+  srcSet?: string;
+  width: number | null;
+  height: number | null;
+}
+
+/** 同一事件的其他公开报道，供解读详情页"相关阅读"。 */
+export interface InsightRelated {
+  id: string;
+  title: string;
+  sourceName: string;
+  originalUrl: string;
+}
+
 export interface InsightDetail extends InsightView {
   keyPoints: string[];
+  /** 意义与影响；旧解读可能为空。 */
+  significance: string;
+  /** 原文一句关键表述；旧解读或材料没有合适表述时为空。 */
+  quote: string;
   implications: string;
+  /** 2–3 个供辅导员思考的问题；旧解读可能为空。 */
+  questions: string[];
+  /** 原文配图，可为空。 */
+  cover: InsightCover | null;
+  /** 同一事件的其他报道，可为空。 */
+  related: InsightRelated[];
   /** 原文链接（外部来源），可能为空。 */
   originalUrl: string;
 }
