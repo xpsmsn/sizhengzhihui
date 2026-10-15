@@ -3,10 +3,8 @@
 # Only GitHub-owned actions, pinned to a full commit SHA.
 name: Check
 
+# 本项目把 GitHub 仅当作代码仓库：推送 / PR 不再自动跑测试，需要时在 Actions 页面手动运行。
 on:
-  push:
-    branches: [main]
-  pull_request:
   workflow_dispatch:
 
 permissions:
