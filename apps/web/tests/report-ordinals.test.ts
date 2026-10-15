@@ -1,8 +1,8 @@
 // AI生成
 // Run after `npm run build -w @aihot/web`. Real production server/router, synthetic HTTP API only.
 // Failure cases: the masthead numbering the newest of 405 issues 400 (the navigation index's length); an
-// issue older than the index losing its number; the calendar marking that issue as not published; the
-// daily archive counting 400 issues beside a masthead that numbers 405.
+// issue older than the index losing its number; the calendar marking that issue as not published.
+// 只测在售的两刊（周报、月报）：日报的报告页已让位给政策解读。
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import { after, before, test } from "node:test";
@@ -11,7 +11,8 @@ import { isoWeekLabel } from "@aihot/contracts/time";
 import { issueNumber, periodGrid } from "../app/features/report/format.ts";
 import { startWebServer, type WebServer } from "./web-server.ts";
 
-const kinds: ReportKind[] = ["daily", "weekly", "monthly"];
+// 日报的报告页已让位给政策解读（/daily 现在列解读），报告刊物只剩周报与月报两刊。
+const kinds: ReportKind[] = ["weekly", "monthly"];
 const keys = Object.fromEntries(kinds.map((kind) => [kind, Array.from({ length: 405 }, (_, i) => {
   if (kind === "monthly") return new Date(Date.UTC(2020, i, 1)).toISOString().slice(0, 7);
   const day = new Date(Date.UTC(2020, 0, 6 + i * (kind === "weekly" ? 7 : 1))).toISOString().slice(0, 10);
@@ -83,9 +84,3 @@ for (const kind of kinds) {
     assert.match(stale.cells.find((cell) => cell.key === first)!.label, /第 10 期/, "the report's own number wins over an older navigation");
   });
 }
-
-test("the daily archive counts every issue, as the masthead numbers them", async () => {
-  const response = await fetch(`${web.origin}/daily/archive`);
-  assert.equal(response.status, 200, web.logs());
-  assert.match(masthead(await response.text()), /共\s*405\s*期/);
-});

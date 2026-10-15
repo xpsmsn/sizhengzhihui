@@ -1,0 +1,29 @@
+# CI 专用叠加文件：本 fork 连接 NAS 上的外部 PostgreSQL，基础 docker-compose.yml 里没有 db 服务。
+# GitHub Actions 上没有那台数据库，所以冒烟检查在这里起一个一次性的 PostgreSQL。
+# 叠加到基础文件上使用，例如：COMPOSE_FILE=docker-compose.yml:docker-compose.ci.yml
+# 本机与 NAS 部署不要带这个文件。
+name: sizhengzhihui
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: aihot
+      POSTGRES_PASSWORD: ci
+      POSTGRES_DB: aihot
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aihot -d aihot"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    volumes:
+      - ci-db:/var/lib/postgresql/data
+
+  # 基础文件里 setup 不等数据库；这里让迁移先等到一次性数据库就绪。
+  setup:
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  ci-db: {}

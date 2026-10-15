@@ -15,6 +15,7 @@ import { createServer } from "node:http";
 import { before, after, test } from "node:test";
 import { chromium, webkit, expect, type Browser } from "@playwright/test";
 import type { FeedItemSummary, SiteItemDetail, ReportDetail } from "@aihot/contracts/site";
+import { CATEGORY_LABELS } from "@aihot/contracts/taxonomy";
 import { startWebServer, type WebServer } from "./web-server.ts";
 
 const at = '2026-10-04T08:00:00.000Z';
@@ -99,10 +100,10 @@ test('SSR list and visited query variants return offline without another read',a
     await expect(page.getByRole('link',{name:'性能检查文章',exact:true})).toBeVisible({timeout:1500});
     await context.setOffline(false);
     await page.getByRole('button',{name:/^筛选/}).click();
-    await page.getByRole('link',{name:'模型',exact:true}).click();
+    await page.getByRole('link',{name:CATEGORY_LABELS.speech,exact:true}).click();
     await expect(page.getByRole('link',{name:'分类 speech',exact:true})).toBeVisible();
     await page.getByRole('button',{name:/^筛选/}).click();
-    await page.getByRole('link',{name:'产品',exact:true}).click();
+    await page.getByRole('link',{name:CATEGORY_LABELS.policy,exact:true}).click();
     await expect(page.getByRole('link',{name:'分类 policy',exact:true})).toBeVisible();
     await context.setOffline(true);
     await page.goBack();
@@ -143,11 +144,12 @@ test('SSR all-pages and report kinds return offline with their own content',asyn
     await expect(page.getByRole('link',{name:'全部第 2 页',exact:true})).toBeVisible();
     await context.setOffline(true);await page.goBack();
     await expect(page.getByRole('link',{name:'全部第 1 页',exact:true})).toBeVisible({timeout:1500});
-    await context.setOffline(false);await page.goto(origin+'/daily');
-    await page.getByRole('link',{name:'周报',exact:true}).click();
+    await context.setOffline(false);await page.goto(origin+'/weekly');
     await expect(page.locator('#report-start')).toContainText('周报');
-    await context.setOffline(true);await page.getByRole('link',{name:'日报',exact:true}).click();
-    await expect(page.locator('#report-start')).toContainText('日报',{timeout:1500});
+    await page.getByRole('link',{name:'月报',exact:true}).click();
+    await expect(page.locator('#report-start')).toContainText('月报');
+    await context.setOffline(true);await page.getByRole('link',{name:'周报',exact:true}).click();
+    await expect(page.locator('#report-start')).toContainText('周报',{timeout:1500});
   }finally{await context.close();}
 });
 
@@ -160,16 +162,16 @@ test('intent on a selected link preserves visited data and the next revisit star
   page.on('request',request=>{if(request.url().includes('.data'))requests.push(request.url());});
   try{
     await page.goto(origin+'/');
-    await page.getByRole('link',{name:'模型',exact:true}).click();
+    await page.getByRole('link',{name:CATEGORY_LABELS.speech,exact:true}).click();
     await expect(page.getByRole('link',{name:'分类 speech',exact:true})).toBeVisible();
-    await page.getByRole('link',{name:'模型',exact:true}).focus();
+    await page.getByRole('link',{name:CATEGORY_LABELS.speech,exact:true}).focus();
     await page.waitForTimeout(150);
-    await page.getByRole('link',{name:'产品',exact:true}).click();
+    await page.getByRole('link',{name:CATEGORY_LABELS.policy,exact:true}).click();
     await expect(page.getByRole('link',{name:'分类 policy',exact:true})).toBeVisible();
-    await page.getByRole('link',{name:'产品',exact:true}).focus();
+    await page.getByRole('link',{name:CATEGORY_LABELS.policy,exact:true}).focus();
     await page.waitForTimeout(150);
     const before=requests.length;
-    await page.getByRole('link',{name:'模型',exact:true}).click();
+    await page.getByRole('link',{name:CATEGORY_LABELS.speech,exact:true}).click();
     await expect(page.getByRole('link',{name:'分类 speech',exact:true})).toBeVisible();
     assert.deepEqual(requests.slice(before),[],'neither prefetch nor navigation may evict and reload a still-valid visited page');
   }finally{await context.close();}

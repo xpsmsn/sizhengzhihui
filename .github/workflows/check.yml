@@ -94,6 +94,9 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      # 本 fork 用外部 PostgreSQL，基础 compose 里没有 db 服务；CI 用叠加文件起一个一次性数据库。
+      COMPOSE_FILE: docker-compose.yml:docker-compose.ci.yml
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -107,6 +110,8 @@ jobs:
           sed -i 's/^COLLECT_ENABLED=.*/COLLECT_ENABLED=false/; s/^MODEL_CALLS_ENABLED=.*/MODEL_CALLS_ENABLED=false/' .env
           # The smoke check reaches the site by its compose service name.
           echo "MCP_ALLOWED_HOSTS=web" >> .env
+          # 本 fork 用外部 PostgreSQL；CI 由 docker-compose.ci.yml 提供一次性数据库。
+          echo "DATABASE_URL=postgres://aihot:ci@db:5432/aihot" >> .env
       - name: Build and start with docker compose
         run: docker compose up -d --build
       - name: Smoke check
