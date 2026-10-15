@@ -77,6 +77,11 @@ export interface ChatJsonResult<T> {
   reused: boolean;
   model: string;
   usage: Record<string, unknown> | null;
+  /**
+   * Provider 的 finish_reason。"length" 表示输出撞上 max_tokens 被切断，是一份半成品：即便侥幸解析成 JSON，
+   * 后面的字段也是整段缺失的，调用方应退回重试，而不是当成正常结果存下来。
+   */
+  finishReason: string | null;
 }
 
 export class ModelOutputError extends Error {
@@ -209,5 +214,5 @@ export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): P
     await rejectReceivedResponse(receipt.receiptId, `unusable output: ${detail.slice(0, 500)}`);
     throw new ModelOutputError(`Model ${opts.model} returned unusable output for ${opts.subject}: ${detail.slice(0, 300)}`, receipt.receiptId);
   }
-  return { data: parsed, receiptId: receipt.receiptId, reused: receipt.reused, model: spec.key, usage: response.usage ?? null };
+  return { data: parsed, receiptId: receipt.receiptId, reused: receipt.reused, model: spec.key, usage: response.usage ?? null, finishReason: response.choices?.[0]?.finish_reason ?? null };
 }
