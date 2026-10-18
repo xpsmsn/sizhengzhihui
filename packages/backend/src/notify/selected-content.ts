@@ -62,7 +62,9 @@ export async function selectedContent(articleId: string, now = new Date()): Prom
   if (r.silent) return { status: "skipped", reason: "silenced" };
   if (!r.published_at) return { status: "skipped", reason: "unknown publication time" };
   if (!PUSH_TIERS.includes(r.source_tier)) return { status: "skipped", reason: "not a first-party source" };
-  if (r.backfill || now.getTime() - r.timeline_at.getTime() > MAX_AGE_MS) return { status: "skipped", reason: "not live" };
+  // "Live" is about delivery, not the source's clock: the timeline sits at publication time, but a
+  // story found this minute is notify-worthy no matter when its source filed it.
+  if (r.backfill || now.getTime() - r.discovered_at.getTime() > MAX_AGE_MS) return { status: "skipped", reason: "not live" };
 
   return { status: "ready", article: r, card: card(r) };
 }

@@ -99,6 +99,7 @@ docs/        文档
 |------|------|
 | `scripts/reanalyze.ts` | 改规则后批量重评估存量文章（试算 / `--run`）|
 | `scripts/refill-publication-dates.ts` | 为空日期 / 午夜日期文章回填精确发布日期（试算 / `--apply`）|
+| `scripts/recount-timeline-dates.ts` | 按发布时间重算历史条目的时间线归日与排序（试算 / `--apply`，可选 `--fix-shifted` 修复被丢弃的 +8 小时错位日期）|
 | `scripts/clear-daily-reports.ts` | 清除已取消的日报数据 |
 
 ## 文档

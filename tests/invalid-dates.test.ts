@@ -114,6 +114,20 @@ test("storage preserves finite future claims and existing timeline boundaries", 
   }
 });
 
+test("a dated story in the fresh window sits at its publication time, not its discovery time", async () => {
+  // A 10-16 23:30 story collected after midnight must still list under 16 October.
+  const s = source(`epoch-anchor-${T}`, "epoch_ms", []);
+  await saveSource(s);
+  const discoveredAt = new Date("2026-10-17T00:30:00.000Z");
+  const publishedAt = new Date("2026-10-16T15:30:00.000Z");
+  const result = await upsertMaterial({ sourceId: s.id, url: `https://example.org/${s.id}/dated`, title: "Dated story",
+    publishedAt, discoveredAt, via: "fetch" });
+  const row = await timeline(result.articleId);
+  assert.equal(row.backfill, false);
+  assert.equal(row.published_at?.getTime(), publishedAt.getTime());
+  assert.equal(row.timeline_at.getTime(), publishedAt.getTime());
+});
+
 test("unrelated storage failures still fail collection visibly", async () => {
   const s = source(`epoch-db-error-${T}`, "epoch_s", [Math.floor(Date.now() / 1000)]);
   await saveSource(s);

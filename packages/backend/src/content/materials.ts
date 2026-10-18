@@ -77,7 +77,12 @@ export interface TimelineDecision {
   backfillReason: string | null;
 }
 
-/** The one timeline rule shared by every entrance. */
+/**
+ * The one timeline rule shared by every entrance: a dated item sits at the moment its source
+ * published it — a story filed 10-16 23:30 and collected after midnight still lists under 16 October —
+ * and only an undated one sits at the moment we discovered it. The source's date decides the day;
+ * discovery time only orders what no source date exists for.
+ */
 export function decideTimeline(claimed: Date | null | undefined, discoveredAt: Date, explicitBackfill?: string | null): TimelineDecision {
   let publishedAt: Date | null = claimed && Number.isFinite(claimed.getTime()) ? claimed : null;
   if (publishedAt && publishedAt.getTime() > discoveredAt.getTime() + FUTURE_TOLERANCE_MS) publishedAt = null;
@@ -86,7 +91,7 @@ export function decideTimeline(claimed: Date | null | undefined, discoveredAt: D
   else if (!publishedAt) backfillReason = "unknown-publication-time";
   else if (publishedAt && discoveredAt.getTime() - publishedAt.getTime() > STALE_ON_DISCOVERY_MS) backfillReason = "stale-on-discovery";
   const backfill = backfillReason !== null;
-  const timelineAt = backfill && publishedAt ? publishedAt : discoveredAt;
+  const timelineAt = publishedAt ?? discoveredAt;
   return { publishedAt, timelineAt, backfill, backfillReason };
 }
 

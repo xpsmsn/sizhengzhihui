@@ -5,7 +5,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { readable } from "@aihot/backend/content/extract";
-import { parseLooseDate } from "@aihot/backend/sources/dates";
+import { parseFeedDate, parseLooseDate } from "@aihot/backend/sources/dates";
+import { beijingDate } from "@aihot/contracts/time";
 
 const iso = (v: string, offset?: string) => parseLooseDate(v, offset)?.toISOString() ?? null;
 
@@ -17,12 +18,45 @@ test("a date and time without a zone is in the source's offset, not the server's
   assert.equal(iso("2026-09-26 10:00", "-07:00"), "2026-09-26T17:00:00.000Z");
 });
 
-test("a bare date is midnight in the source's offset; an ISO date alone stays UTC midnight", () => {
+test("a bare date is midnight in the source's offset, whichever separator prints it", () => {
   assert.equal(iso("2026/09/26"), "2026-09-25T16:00:00.000Z");
   assert.equal(iso("2026年9月26日"), "2026-09-25T16:00:00.000Z");
   assert.equal(iso("Sep 26, 2026"), "2026-09-25T16:00:00.000Z");
-  assert.equal(iso("2026-09-26"), "2026-09-26T00:00:00.000Z");
+  assert.equal(iso("2026-09-26"), "2026-09-25T16:00:00.000Z");
   assert.equal(iso("September 26th, 2026", "+00:00"), "2026-09-26T00:00:00.000Z");
+});
+
+const feed = (v: string, offset?: string) => parseFeedDate(v, offset)?.toISOString() ?? null;
+
+// The bug this guards: a feed's zoneless time was read with Date.parse in the server's zone — UTC in
+// Docker — so a Chinese feed's "2026-10-16 21:30" became 21:30 UTC (the 17th 05:30 Beijing) and evening
+// news slid into the next day's list. The reading must not depend on the host's zone.
+test("a feed's publication time without a zone is in the source's offset on every host", () => {
+  const zone = process.env.TZ;
+  try {
+    for (const tz of ["UTC", "Asia/Shanghai", "America/New_York", "Europe/Berlin"]) {
+      process.env.TZ = tz;
+      for (const [time, offset, expected] of [
+        ["2026-10-16 21:30:00", undefined, "2026-10-16T13:30:00.000Z"],
+        ["2026-10-16T21:30:00", undefined, "2026-10-16T13:30:00.000Z"],
+        ["Thu, 16 Oct 2026 21:30:00", undefined, "2026-10-16T13:30:00.000Z"],
+        ["星期四, 16 Oct 2026 21:30:00", undefined, "2026-10-16T13:30:00.000Z"],
+        ["Thu, 16 Oct 2026 21:30:00 +0800", undefined, "2026-10-16T13:30:00.000Z"],
+        ["Thu, 16 Oct 2026 21:30:00 GMT", undefined, "2026-10-16T21:30:00.000Z"],
+        ["2026-10-16T21:30:00.000+09:00", undefined, "2026-10-16T12:30:00.000Z"],
+        ["2026年10月16日 21:30", undefined, "2026-10-16T13:30:00.000Z"],
+        ["2026-10-16 21:30:00", "+00:00", "2026-10-16T21:30:00.000Z"],
+        ["2026-10-16", undefined, "2026-10-15T16:00:00.000Z"],
+        ["", undefined, null],
+        ["unknown", undefined, null],
+      ] as const) assert.equal(feed(time!, offset ?? undefined), expected, `${tz}: ${time}`);
+      // The evening item keeps its source's day in Beijing; the old UTC reading ended up on the 17th.
+      assert.equal(beijingDate(feed("2026-10-16 21:30:00")!), "2026-10-16", tz);
+    }
+  } finally {
+    if (zone === undefined) delete process.env.TZ;
+    else process.env.TZ = zone;
+  }
 });
 
 test("a date that carries its zone keeps it", () => {

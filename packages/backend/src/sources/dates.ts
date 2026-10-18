@@ -63,3 +63,21 @@ export function parseLooseDate(value: string | null | undefined, utcOffset = "+0
   return atOffset(utc.getUTCFullYear(), utc.getUTCMonth() + 1, utc.getUTCDate(), utc.getUTCHours(), utc.getUTCMinutes(), utc.getUTCSeconds(), utcOffset);
 }
 
+/**
+ * A publication time as a feed's pubDate / dc:date / published / updated prints it. Same reading on
+ * every host: a time without a zone is read in the source's offset (Date.parse would take it in the
+ * server's zone, so a Chinese feed's "2026-10-16 21:30" on Docker (UTC) became 21:30 UTC — the 17th
+ * 05:30 Beijing, and evening news listed under the next day), while a time that carries its own zone
+ * keeps it. Only a shape neither a date nor a date with a wall-clock time ("10/16/2026") falls back to
+ * Date.parse, which the host reads in its own zone.
+ */
+export function parseFeedDate(value: string | null | undefined, utcOffset?: string): Date | null {
+  // RFC 822 variants print a Chinese weekday; it carries no zone and only confuses the parsers.
+  const v = value?.replace(/星期[一二三四五六日天][,，、]?\s*/, "").replace(/\s+/g, " ").trim();
+  if (!v) return null;
+  const loose = parseLooseDate(v, utcOffset);
+  if (loose) return loose;
+  const t = Date.parse(v);
+  return Number.isFinite(t) ? new Date(t) : null;
+}
+

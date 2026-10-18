@@ -37,6 +37,10 @@ const pages: Record<string, () => string> = {
   "/zoneless-post": () => `<html><head><meta property="article:published_time" content="2026-09-30 17:43:58"></head><body><p>Post</p></body></html>`,
   // A list API that gives calendar days as yyyymmdd.
   "/days.json": () => JSON.stringify({ data: { list: [{ seq: 695, ttl: "MCFlow", day: "20260922" }, { seq: 1, ttl: "Bad day", day: "20260230" }] } }),
+  // An RSS whose pubDate is a wall-clock time without a zone; Chinese feeds print Beijing time.
+  "/zoneless-feed.xml": () =>
+    `<?xml version="1.0"?><rss version="2.0"><channel><title>时政</title><item><title>晚间新闻</title><link>https://example.org/night</link>` +
+    `<pubDate>Wed, 30 Sep 2026 21:30:00</pubDate><description>正文</description></item></channel></rss>`,
   // Google Developers Blog: no date in the feed or in meta tags, only in JSON-LD.
   "/ld-post": () =>
     `<html><head><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Blog"},` +
@@ -200,5 +204,21 @@ test("dates in yyyymmdd and in JSON-LD are read", async () => {
   const days = await fetchJsonList({ id: "test-json", config: { url: `${site}/days.json`, itemsPath: "data.list", titlePaths: ["ttl"], urlTemplate: "https://example.org/blog/view?seq={seq}", publishedAtPath: "day", publishedAtUnit: "yyyymmdd" } } as never);
   assert.deepEqual(days.map((c) => c.publishedAt?.toISOString() ?? null), ["2026-09-22T00:00:00.000Z", null], "February 30 is no date");
   const got = await fetchDetail(`${site}/ld-post`, { id: "test-feed", config: { detail: { maxFetches: 20 } } } as never, { date: true, title: false, summary: false, body: false });
-  assert.equal(got.publishedAt?.toISOString(), "2026-09-24T00:00:00.000Z");
+  // A bare day in JSON-LD is midnight in the source's offset (+08:00), i.e. 2026-09-24 in Beijing.
+  assert.equal(got.publishedAt?.toISOString(), "2026-09-23T16:00:00.000Z");
+});
+
+test("an RSS pubDate without a zone is the source's wall-clock time on every host", async () => {
+  // Date.parse read it in the server's zone (UTC in Docker), so evening news slid to the next day.
+  const zone = process.env.TZ;
+  try {
+    for (const tz of ["UTC", "Asia/Shanghai", "America/New_York"]) {
+      process.env.TZ = tz;
+      const { candidates } = await fetchRss({ id: "test-feed", config: { feedUrl: `${site}/zoneless-feed.xml` }, participation_mode: "editorial", cursor: null } as never, { force: true });
+      assert.equal(candidates[0]!.publishedAt?.toISOString(), "2026-09-30T13:30:00.000Z", tz);
+    }
+  } finally {
+    if (zone === undefined) delete process.env.TZ;
+    else process.env.TZ = zone;
+  }
 });

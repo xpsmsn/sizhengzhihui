@@ -2,6 +2,7 @@
 // RSS 2.0 / Atom / RDF feeds.
 import { XMLParser } from "fast-xml-parser";
 import { fetchListing } from "./listing-fetch.ts";
+import { articleUtcOffset, parseFeedDate } from "./dates.ts";
 import { collapseWhitespace, escapeXml, stripTags } from "../lib/text.ts";
 import { sanitizeBody } from "../content/sanitize.ts";
 import { identityKeyFor } from "../content/materials.ts";
@@ -57,16 +58,6 @@ function mediaDescription(entry: Record<string, any>): string | null {
     return collapseWhitespace(description?.["@type"] === "html" ? stripTags(value) : value).slice(0, 2000) || null;
   }
   return null;
-}
-
-function parseDate(v: string): Date | null {
-  if (!v) return null;
-  const t = Date.parse(v);
-  if (Number.isFinite(t)) return new Date(t);
-  // RFC 822 variants with Chinese weekday or odd zones
-  const cleaned = v.replace(/星期[一二三四五六日天]/, "").replace(/\s+/g, " ").trim();
-  const t2 = Date.parse(cleaned);
-  return Number.isFinite(t2) ? new Date(t2) : null;
 }
 
 function atomLink(links: unknown, base: string): string {
@@ -201,7 +192,8 @@ export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}
         ...(mediaFile ? { identityKey: identityKeyFor({ sourceId: source.id, url: guid, title, via: "fetch" }) } : {}),
         title,
         author: text(it["dc:creator"]) || text(it.author) || null,
-        publishedAt: parseDate(text(it.pubDate) || text(it["dc:date"]) || text(it.published)),
+        // The feed's own publication time: zoneless prints read in the source's offset, never the server's.
+        publishedAt: parseFeedDate(text(it.pubDate) || text(it["dc:date"]) || text(it.published), articleUtcOffset(source.config)),
         ...feedText(bodyHtml, description ? stripTags(description) : null, source, !mediaFile && !video),
         ...(videoExcerpt ? { excerpt: videoExcerpt } : {}),
         media: media.slice(0, 6),
@@ -232,8 +224,8 @@ export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}
         url: entryUrl,
         title,
         author: text(arr(e.author)[0]?.name) || null,
-        publishedAt: parseDate(text(e.published) || text(e.updated)),
-        sourceUpdatedAt: parseDate(text(e.updated)),
+        publishedAt: parseFeedDate(text(e.published) || text(e.updated), articleUtcOffset(source.config)),
+        sourceUpdatedAt: parseFeedDate(text(e.updated), articleUtcOffset(source.config)),
         ...feedText(bodyHtml, summary, source, !video, plainBody),
         ...(videoExcerpt ? { excerpt: videoExcerpt } : {}),
         media: bodyHtmlRaw ? imagesFrom(bodyHtmlRaw, entryUrl) : [],

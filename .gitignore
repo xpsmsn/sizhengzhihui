@@ -16,3 +16,8 @@ package/
 fontsource-noto-sans-sc-*.tgz
 
 .tmp/
+
+# 一次性维护产物：回填脚本的快照、本地测试日志、编辑器临时目录
+recount-rollback-*.json
+test-full.log
+.wpscomate/

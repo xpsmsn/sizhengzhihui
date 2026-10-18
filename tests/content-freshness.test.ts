@@ -84,7 +84,7 @@ test('an original source can supply a missing date without changing the text; di
     assert.equal(a.published_at.getTime(),publishedAt.getTime());
     assert.equal(a.discovered_at.getTime(),discoveredAt.getTime());
     assert.equal(a.backfill,mode!=='fresh');
-    assert.equal(a.timeline_at.getTime(),mode==='fresh'?discoveredAt.getTime():publishedAt.getTime());
+    assert.equal(a.timeline_at.getTime(),publishedAt.getTime(),'归日按发布时间，不按收录时间');
     assert.equal((await upsertMaterial({...material,publishedAt})).revised,false);
     await highScore(created.articleId);
     assert.equal((await selectedContent(created.articleId)).status,mode==='fresh'?'ready':'skipped');
