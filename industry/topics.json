@@ -1,91 +1,110 @@
 {
   "groups": [
     {
-      "key": "keywork",
-      "name": "重点工作",
-      "blurb": "教育规划、立德树人、高校治理三大主线，追踪上级部署与改革方向"
+      "key": "sizheng",
+      "name": "思政主线",
+      "blurb": "思政课与三全育人建设、辅导员队伍发展，追踪立德树人核心任务的部署与做法"
     },
     {
-      "key": "fiveedu",
-      "name": "五育并举",
-      "blurb": "德智体美劳全面发展，浏览五育各领域的政策、做法与经验"
+      "key": "growth",
+      "name": "学生成长",
+      "blurb": "心理帮扶、资助育人与就业指导，聚焦大学生成长支持的关键领域"
     },
     {
-      "key": "team",
-      "name": "队伍·学生",
-      "blurb": "教师与辅导员队伍建设、学生成长支持：心理健康、资助育人、就业指导"
+      "key": "practice",
+      "name": "高校实践",
+      "blurb": "一站式社区、平安校园与育人案例，浏览高校思政工作的具体做法与经验"
+    },
+    {
+      "key": "hotspot",
+      "name": "形势与热点",
+      "blurb": "党的建设、从严治党与教育数字化趋势，关注影响思政工作的大环境与大方向"
     }
   ],
   "topics": [
     {
+      "slug": "sizheng-course",
+      "name": "思政课建设",
+      "group": "sizheng",
+      "tags": ["思政课建设"],
+      "definition": "思政课改革创新与课程思政建设：大思政课、教学方式改革、教材工作、思政课教师队伍建设。"
+    },
+    {
+      "slug": "sanquan-education",
+      "name": "三全育人",
+      "group": "sizheng",
+      "tags": ["三全育人"],
+      "definition": "全员全过程全方位育人体系：育人机制建设、各领域育人协同、育人质量提升的做法与经验。"
+    },
+    {
+      "slug": "fudaoyuan",
+      "name": "辅导员",
+      "group": "sizheng",
+      "tags": ["辅导员"],
+      "definition": "辅导员队伍建设与职业发展：能力提升、工作方法、职业成长、辅导员工作室与育人实践。"
+    },
+    {
       "slug": "education-planning",
       "name": "教育规划",
-      "group": "keywork",
+      "group": "sizheng",
       "tags": ["教育规划"],
       "definition": "教育发展的顶层设计与战略部署：十五五规划、教育强国建设、全国教育大会、教育改革总体方案与阶段性目标。"
     },
     {
-      "slug": "moral-education",
-      "name": "立德树人",
-      "group": "keywork",
-      "tags": ["立德树人"],
-      "definition": "思想政治教育的核心任务：总书记讲话精神、思政课与课程思政建设、教材工作、三全育人、大思政课。"
+      "slug": "support-education",
+      "name": "帮扶育人",
+      "group": "growth",
+      "tags": ["帮扶育人"],
+      "definition": "心理育人与资助育人：心理健康教育、危机干预、奖助学金、资助政策与困难帮扶的工作与实践。"
     },
     {
-      "slug": "campus-governance",
-      "name": "高校治理",
-      "group": "keywork",
-      "tags": ["高校治理"],
-      "definition": "高校改革与治理创新：高校综合改革、一站式学生社区、产教融合、卓越工程师培养、分类评价与治理现代化。"
+      "slug": "career-employment",
+      "name": "就业与生涯",
+      "group": "growth",
+      "tags": ["就业与生涯"],
+      "definition": "就业创业指导与生涯规划：就业育人、职业生涯教育、创新创业指导、就业市场动态与政策。"
     },
     {
-      "slug": "deyu",
-      "name": "德育",
-      "group": "fiveedu",
-      "tags": ["德育"],
-      "definition": "思想政治教育与德育改革：思政课、课程思政、师德师风、德育品牌、立德树人落实机制。"
+      "slug": "one-stop-community",
+      "name": "一站式学生社区",
+      "group": "practice",
+      "tags": ["一站式学生社区"],
+      "definition": "一站式学生社区综合管理模式建设：社区育人、队伍进驻、服务下沉、党建引领社区治理的做法。"
     },
     {
-      "slug": "zhiyu",
-      "name": "智育",
-      "group": "fiveedu",
-      "tags": ["智育"],
-      "definition": "智育与学业发展：学风建设、学业辅导与朋辈帮扶、创新创业教育、学术规范与科研育人。"
+      "slug": "safety-stability",
+      "name": "安全稳定",
+      "group": "practice",
+      "tags": ["安全稳定"],
+      "definition": "校园安全稳定与平安校园建设：安全教育、危机管理、网络安全、防范化解风险的部署与做法。"
     },
     {
-      "slug": "tiyu",
-      "name": "体育",
-      "group": "fiveedu",
-      "tags": ["体育"],
-      "definition": "体育育人与体质强健：体育锻炼、体质健康、校园体育文化与体教融合。"
+      "slug": "five-education",
+      "name": "五育并举",
+      "group": "practice",
+      "tags": ["五育并举"],
+      "definition": "德智体美劳全面发展：德育、智育、体育、美育、劳育各领域的政策、做法与育人经验。"
     },
     {
-      "slug": "meiyu",
-      "name": "美育",
-      "group": "fiveedu",
-      "tags": ["美育"],
-      "definition": "美育浸润与校园文化：美育课程、艺术实践、校园文化活动与以美育人经验。"
+      "slug": "case-practice",
+      "name": "育人案例",
+      "group": "practice",
+      "tags": ["育人案例"],
+      "definition": "高校思政育人典型案例与品牌项目：工作案例、一院一品、经验做法、可借鉴迁移的育人模式。"
     },
     {
-      "slug": "laoyu",
-      "name": "劳育",
-      "group": "fiveedu",
-      "tags": ["劳育"],
-      "definition": "劳动教育与实践育人：劳动课程、实践基地、志愿服务与以劳育人经验。"
+      "slug": "party-building",
+      "name": "党建与从严治党",
+      "group": "hotspot",
+      "tags": ["党建与从严治党"],
+      "definition": "党的建设与全面从严治党部署：党员教育、基层组织建设、八项规定精神、风清气正育人生态。"
     },
     {
-      "slug": "teacher-development",
-      "name": "教师发展",
-      "group": "team",
-      "tags": ["教师发展"],
-      "definition": "教师与辅导员队伍建设：教师队伍建设改革、青年教师培养、师德师风、辅导员职业发展与能力提升。"
-    },
-    {
-      "slug": "student-development",
-      "name": "学生育人",
-      "group": "team",
-      "tags": ["学生育人"],
-      "definition": "学生成长与发展支持：心理健康教育、资助育人、就业创业指导、生涯规划。"
+      "slug": "ai-education",
+      "name": "AI与教育数字化",
+      "group": "hotspot",
+      "tags": ["AI与教育数字化"],
+      "definition": "人工智能与教育数字化趋势：AI赋能思政工作、数字校园、智慧思政、教育数字化转型政策与实践。"
     }
   ]
 }
